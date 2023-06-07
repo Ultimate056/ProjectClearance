@@ -39,11 +39,11 @@
             this.textBoxCurRemain = new System.Windows.Forms.TextBox();
             this.textBoxCurDays = new System.Windows.Forms.TextBox();
             this.textBoxTargetDays = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxPeriodA = new System.Windows.Forms.TextBox();
             this.textBoxCurTemp = new System.Windows.Forms.TextBox();
             this.textBoxHO = new System.Windows.Forms.TextBox();
             this.textBoxSaleDays = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBoxStepSale = new System.Windows.Forms.TextBox();
             this.textBoxRequireTemp = new System.Windows.Forms.TextBox();
             this.textBoxMCSales = new System.Windows.Forms.TextBox();
             this.textBoxDiscountMC = new System.Windows.Forms.TextBox();
@@ -111,6 +111,8 @@
             this.gridColumnIdSKU.FieldName = "idSKU";
             this.gridColumnIdSKU.Name = "gridColumnIdSKU";
             this.gridColumnIdSKU.OptionsColumn.AllowEdit = false;
+            this.gridColumnIdSKU.Visible = true;
+            this.gridColumnIdSKU.VisibleIndex = 4;
             // 
             // gridColumnArt
             // 
@@ -191,8 +193,8 @@
             // 
             // textBoxCurRemain
             // 
-            this.textBoxCurRemain.BackColor = System.Drawing.Color.LightGray;
-            this.textBoxCurRemain.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxCurRemain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxCurRemain.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCurRemain.Location = new System.Drawing.Point(1177, 60);
             this.textBoxCurRemain.Multiline = true;
             this.textBoxCurRemain.Name = "textBoxCurRemain";
@@ -203,8 +205,8 @@
             // 
             // textBoxCurDays
             // 
-            this.textBoxCurDays.BackColor = System.Drawing.Color.LightGray;
-            this.textBoxCurDays.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxCurDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxCurDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCurDays.Location = new System.Drawing.Point(1177, 118);
             this.textBoxCurDays.Multiline = true;
             this.textBoxCurDays.Name = "textBoxCurDays";
@@ -223,20 +225,21 @@
             this.textBoxTargetDays.TabIndex = 4;
             this.textBoxTargetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox4
+            // textBoxPeriodA
             // 
-            this.textBox4.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBox4.Location = new System.Drawing.Point(1177, 292);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 52);
-            this.textBox4.TabIndex = 5;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxPeriodA.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxPeriodA.Location = new System.Drawing.Point(1177, 292);
+            this.textBoxPeriodA.Multiline = true;
+            this.textBoxPeriodA.Name = "textBoxPeriodA";
+            this.textBoxPeriodA.Size = new System.Drawing.Size(100, 52);
+            this.textBoxPeriodA.TabIndex = 5;
+            this.textBoxPeriodA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxPeriodA.TextChanged += new System.EventHandler(this.textBoxPeriodA_TextChanged);
             // 
             // textBoxCurTemp
             // 
-            this.textBoxCurTemp.BackColor = System.Drawing.Color.LightGray;
-            this.textBoxCurTemp.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxCurTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxCurTemp.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCurTemp.Location = new System.Drawing.Point(1465, 60);
             this.textBoxCurTemp.Multiline = true;
             this.textBoxCurTemp.Name = "textBoxCurTemp";
@@ -247,8 +250,8 @@
             // 
             // textBoxHO
             // 
-            this.textBoxHO.BackColor = System.Drawing.Color.LightGray;
-            this.textBoxHO.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxHO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxHO.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxHO.Location = new System.Drawing.Point(1465, 118);
             this.textBoxHO.Multiline = true;
             this.textBoxHO.Name = "textBoxHO";
@@ -266,23 +269,24 @@
             this.textBoxSaleDays.Size = new System.Drawing.Size(100, 52);
             this.textBoxSaleDays.TabIndex = 8;
             this.textBoxSaleDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxSaleDays.TextChanged += new System.EventHandler(this.textBoxSaleDays_TextChanged);
             // 
-            // textBox8
+            // textBoxStepSale
             // 
-            this.textBox8.BackColor = System.Drawing.Color.LightGray;
-            this.textBox8.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBox8.Location = new System.Drawing.Point(1465, 292);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(100, 52);
-            this.textBox8.TabIndex = 9;
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxStepSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxStepSale.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxStepSale.Location = new System.Drawing.Point(1465, 292);
+            this.textBoxStepSale.Multiline = true;
+            this.textBoxStepSale.Name = "textBoxStepSale";
+            this.textBoxStepSale.ReadOnly = true;
+            this.textBoxStepSale.Size = new System.Drawing.Size(100, 52);
+            this.textBoxStepSale.TabIndex = 9;
+            this.textBoxStepSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxRequireTemp
             // 
-            this.textBoxRequireTemp.BackColor = System.Drawing.Color.LightGray;
-            this.textBoxRequireTemp.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxRequireTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxRequireTemp.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxRequireTemp.Location = new System.Drawing.Point(1723, 60);
             this.textBoxRequireTemp.Multiline = true;
             this.textBoxRequireTemp.Name = "textBoxRequireTemp";
@@ -301,6 +305,7 @@
             this.textBoxMCSales.Size = new System.Drawing.Size(100, 52);
             this.textBoxMCSales.TabIndex = 11;
             this.textBoxMCSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxMCSales.TextChanged += new System.EventHandler(this.textBoxMCSales_TextChanged);
             // 
             // textBoxDiscountMC
             // 
@@ -311,11 +316,12 @@
             this.textBoxDiscountMC.Size = new System.Drawing.Size(100, 52);
             this.textBoxDiscountMC.TabIndex = 12;
             this.textBoxDiscountMC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxDiscountMC.TextChanged += new System.EventHandler(this.textBoxDiscountMC_TextChanged);
             // 
             // textBoxMCMarket
             // 
-            this.textBoxMCMarket.BackColor = System.Drawing.Color.LightGray;
-            this.textBoxMCMarket.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxMCMarket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxMCMarket.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxMCMarket.Location = new System.Drawing.Point(1723, 234);
             this.textBoxMCMarket.Multiline = true;
             this.textBoxMCMarket.Name = "textBoxMCMarket";
@@ -609,11 +615,11 @@
             this.Controls.Add(this.textBoxDiscountMC);
             this.Controls.Add(this.textBoxMCSales);
             this.Controls.Add(this.textBoxRequireTemp);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.textBoxStepSale);
             this.Controls.Add(this.textBoxSaleDays);
             this.Controls.Add(this.textBoxHO);
             this.Controls.Add(this.textBoxCurTemp);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBoxPeriodA);
             this.Controls.Add(this.textBoxTargetDays);
             this.Controls.Add(this.textBoxCurDays);
             this.Controls.Add(this.textBoxCurRemain);
@@ -644,11 +650,11 @@
         private System.Windows.Forms.TextBox textBoxCurRemain;
         private System.Windows.Forms.TextBox textBoxCurDays;
         private System.Windows.Forms.TextBox textBoxTargetDays;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxPeriodA;
         private System.Windows.Forms.TextBox textBoxCurTemp;
         private System.Windows.Forms.TextBox textBoxHO;
         private System.Windows.Forms.TextBox textBoxSaleDays;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBoxStepSale;
         private System.Windows.Forms.TextBox textBoxRequireTemp;
         private System.Windows.Forms.TextBox textBoxMCSales;
         private System.Windows.Forms.TextBox textBoxDiscountMC;

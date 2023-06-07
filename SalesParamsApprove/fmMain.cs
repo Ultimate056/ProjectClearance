@@ -71,7 +71,7 @@ namespace SalesParamsApprove
                 textBoxCurRemain.Text = res.Rows[0]["rest"].ToString(); //Текущий остаток, шт
                 textBoxCurDays.Text = res.Rows[0]["restdays"].ToString(); //Текущий остаток, дн:
                 textBoxCurTemp.Text = res.Rows[0]["rateSales"].ToString(); //Текущий темп продаж
-                textBoxHO.Text = res.Rows[0]["turnoverDays"].ToString(); //Норм.оборачиваемость, дней:
+                textBoxHO.Text = res.Rows[0]["DaysTurnoverNorm"].ToString(); //Норм.оборачиваемость, дней:
                 textBoxMCMarket.Text = res.Rows[0]["priceMarket"].ToString(); //МЦ рынка
 
  
@@ -81,6 +81,66 @@ namespace SalesParamsApprove
 
                 MessageBox.Show("Ошибка при заполнении полей: " +  ex.Message);
             }
+        }
+
+        private void textBoxDiscountMC_TextChanged(object sender, EventArgs e)
+        {
+            CalcStepSale();
+        }
+
+        public void CalcStepSale() //Расчет Шага распродажи
+        {
+            try
+            {
+                if (CheckDataForStepSale(textBoxMCMarket.Text) && CheckDataForStepSale(textBoxDiscountMC.Text) && CheckDataForStepSale(textBoxMCSales.Text) && CheckDataForStepSale(textBoxSaleDays.Text) && CheckDataForStepSale(textBoxPeriodA.Text))
+                {
+                    double MCMarket, DiscountMC, MCSales, SaleDays, PeriodA;
+                    MCMarket = Convert.ToDouble(textBoxMCMarket.Text);
+                    DiscountMC = Convert.ToDouble(textBoxDiscountMC.Text);
+                    MCSales = Convert.ToDouble(textBoxMCSales.Text);
+                    SaleDays = Convert.ToDouble(textBoxSaleDays.Text);
+                    PeriodA = Convert.ToDouble(textBoxPeriodA.Text);
+                    if((PeriodA > 0) && (SaleDays > 0) && (SaleDays / PeriodA) > 0)
+                    {
+                        textBoxStepSale.Text = Convert.ToString(((MCMarket - DiscountMC) - MCSales) / (SaleDays / PeriodA));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Проверьте заполнение полей 'Срок распродажи' и 'Период анализа'", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("Проверьте заполнение полей", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public bool CheckDataForStepSale(string val)
+        {
+            double Val;
+            return double.TryParse(val, out Val);
+        }
+
+        private void textBoxMCSales_TextChanged(object sender, EventArgs e)
+        {
+            CalcStepSale();
+        }
+
+        private void textBoxPeriodA_TextChanged(object sender, EventArgs e)
+        {
+            CalcStepSale();
+        }
+
+        private void textBoxSaleDays_TextChanged(object sender, EventArgs e)
+        {
+            CalcStepSale();
         }
     }
 }
