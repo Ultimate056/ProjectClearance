@@ -99,6 +99,7 @@
             this.gridColumnStatus});
             this.gvSKU.GridControl = this.gcSKU;
             this.gvSKU.Name = "gvSKU";
+            this.gvSKU.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvSKU_FocusedRowChanged);
             // 
             // gridColumnIdSKU
             // 
@@ -577,7 +578,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1845, 610);
+            this.ClientSize = new System.Drawing.Size(1849, 610);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.checkBoxSpec);
             this.Controls.Add(this.checkBoxA1);

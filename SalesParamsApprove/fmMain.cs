@@ -31,7 +31,8 @@ namespace SalesParamsApprove
                                 from spr_tov 
                                 inner join spr_tm on spr_tov.id_tm = spr_tm.tm_id
                                 inner join sAdvancement on spr_tov.idAdvancement = sAdvancement.idAdvancement
-                                where sAdvancement.idAdvancement > 2";
+                                where sAdvancement.idAdvancement > 2
+                                order by sAdvancement.idAdvancement ";
 
                 gcSKU.DataSource = DBExecute.SelectTable(sql);
                 //DataTable ds = DBExecute.SelectTable(sql);
@@ -52,6 +53,34 @@ namespace SalesParamsApprove
 
             }
 
+        }
+
+        private void gvSKU_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            fillRightGreyData();
+        }
+
+        public void fillRightGreyData()
+        {
+            try
+            {
+                DataRow focusrow = gvSKU.GetFocusedDataRow();
+                int idtov = Convert.ToInt32(focusrow["idSKU"]);
+                string sql = $@"select * from [dbo].[uf_getValuesForClearance] ({idtov})";
+                DataTable res = DBExecute.SelectTable(sql);
+                textBoxCurRemain.Text = res.Rows[0]["rest"].ToString(); //Текущий остаток, шт
+                textBoxCurDays.Text = res.Rows[0]["restdays"].ToString(); //Текущий остаток, дн:
+                textBoxCurTemp.Text = res.Rows[0]["rateSales"].ToString(); //Текущий темп продаж
+                textBoxHO.Text = res.Rows[0]["turnoverDays"].ToString(); //Норм.оборачиваемость, дней:
+                textBoxMCMarket.Text = res.Rows[0]["priceMarket"].ToString(); //МЦ рынка
+
+ 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ошибка при заполнении полей: " +  ex.Message);
+            }
         }
     }
 }
