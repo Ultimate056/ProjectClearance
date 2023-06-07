@@ -619,6 +619,7 @@
             this.Controls.Add(this.searchControl1);
             this.Controls.Add(this.gcSKU);
             this.Name = "fmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Согласование параметров распродажи";
             this.Load += new System.EventHandler(this.fmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).EndInit();
