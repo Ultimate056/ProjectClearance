@@ -39,7 +39,7 @@
             this.textBoxCurRemain = new System.Windows.Forms.TextBox();
             this.textBoxCurDays = new System.Windows.Forms.TextBox();
             this.textBoxTargetDays = new System.Windows.Forms.TextBox();
-            this.textBoxPeriodA = new System.Windows.Forms.TextBox();
+            this.textBoxPeriodAnal = new System.Windows.Forms.TextBox();
             this.textBoxCurTemp = new System.Windows.Forms.TextBox();
             this.textBoxHO = new System.Windows.Forms.TextBox();
             this.textBoxSaleDays = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             this.textBoxMCSales = new System.Windows.Forms.TextBox();
             this.textBoxDiscountMC = new System.Windows.Forms.TextBox();
             this.textBoxMCMarket = new System.Windows.Forms.TextBox();
-            this.textBoxPeriod = new System.Windows.Forms.TextBox();
+            this.textBoxPeriodAlertRTK = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,6 +74,10 @@
             this.checkBoxA1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSpec = new System.Windows.Forms.CheckBox();
             this.btnApprove = new System.Windows.Forms.Button();
+            this.checkBoxKP = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBoxSebest = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -195,11 +199,10 @@
             // 
             this.textBoxCurRemain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.textBoxCurRemain.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCurRemain.Location = new System.Drawing.Point(1177, 60);
-            this.textBoxCurRemain.Multiline = true;
+            this.textBoxCurRemain.Location = new System.Drawing.Point(1030, 40);
             this.textBoxCurRemain.Name = "textBoxCurRemain";
             this.textBoxCurRemain.ReadOnly = true;
-            this.textBoxCurRemain.Size = new System.Drawing.Size(100, 52);
+            this.textBoxCurRemain.Size = new System.Drawing.Size(100, 26);
             this.textBoxCurRemain.TabIndex = 2;
             this.textBoxCurRemain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -207,44 +210,39 @@
             // 
             this.textBoxCurDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.textBoxCurDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCurDays.Location = new System.Drawing.Point(1177, 118);
-            this.textBoxCurDays.Multiline = true;
+            this.textBoxCurDays.Location = new System.Drawing.Point(1207, 40);
             this.textBoxCurDays.Name = "textBoxCurDays";
             this.textBoxCurDays.ReadOnly = true;
-            this.textBoxCurDays.Size = new System.Drawing.Size(100, 52);
+            this.textBoxCurDays.Size = new System.Drawing.Size(100, 26);
             this.textBoxCurDays.TabIndex = 3;
             this.textBoxCurDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxTargetDays
             // 
-            this.textBoxTargetDays.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBoxTargetDays.Location = new System.Drawing.Point(1177, 176);
-            this.textBoxTargetDays.Multiline = true;
+            this.textBoxTargetDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxTargetDays.Location = new System.Drawing.Point(1411, 312);
             this.textBoxTargetDays.Name = "textBoxTargetDays";
-            this.textBoxTargetDays.Size = new System.Drawing.Size(100, 52);
+            this.textBoxTargetDays.Size = new System.Drawing.Size(100, 26);
             this.textBoxTargetDays.TabIndex = 4;
             this.textBoxTargetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBoxPeriodA
+            // textBoxPeriodAnal
             // 
-            this.textBoxPeriodA.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBoxPeriodA.Location = new System.Drawing.Point(1177, 292);
-            this.textBoxPeriodA.Multiline = true;
-            this.textBoxPeriodA.Name = "textBoxPeriodA";
-            this.textBoxPeriodA.Size = new System.Drawing.Size(100, 52);
-            this.textBoxPeriodA.TabIndex = 5;
-            this.textBoxPeriodA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxPeriodA.TextChanged += new System.EventHandler(this.textBoxPeriodA_TextChanged);
+            this.textBoxPeriodAnal.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxPeriodAnal.Location = new System.Drawing.Point(1411, 352);
+            this.textBoxPeriodAnal.Name = "textBoxPeriodAnal";
+            this.textBoxPeriodAnal.Size = new System.Drawing.Size(100, 26);
+            this.textBoxPeriodAnal.TabIndex = 5;
+            this.textBoxPeriodAnal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxCurTemp
             // 
             this.textBoxCurTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.textBoxCurTemp.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCurTemp.Location = new System.Drawing.Point(1465, 60);
-            this.textBoxCurTemp.Multiline = true;
+            this.textBoxCurTemp.Location = new System.Drawing.Point(1391, 40);
             this.textBoxCurTemp.Name = "textBoxCurTemp";
             this.textBoxCurTemp.ReadOnly = true;
-            this.textBoxCurTemp.Size = new System.Drawing.Size(100, 52);
+            this.textBoxCurTemp.Size = new System.Drawing.Size(100, 26);
             this.textBoxCurTemp.TabIndex = 6;
             this.textBoxCurTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -252,99 +250,88 @@
             // 
             this.textBoxHO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.textBoxHO.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxHO.Location = new System.Drawing.Point(1465, 118);
-            this.textBoxHO.Multiline = true;
+            this.textBoxHO.Location = new System.Drawing.Point(1027, 112);
             this.textBoxHO.Name = "textBoxHO";
             this.textBoxHO.ReadOnly = true;
-            this.textBoxHO.Size = new System.Drawing.Size(100, 52);
+            this.textBoxHO.Size = new System.Drawing.Size(100, 26);
             this.textBoxHO.TabIndex = 7;
             this.textBoxHO.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxSaleDays
             // 
-            this.textBoxSaleDays.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBoxSaleDays.Location = new System.Drawing.Point(1465, 176);
-            this.textBoxSaleDays.Multiline = true;
+            this.textBoxSaleDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxSaleDays.Location = new System.Drawing.Point(1411, 270);
             this.textBoxSaleDays.Name = "textBoxSaleDays";
-            this.textBoxSaleDays.Size = new System.Drawing.Size(100, 52);
+            this.textBoxSaleDays.Size = new System.Drawing.Size(100, 26);
             this.textBoxSaleDays.TabIndex = 8;
             this.textBoxSaleDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxSaleDays.TextChanged += new System.EventHandler(this.textBoxSaleDays_TextChanged);
             // 
             // textBoxStepSale
             // 
-            this.textBoxStepSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxStepSale.BackColor = System.Drawing.Color.PowderBlue;
             this.textBoxStepSale.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStepSale.Location = new System.Drawing.Point(1465, 292);
-            this.textBoxStepSale.Multiline = true;
+            this.textBoxStepSale.Location = new System.Drawing.Point(1143, 175);
             this.textBoxStepSale.Name = "textBoxStepSale";
             this.textBoxStepSale.ReadOnly = true;
-            this.textBoxStepSale.Size = new System.Drawing.Size(100, 52);
+            this.textBoxStepSale.Size = new System.Drawing.Size(100, 26);
             this.textBoxStepSale.TabIndex = 9;
             this.textBoxStepSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxRequireTemp
             // 
-            this.textBoxRequireTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxRequireTemp.BackColor = System.Drawing.Color.PowderBlue;
             this.textBoxRequireTemp.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxRequireTemp.Location = new System.Drawing.Point(1723, 60);
-            this.textBoxRequireTemp.Multiline = true;
+            this.textBoxRequireTemp.Location = new System.Drawing.Point(1391, 118);
             this.textBoxRequireTemp.Name = "textBoxRequireTemp";
             this.textBoxRequireTemp.ReadOnly = true;
-            this.textBoxRequireTemp.Size = new System.Drawing.Size(100, 52);
+            this.textBoxRequireTemp.Size = new System.Drawing.Size(100, 26);
             this.textBoxRequireTemp.TabIndex = 10;
             this.textBoxRequireTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxMCSales
             // 
             this.textBoxMCSales.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxMCSales.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBoxMCSales.Location = new System.Drawing.Point(1723, 118);
-            this.textBoxMCSales.Multiline = true;
+            this.textBoxMCSales.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxMCSales.Location = new System.Drawing.Point(1683, 270);
             this.textBoxMCSales.Name = "textBoxMCSales";
-            this.textBoxMCSales.Size = new System.Drawing.Size(100, 52);
+            this.textBoxMCSales.Size = new System.Drawing.Size(100, 26);
             this.textBoxMCSales.TabIndex = 11;
             this.textBoxMCSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxMCSales.TextChanged += new System.EventHandler(this.textBoxMCSales_TextChanged);
             // 
             // textBoxDiscountMC
             // 
-            this.textBoxDiscountMC.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBoxDiscountMC.Location = new System.Drawing.Point(1723, 176);
-            this.textBoxDiscountMC.Multiline = true;
+            this.textBoxDiscountMC.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxDiscountMC.Location = new System.Drawing.Point(1683, 335);
             this.textBoxDiscountMC.Name = "textBoxDiscountMC";
-            this.textBoxDiscountMC.Size = new System.Drawing.Size(100, 52);
+            this.textBoxDiscountMC.Size = new System.Drawing.Size(100, 26);
             this.textBoxDiscountMC.TabIndex = 12;
             this.textBoxDiscountMC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxDiscountMC.TextChanged += new System.EventHandler(this.textBoxDiscountMC_TextChanged);
             // 
             // textBoxMCMarket
             // 
             this.textBoxMCMarket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.textBoxMCMarket.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxMCMarket.Location = new System.Drawing.Point(1723, 234);
-            this.textBoxMCMarket.Multiline = true;
+            this.textBoxMCMarket.Location = new System.Drawing.Point(1204, 117);
             this.textBoxMCMarket.Name = "textBoxMCMarket";
             this.textBoxMCMarket.ReadOnly = true;
-            this.textBoxMCMarket.Size = new System.Drawing.Size(100, 52);
+            this.textBoxMCMarket.Size = new System.Drawing.Size(114, 26);
             this.textBoxMCMarket.TabIndex = 13;
             this.textBoxMCMarket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBoxPeriod
+            // textBoxPeriodAlertRTK
             // 
-            this.textBoxPeriod.Font = new System.Drawing.Font("Arial", 10F);
-            this.textBoxPeriod.Location = new System.Drawing.Point(1723, 292);
-            this.textBoxPeriod.Multiline = true;
-            this.textBoxPeriod.Name = "textBoxPeriod";
-            this.textBoxPeriod.Size = new System.Drawing.Size(100, 52);
-            this.textBoxPeriod.TabIndex = 14;
-            this.textBoxPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxPeriodAlertRTK.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxPeriodAlertRTK.Location = new System.Drawing.Point(1683, 412);
+            this.textBoxPeriodAlertRTK.Name = "textBoxPeriodAlertRTK";
+            this.textBoxPeriodAlertRTK.Size = new System.Drawing.Size(100, 26);
+            this.textBoxPeriodAlertRTK.TabIndex = 14;
+            this.textBoxPeriodAlertRTK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(1024, 96);
+            this.label1.Location = new System.Drawing.Point(1012, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 16);
             this.label1.TabIndex = 15;
@@ -354,7 +341,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label2.Location = new System.Drawing.Point(1022, 154);
+            this.label2.Location = new System.Drawing.Point(1184, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 16);
             this.label2.TabIndex = 16;
@@ -364,7 +351,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label3.Location = new System.Drawing.Point(1022, 212);
+            this.label3.Location = new System.Drawing.Point(1248, 315);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 16);
             this.label3.TabIndex = 17;
@@ -374,7 +361,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label4.Location = new System.Drawing.Point(1022, 328);
+            this.label4.Location = new System.Drawing.Point(1248, 355);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(142, 16);
             this.label4.TabIndex = 18;
@@ -382,10 +369,11 @@
             // 
             // label5
             // 
+            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label5.Location = new System.Drawing.Point(1331, 70);
+            this.label5.Location = new System.Drawing.Point(1359, 21);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(115, 42);
+            this.label5.Size = new System.Drawing.Size(177, 16);
             this.label5.TabIndex = 19;
             this.label5.Text = "Текущий темп продаж, шт/д";
             // 
@@ -393,7 +381,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label6.Location = new System.Drawing.Point(1331, 157);
+            this.label6.Location = new System.Drawing.Point(1040, 93);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 16);
             this.label6.TabIndex = 20;
@@ -402,7 +390,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label7.Location = new System.Drawing.Point(1331, 194);
+            this.label7.Location = new System.Drawing.Point(1276, 270);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(127, 45);
             this.label7.TabIndex = 21;
@@ -411,7 +399,7 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label8.Location = new System.Drawing.Point(1331, 314);
+            this.label8.Location = new System.Drawing.Point(1022, 175);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 37);
             this.label8.TabIndex = 22;
@@ -419,17 +407,18 @@
             // 
             // label9
             // 
+            this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label9.Location = new System.Drawing.Point(1608, 60);
+            this.label9.Location = new System.Drawing.Point(1359, 93);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 61);
+            this.label9.Size = new System.Drawing.Size(191, 16);
             this.label9.TabIndex = 23;
             this.label9.Text = "Требуемый темп продаж, шт/д";
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label10.Location = new System.Drawing.Point(1608, 121);
+            this.label10.Location = new System.Drawing.Point(1568, 262);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(93, 53);
             this.label10.TabIndex = 24;
@@ -438,7 +427,7 @@
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label11.Location = new System.Drawing.Point(1608, 194);
+            this.label11.Location = new System.Drawing.Point(1568, 335);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(109, 34);
             this.label11.TabIndex = 25;
@@ -448,7 +437,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label12.Location = new System.Drawing.Point(1608, 270);
+            this.label12.Location = new System.Drawing.Point(1209, 93);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(98, 16);
             this.label12.TabIndex = 26;
@@ -457,7 +446,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label13.Location = new System.Drawing.Point(1608, 293);
+            this.label13.Location = new System.Drawing.Point(1568, 399);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(109, 58);
             this.label13.TabIndex = 27;
@@ -467,7 +456,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label14.Location = new System.Drawing.Point(1024, 384);
+            this.label14.Location = new System.Drawing.Point(1024, 366);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(92, 16);
             this.label14.TabIndex = 28;
@@ -477,7 +466,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label15.Location = new System.Drawing.Point(1024, 421);
+            this.label15.Location = new System.Drawing.Point(1024, 403);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(26, 16);
             this.label15.TabIndex = 29;
@@ -487,7 +476,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label16.Location = new System.Drawing.Point(1024, 450);
+            this.label16.Location = new System.Drawing.Point(1024, 432);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(26, 16);
             this.label16.TabIndex = 30;
@@ -497,7 +486,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label17.Location = new System.Drawing.Point(1022, 481);
+            this.label17.Location = new System.Drawing.Point(1022, 463);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(34, 16);
             this.label17.TabIndex = 31;
@@ -507,7 +496,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label18.Location = new System.Drawing.Point(1022, 513);
+            this.label18.Location = new System.Drawing.Point(1022, 495);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(24, 16);
             this.label18.TabIndex = 32;
@@ -517,7 +506,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label19.Location = new System.Drawing.Point(1022, 547);
+            this.label19.Location = new System.Drawing.Point(1022, 529);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(82, 16);
             this.label19.TabIndex = 33;
@@ -526,7 +515,8 @@
             // checkBoxAR
             // 
             this.checkBoxAR.AutoSize = true;
-            this.checkBoxAR.Location = new System.Drawing.Point(1177, 419);
+            this.checkBoxAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxAR.Location = new System.Drawing.Point(1177, 401);
             this.checkBoxAR.Name = "checkBoxAR";
             this.checkBoxAR.Size = new System.Drawing.Size(15, 14);
             this.checkBoxAR.TabIndex = 34;
@@ -535,7 +525,8 @@
             // checkBoxIP
             // 
             this.checkBoxIP.AutoSize = true;
-            this.checkBoxIP.Location = new System.Drawing.Point(1177, 450);
+            this.checkBoxIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxIP.Location = new System.Drawing.Point(1177, 432);
             this.checkBoxIP.Name = "checkBoxIP";
             this.checkBoxIP.Size = new System.Drawing.Size(15, 14);
             this.checkBoxIP.TabIndex = 35;
@@ -544,7 +535,8 @@
             // checkBoxOPT
             // 
             this.checkBoxOPT.AutoSize = true;
-            this.checkBoxOPT.Location = new System.Drawing.Point(1177, 481);
+            this.checkBoxOPT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxOPT.Location = new System.Drawing.Point(1177, 463);
             this.checkBoxOPT.Name = "checkBoxOPT";
             this.checkBoxOPT.Size = new System.Drawing.Size(15, 14);
             this.checkBoxOPT.TabIndex = 36;
@@ -553,7 +545,8 @@
             // checkBoxA1
             // 
             this.checkBoxA1.AutoSize = true;
-            this.checkBoxA1.Location = new System.Drawing.Point(1177, 511);
+            this.checkBoxA1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxA1.Location = new System.Drawing.Point(1177, 493);
             this.checkBoxA1.Name = "checkBoxA1";
             this.checkBoxA1.Size = new System.Drawing.Size(15, 14);
             this.checkBoxA1.TabIndex = 37;
@@ -562,7 +555,8 @@
             // checkBoxSpec
             // 
             this.checkBoxSpec.AutoSize = true;
-            this.checkBoxSpec.Location = new System.Drawing.Point(1177, 547);
+            this.checkBoxSpec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxSpec.Location = new System.Drawing.Point(1177, 529);
             this.checkBoxSpec.Name = "checkBoxSpec";
             this.checkBoxSpec.Size = new System.Drawing.Size(15, 14);
             this.checkBoxSpec.TabIndex = 38;
@@ -580,11 +574,56 @@
             this.btnApprove.UseVisualStyleBackColor = false;
             this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
+            // checkBoxKP
+            // 
+            this.checkBoxKP.AutoSize = true;
+            this.checkBoxKP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxKP.Location = new System.Drawing.Point(1177, 562);
+            this.checkBoxKP.Name = "checkBoxKP";
+            this.checkBoxKP.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxKP.TabIndex = 41;
+            this.checkBoxKP.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label20.Location = new System.Drawing.Point(1022, 562);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(25, 16);
+            this.label20.TabIndex = 40;
+            this.label20.Text = "КП";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.label21.Location = new System.Drawing.Point(1024, 240);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(69, 16);
+            this.label21.TabIndex = 43;
+            this.label21.Text = "УЦ41, руб";
+            // 
+            // textBoxSebest
+            // 
+            this.textBoxSebest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.textBoxSebest.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxSebest.Location = new System.Drawing.Point(1133, 236);
+            this.textBoxSebest.Name = "textBoxSebest";
+            this.textBoxSebest.ReadOnly = true;
+            this.textBoxSebest.Size = new System.Drawing.Size(114, 26);
+            this.textBoxSebest.TabIndex = 42;
+            this.textBoxSebest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1849, 610);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.textBoxSebest);
+            this.Controls.Add(this.checkBoxKP);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.checkBoxSpec);
             this.Controls.Add(this.checkBoxA1);
@@ -610,7 +649,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxPeriod);
+            this.Controls.Add(this.textBoxPeriodAlertRTK);
             this.Controls.Add(this.textBoxMCMarket);
             this.Controls.Add(this.textBoxDiscountMC);
             this.Controls.Add(this.textBoxMCSales);
@@ -619,7 +658,7 @@
             this.Controls.Add(this.textBoxSaleDays);
             this.Controls.Add(this.textBoxHO);
             this.Controls.Add(this.textBoxCurTemp);
-            this.Controls.Add(this.textBoxPeriodA);
+            this.Controls.Add(this.textBoxPeriodAnal);
             this.Controls.Add(this.textBoxTargetDays);
             this.Controls.Add(this.textBoxCurDays);
             this.Controls.Add(this.textBoxCurRemain);
@@ -650,7 +689,7 @@
         private System.Windows.Forms.TextBox textBoxCurRemain;
         private System.Windows.Forms.TextBox textBoxCurDays;
         private System.Windows.Forms.TextBox textBoxTargetDays;
-        private System.Windows.Forms.TextBox textBoxPeriodA;
+        private System.Windows.Forms.TextBox textBoxPeriodAnal;
         private System.Windows.Forms.TextBox textBoxCurTemp;
         private System.Windows.Forms.TextBox textBoxHO;
         private System.Windows.Forms.TextBox textBoxSaleDays;
@@ -659,7 +698,7 @@
         private System.Windows.Forms.TextBox textBoxMCSales;
         private System.Windows.Forms.TextBox textBoxDiscountMC;
         private System.Windows.Forms.TextBox textBoxMCMarket;
-        private System.Windows.Forms.TextBox textBoxPeriod;
+        private System.Windows.Forms.TextBox textBoxPeriodAlertRTK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -685,6 +724,10 @@
         private System.Windows.Forms.CheckBox checkBoxA1;
         private System.Windows.Forms.CheckBox checkBoxSpec;
         private System.Windows.Forms.Button btnApprove;
+        private System.Windows.Forms.CheckBox checkBoxKP;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBoxSebest;
     }
 }
 
