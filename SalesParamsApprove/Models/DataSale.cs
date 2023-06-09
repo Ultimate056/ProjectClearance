@@ -329,6 +329,7 @@ namespace SalesParamsApprove.Models
             if (SaleDaysValue > 1)
             {
                 int raznost = Math.Abs(CurrentRestValue - TargetRestDaysValue);
+                //int raznost = TargetRestDaysValue > CurrentRestValue ? 0 : CurrentRestValue - TargetRestDaysValue;
                 TargetRateSales = Math.Round((raznost / (SaleDaysValue*1.0)), 2).ToString();
             }
             else

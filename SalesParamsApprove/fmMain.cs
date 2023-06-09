@@ -12,6 +12,7 @@ using SalesParamsApprove.Extensions;
 using System.Data.SqlClient;
 using SalesParamsApprove.Models;
 using Dapper;
+using SalesParamsApprove.Repositories;
 
 namespace SalesParamsApprove
 {
@@ -20,6 +21,7 @@ namespace SalesParamsApprove
 
         private DataSale FocusedSale = new DataSale();
         private System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ru-RU");
+        private MainRepo repo = new MainRepo();
 
         public fmMain()
         {
@@ -56,50 +58,17 @@ namespace SalesParamsApprove
 
         private void fillgcSKU()
         {
-            try
-            {
-                string sql = @"select  spr_tm.tm_name as Brand, spr_tov.id_tov as idSKU, spr_tov.id_tov_oem as Art, spr_tov.n_tov as Ntov, sAdvancement.nAdvancement as SaleStatus
-                                from spr_tov 
-                                inner join spr_tm on spr_tov.id_tm = spr_tm.tm_id
-                                inner join sAdvancement on spr_tov.idAdvancement = sAdvancement.idAdvancement
-                                where sAdvancement.idAdvancement > 2
-                                order by sAdvancement.idAdvancement";
-
-                gcSKU.DataSource = DBExecute.SelectTable(sql);
-                //DataTable ds = DBExecute.SelectTable(sql);
-                //gcSKU.DataSource = ds;
-                //fillRightData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка заполнения SKU " + ex.Message);
-            }
+           gcSKU.DataSource = repo.GetTableTovs();
         }
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
+
             DialogResult result = MessageBox.Show($"Утвердить данные о распродаже товара {GetFocusedTovName()}?",
                 "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                string sql = $@"Update rClearanceValue set 
-                                restTarget = {FocusedSale.TargetRestDaysValue},
-                                rateSalesTarget  = {FocusedSale.TargetRateSalesValues},
-                                minPriceClearance = {FocusedSale.MCSalesValue},
-                                priceMarketDiscount = {FocusedSale.MCDiscountValue},
-                                periodAnalize = {FocusedSale.PeriodAnalizeValue},
-                                periodAlertRTK = {FocusedSale.PeriodAlertRTKValue},
-                                daysClearance = {FocusedSale.SaleDaysValue},
-                                stepClearance = {FocusedSale.StepSaleValue},
-                                fKP = {FocusedSale.fKP},
-                                fAP = {FocusedSale.fAP},
-                                fIP = {FocusedSale.fIP},
-                                fOpt = {FocusedSale.fOpt},
-                                fA1 = {FocusedSale.fA1}, 
-                                fExist = {FocusedSale.fExist}
-                                WHERE idtov = {FocusedSale.idtov}";
-
-                DBExecute.ExecuteQuery(sql);
+                repo.ApproveSale(FocusedSale);
                 RefreshData();
             }
 
@@ -110,6 +79,7 @@ namespace SalesParamsApprove
             RefreshData();
         }
 
+        // Обновление полей
         private void RefreshData()
         {
             FocusedSale.isInit = true;
@@ -126,6 +96,7 @@ namespace SalesParamsApprove
             return tovname;
         }
 
+        // Заполнение константных полей (readonly)
         public void fillRightData()
         {
             try
@@ -137,25 +108,14 @@ namespace SalesParamsApprove
 
                 int idtov = Convert.ToInt32(focusrow["idSKU"]);
 
-                using (IDbConnection db = new SqlConnection(Connection.ConnectionString))
-                {
-                    var temp = db.Query<DataSale>
-                        ($@"select rest as CurrentRest, 
-                                    restDays as CurrentRestDays,
-                                    DaysTurnoverNorm as NO,
-                                    cast(rateSales as numeric(18,2)) as CurrentRateSales,
-                                    cast(priceMarket as numeric(18,2)) as MCMarket,
-                                    cast(sebest as numeric(18,2)) as Sebest
-                            from [dbo].[uf_getValuesForClearance] ({idtov})")
-                        .FirstOrDefault();
-                    FocusedSale.idtov = idtov;
-                    FocusedSale.CurrentRest = temp.CurrentRest;
-                    FocusedSale.CurrentRestDays = temp.CurrentRestDays;
-                    FocusedSale.NO = temp.NO;
-                    FocusedSale.CurrentRateSales = temp.CurrentRateSales;
-                    FocusedSale.MCMarket = temp.MCMarket;
-                    FocusedSale.Sebest = temp.Sebest;
-                }
+                var temp = repo.GetConstFields(idtov);
+                FocusedSale.idtov = idtov;
+                FocusedSale.CurrentRest = temp.CurrentRest;
+                FocusedSale.CurrentRestDays = temp.CurrentRestDays;
+                FocusedSale.NO = temp.NO;
+                FocusedSale.CurrentRateSales = temp.CurrentRateSales;
+                FocusedSale.MCMarket = temp.MCMarket;
+                FocusedSale.Sebest = temp.Sebest;
 
                 fillRightWhiteData();
             }
@@ -166,48 +126,35 @@ namespace SalesParamsApprove
             }
         }
 
+        // Заполнение рассчитываемых или вручную задаваемых полей
         public void fillRightWhiteData()
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(Connection.ConnectionString))
+                DataSale temp = repo.GetEditableFields(FocusedSale.idtov);
+                if (temp != null)
                 {
-                    var temp = db.Query<DataSale>
-                        ($@"select restTarget as TargetRestDays,
-                                    cast(rateSalesTarget as numeric(18,2)) as TargetRateSales,
-                                    daysClearance as SaleDays,
-                                    cast(minPriceClearance as numeric(18,2)) as MCSales,
-                                    cast(priceMarketDiscount as numeric(18,2)) as MCDiscount,
-                                    cast(stepClearance as numeric(18,2)) as StepSale,
-                                    periodAnalize as PeriodAnalize,
-                                    periodAlertRTK as PeriodAlertRTK,
-                                    fAP, fIP, fOpt, fA1, fExist, fKP
-                            from rClearanceValue WHERE idtov = {FocusedSale.idtov}")
-                        .FirstOrDefault();
+                    FocusedSale.TargetRestDays = temp.TargetRestDays;
+                    FocusedSale.TargetRateSales = temp.TargetRateSales;
+                    FocusedSale.SaleDays = temp.SaleDays;
+                    FocusedSale.MCSales = temp.MCSales;
+                    FocusedSale.MCDiscount = temp.MCDiscount;
+                    FocusedSale.StepSale = temp.StepSale;
+                    FocusedSale.PeriodAnalize = temp.PeriodAnalize;
+                    FocusedSale.PeriodAlertRTK = temp.PeriodAlertRTK;
+                    FocusedSale.fAP = temp.fAP;
+                    FocusedSale.fIP = temp.fIP;
+                    FocusedSale.fOpt = temp.fOpt;
+                    FocusedSale.fKP = temp.fKP;
+                    FocusedSale.fExist = temp.fExist;
+                    FocusedSale.fA1 = temp.fA1;
 
-                    if (temp != null)
-                    {
-                        FocusedSale.TargetRestDays = temp.TargetRestDays;
-                        FocusedSale.TargetRateSales = temp.TargetRateSales;
-                        FocusedSale.SaleDays = temp.SaleDays;
-                        FocusedSale.MCSales = temp.MCSales;
-                        FocusedSale.MCDiscount = temp.MCDiscount;
-                        FocusedSale.StepSale = temp.StepSale;
-                        FocusedSale.PeriodAnalize = temp.PeriodAnalize;
-                        FocusedSale.PeriodAlertRTK = temp.PeriodAlertRTK;
-                        FocusedSale.fAP = temp.fAP;
-                        FocusedSale.fIP = temp.fIP;
-                        FocusedSale.fOpt = temp.fOpt;
-                        FocusedSale.fKP = temp.fKP;
-                        FocusedSale.fExist = temp.fExist;
-                        FocusedSale.fA1 = temp.fA1;
-
-                        textBoxTargetDays.Enabled = FocusedSale.TargetRestDaysValue > 0;
-                        textBoxTargetDays.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
-                    }
-                    else
-                        FocusedSale.Clear();
+                    textBoxTargetDays.Enabled = FocusedSale.TargetRestDaysValue > 0;
+                    textBoxTargetDays.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
                 }
+                else
+                    FocusedSale.Clear();
+
             }
             catch (Exception ex)
             {
