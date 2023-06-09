@@ -42,6 +42,7 @@ namespace SalesParamsApprove.Models
         #region ФИКС поля
         public int idtov { get; set; } = 0;
 
+        public StatusSale Status { get; set; }
 
         // МЦ рынка, руб
         private string _MCMarket = "";
@@ -347,9 +348,8 @@ namespace SalesParamsApprove.Models
 
             if ((PeriodA > 0) && (SaleDays > 0) && (SaleDays / PeriodA) > 0)
             {
-                StepSale = Convert.ToString(Math.Round(
-                    ((MCMarket - MCMarket * (DiscountMC / 100)) - sebest * (MCSales / 100)) / (SaleDays / PeriodA)
-                ,2));
+                double value = ((MCMarket - MCMarket * (DiscountMC / 100)) - sebest * (MCSales / 100)) / (SaleDays / PeriodA);
+                StepSale = Convert.ToString(Math.Round(value, 2));
             }
             else
                 StepSale = "0";

@@ -40,7 +40,7 @@ namespace SalesParamsApprove
             textBoxPeriodAlertRTK.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAlertRTK", false, DataSourceUpdateMode.OnPropertyChanged));
             textBoxPeriodAnal.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAnalize", false, DataSourceUpdateMode.OnPropertyChanged));
             textBoxStepSale.DataBindings.Add(new Binding("Text", FocusedSale, "StepSale", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxSebest.DataBindings.Add(new Binding("Text", FocusedSale, "Sebest", false, DataSourceUpdateMode.OnPropertyChanged));
+            //textBoxSebest.DataBindings.Add(new Binding("Text", FocusedSale, "Sebest", false, DataSourceUpdateMode.OnPropertyChanged));
 
             checkBoxA1.DataBindings.Add(new Binding("Checked", FocusedSale, "fA1", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxAR.DataBindings.Add(new Binding("Checked", FocusedSale, "fAP", false, DataSourceUpdateMode.OnPropertyChanged));
@@ -63,7 +63,8 @@ namespace SalesParamsApprove
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-
+            if (FocusedSale.idtov < 1)
+                return;
             DialogResult result = MessageBox.Show($"Утвердить параметры распродажи товара {GetFocusedTovName()}?",
                 "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
@@ -114,8 +115,13 @@ namespace SalesParamsApprove
                     return;
 
                 int idtov = Convert.ToInt32(focusrow["idSKU"]);
+                StatusSale sale = (StatusSale)Convert.ToInt32(focusrow["idStatus"]);
+
+                btnSaveData.Enabled = !(sale == StatusSale.InSales);
+                btnApprove.Enabled = !(sale == StatusSale.InSales || sale == StatusSale.NeedChangeParams);
 
                 var temp = repo.GetConstFields(idtov);
+                FocusedSale.Status = sale;
                 FocusedSale.idtov = idtov;
                 FocusedSale.CurrentRest = temp.CurrentRest;
                 FocusedSale.CurrentRestDays = temp.CurrentRestDays;
@@ -169,5 +175,17 @@ namespace SalesParamsApprove
                 MessageBox.Show("Ошибка при заполнении полей: " + ex.Message);
             }
         }
+
+        private void btnSaveData_Click(object sender, EventArgs e)
+        {
+            if(FocusedSale.idtov > 0)
+                repo.SaveSale(FocusedSale);
+        }
+
+        private void BtnRefreshData_Click(object sender, EventArgs e)
+        {
+            fillgcSKU();
+        }
+
     }
 }

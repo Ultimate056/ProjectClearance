@@ -70,6 +70,7 @@
     </Compile>
     <Compile Include="Models\DataSale.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MainRepo.cs" />
