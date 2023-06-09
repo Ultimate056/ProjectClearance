@@ -64,12 +64,19 @@ namespace SalesParamsApprove
         private void btnApprove_Click(object sender, EventArgs e)
         {
 
-            DialogResult result = MessageBox.Show($"Утвердить данные о распродаже товара {GetFocusedTovName()}?",
+            DialogResult result = MessageBox.Show($"Утвердить параметры распродажи товара {GetFocusedTovName()}?",
                 "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                repo.ApproveSale(FocusedSale);
-                RefreshData();
+                try
+                {
+                    repo.ApproveSale(FocusedSale);
+                    fillgcSKU();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Ошибка утверждения. " + ex.Message);
+                }
             }
 
         }

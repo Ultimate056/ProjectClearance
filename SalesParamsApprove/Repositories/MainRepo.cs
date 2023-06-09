@@ -35,24 +35,33 @@ namespace SalesParamsApprove.Repositories
 
         public void ApproveSale(DataSale sale)
         {
+            SqlParameter p_date = new SqlParameter("date", DateTime.Now);
             string sql = $@"Update rClearanceValue set 
-                                restTarget = {sale.TargetRestDaysValue},
-                                rateSalesTarget  = {sale.TargetRateSalesValues},
-                                minPriceClearance = {sale.MCSalesValue},
-                                priceMarketDiscount = {sale.MCDiscountValue},
-                                periodAnalize = {sale.PeriodAnalizeValue},
-                                periodAlertRTK = {sale.PeriodAlertRTKValue},
-                                daysClearance = {sale.SaleDaysValue},
-                                stepClearance = {sale.StepSaleValue},
-                                fKP = {sale.fKP},
-                                fAP = {sale.fAP},
-                                fIP = {sale.fIP},
-                                fOpt = {sale.fOpt},
-                                fA1 = {sale.fA1}, 
-                                fExist = {sale.fExist}
-                                WHERE idtov = {sale.idtov}";
+                            restTarget = {sale.TargetRestDaysValue},
+                            rateSalesTarget  = {sale.TargetRateSalesValues},
+                            minPriceClearance = {sale.MCSalesValue},
+                            priceMarketDiscount = {sale.MCDiscountValue},
+                            periodAnalize = {sale.PeriodAnalizeValue},
+                            periodAlertRTK = {sale.PeriodAlertRTKValue},
+                            daysClearance = {sale.SaleDaysValue},
+                            stepClearance = {sale.StepSaleValue},
+                            fKP = {sale.fKP},
+                            fAP = {sale.fAP},
+                            fIP = {sale.fIP},
+                            fOpt = {sale.fOpt},
+                            fA1 = {sale.fA1}, 
+                            fExist = {sale.fExist},
+                            dateClearance = @date,
+                            idUser = {User.CurrentUserId},
+                            nUser = '{User.GetUserDomainName()}'
+                            WHERE idtov = {sale.idtov}";
+            DBExecute.ExecuteQuery(sql, p_date);
 
+            // Установка статуса "В распродаже из АМ"
+
+            sql = $"UPDATE spr_tov SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
             DBExecute.ExecuteQuery(sql);
+
         }
 
         public DataSale GetConstFields(int idtov)

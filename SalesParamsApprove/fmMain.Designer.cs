@@ -118,7 +118,6 @@
             this.gridColumnIdSKU.Caption = "gridColumn1";
             this.gridColumnIdSKU.FieldName = "idSKU";
             this.gridColumnIdSKU.Name = "gridColumnIdSKU";
-            this.gridColumnIdSKU.OptionsColumn.AllowEdit = false;
             this.gridColumnIdSKU.Visible = true;
             this.gridColumnIdSKU.VisibleIndex = 4;
             this.gridColumnIdSKU.Width = 81;
