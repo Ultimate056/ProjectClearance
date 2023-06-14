@@ -13,13 +13,47 @@ namespace SalesParamsApprove.Repositories
 {
     public class MainRepo
     {
-        
+
+        public StringBuilder GetListAccessTovGroup(int idkontr)
+        {
+            string sql = $"SELECT idtovgr FROM rLinkRTKTovGroup rtk (nolock) where idkontr = {User.CurrentUserId}";
+            DataTable tempDt = DBExecute.SelectTable(sql);
+            if (tempDt == null || tempDt.Rows.Count == 0) return new StringBuilder("");
+            List<int> tgList = tempDt.AsEnumerable()
+                .Select(x => Convert.ToInt32(x[0])).ToList();
+
+            StringBuilder sbTgList = new StringBuilder();
+            for (int i = 0; i < tgList.Count; i++)
+            {
+                sbTgList.Append(i == tgList.Count - 1 ? tgList[i].ToString() : tgList[i] + ",");
+            }
+            return sbTgList;
+        }
        
-        public DataTable GetTableTovs()
+        public DataTable GetTableTovs(string ListAccessTovGroup = "")
         {
             try
             {
-                string sql = @"select  spr_tm.tm_name as Brand, 
+                string sql = null;
+                if(User.InRole(User.Current.IdUser, "Developers") || 
+                    User.InRole(User.Current.IdUser, "OptChiefBuyDepartment"))
+                {
+                    // Запрос не учитывает РТК , показывает все SKU по всем ТГ
+                    sql = @"select  spr_tm.tm_name as Brand, 
+                                    spr_tov.id_tov as idSKU, 
+                                    spr_tov.id_tov_oem as Art, 
+                                    spr_tov.n_tov as Ntov, 
+                                    sAdvancement.nAdvancement as SaleStatus,
+                                    spr_tov.idAdvancement as idStatus
+                                    from spr_tov (nolock)
+                                    inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
+                                    inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
+                                    where sAdvancement.idAdvancement > 3
+                                    order by sAdvancement.idAdvancement";
+                }
+                else
+                {
+                    sql = $@"select  spr_tm.tm_name as Brand, 
                                 spr_tov.id_tov as idSKU, 
                                 spr_tov.id_tov_oem as Art, 
                                 spr_tov.n_tov as Ntov, 
@@ -28,10 +62,13 @@ namespace SalesParamsApprove.Repositories
                                 from spr_tov (nolock)
                                 inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                                 inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
-                                where sAdvancement.idAdvancement > 3
+								inner join spr_tov_level4 stl4 (nolock) on stl4.tov_id = spr_tov.id_tov4
+                                where sAdvancement.idAdvancement > 3 
+                                and stl4.tov_id_top_level IN ({ListAccessTovGroup})
                                 order by sAdvancement.idAdvancement";
+                }
 
-                return DBExecute.SelectTable(sql);
+                return sql == null ? null : DBExecute.SelectTable(sql);
             }
             catch (Exception ex)
             {

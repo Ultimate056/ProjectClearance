@@ -94,10 +94,10 @@ namespace SalesParamsApprove
                     {
                         var idpost = User.GetPostByUserId(User.Current.IdUser);
                         var isdeveloper = User.InRole(User.Current.IdUser, "Developers");
-                        var iscanedit = User.InRole(User.Current.IdUser, "CanCreateEditAssortMatrix");
+                        var isRTK = User.InRole(User.Current.IdUser, "OptRTK");
+                        var isChief = User.InRole(User.Current.IdUser, "OptChiefBuyDepartment");
 
-
-                        if (isdeveloper || iscanedit) //девелопер или РТК или НОП
+                        if (isdeveloper || isRTK || isChief) //девелопер или РТК или НОП
                         {
                             Application.Run(new fmMain());
                         }

@@ -22,7 +22,7 @@ namespace SalesParamsApprove
         private DataSale FocusedSale = new DataSale();
         private System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("ru-RU");
         private MainRepo repo = new MainRepo();
-
+        private string ListAccessTovGroup = "";
         public fmMain()
         {
             InitializeComponent();
@@ -53,12 +53,13 @@ namespace SalesParamsApprove
 
         private void fmMain_Load(object sender, EventArgs e)
         {
+            ListAccessTovGroup = repo.GetListAccessTovGroup(User.CurrentUserId).ToString();
             fillgcSKU();
         }
 
         private void fillgcSKU()
         {
-           gcSKU.DataSource = repo.GetTableTovs();
+           gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
         }
 
         private void btnApprove_Click(object sender, EventArgs e)
@@ -108,6 +109,34 @@ namespace SalesParamsApprove
             return tovname;
         }
 
+
+        // Распределение ролей по статусу товара
+        private void DistributeRoles(StatusSale sale)
+        {
+            if(User.InRole(User.Current.IdUser, "Developers"))
+                return;
+            btnSaveData.Enabled = false;
+            btnApprove.Enabled = false;
+            switch (sale)
+            {
+                case StatusSale.SuggestToSale:
+                    btnSaveData.Enabled = true;
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment"))
+                        btnApprove.Enabled = true;
+                    break;
+                case StatusSale.InSales:
+                    break;
+                case StatusSale.NeedChangeParams:
+                    btnSaveData.Enabled = true;
+                    break;
+                case StatusSale.ParamsChanged:
+                    btnSaveData.Enabled = true;
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment"))
+                        btnApprove.Enabled = true;
+                    break;
+            }
+        }
+
         // Заполнение константных полей (readonly)
         public void fillRightData()
         {
@@ -121,8 +150,7 @@ namespace SalesParamsApprove
                 int idtov = Convert.ToInt32(focusrow["idSKU"]);
                 StatusSale sale = (StatusSale)Convert.ToInt32(focusrow["idStatus"]);
 
-                btnSaveData.Enabled = !(sale == StatusSale.InSales);
-                btnApprove.Enabled = !(sale == StatusSale.InSales || sale == StatusSale.NeedChangeParams);
+                DistributeRoles(sale);
 
                 var temp = repo.GetConstFields(idtov);
                 FocusedSale.Status = sale;

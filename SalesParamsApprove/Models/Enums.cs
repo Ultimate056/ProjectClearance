@@ -10,6 +10,7 @@ namespace SalesParamsApprove.Models
     {
         SuggestToSale = 10,
         NeedChangeParams = 15,
+        ParamsChanged = 17,
         InSales = 20
     }
 }
