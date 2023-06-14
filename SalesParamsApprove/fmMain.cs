@@ -90,6 +90,7 @@ namespace SalesParamsApprove
         // Обновление полей
         private void RefreshData()
         {
+            // isInit нужен, чтобы данные зависимых полей не обновлялись на 1 раз
             FocusedSale.isInit = true;
             fillRightData();
             FocusedSale.isInit = false;

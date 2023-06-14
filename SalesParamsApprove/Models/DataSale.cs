@@ -223,7 +223,6 @@ namespace SalesParamsApprove.Models
         }
 
 
-        #region Зависимые поля от расчётных (нередактируемые)
 
         // Шаг распродажи
         private string _StepSale = "";
@@ -297,8 +296,6 @@ namespace SalesParamsApprove.Models
             set { _fKP = value; OnPropertyChanged(); }
         }
 
-
-        #endregion
 
         #endregion
 

@@ -215,132 +215,132 @@
             // textBoxCurRemain
             // 
             this.textBoxCurRemain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxCurRemain.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxCurRemain.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCurRemain.Location = new System.Drawing.Point(1114, 132);
             this.textBoxCurRemain.Name = "textBoxCurRemain";
             this.textBoxCurRemain.ReadOnly = true;
-            this.textBoxCurRemain.Size = new System.Drawing.Size(100, 26);
+            this.textBoxCurRemain.Size = new System.Drawing.Size(100, 22);
             this.textBoxCurRemain.TabIndex = 2;
             this.textBoxCurRemain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxCurDays
             // 
             this.textBoxCurDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxCurDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxCurDays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCurDays.Location = new System.Drawing.Point(1114, 171);
             this.textBoxCurDays.Name = "textBoxCurDays";
             this.textBoxCurDays.ReadOnly = true;
-            this.textBoxCurDays.Size = new System.Drawing.Size(100, 26);
+            this.textBoxCurDays.Size = new System.Drawing.Size(100, 22);
             this.textBoxCurDays.TabIndex = 3;
             this.textBoxCurDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxTargetDays
             // 
-            this.textBoxTargetDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxTargetDays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxTargetDays.Location = new System.Drawing.Point(1114, 214);
             this.textBoxTargetDays.Name = "textBoxTargetDays";
-            this.textBoxTargetDays.Size = new System.Drawing.Size(100, 26);
+            this.textBoxTargetDays.Size = new System.Drawing.Size(100, 22);
             this.textBoxTargetDays.TabIndex = 4;
             this.textBoxTargetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxPeriodAnal
             // 
-            this.textBoxPeriodAnal.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxPeriodAnal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPeriodAnal.Location = new System.Drawing.Point(1114, 255);
             this.textBoxPeriodAnal.Name = "textBoxPeriodAnal";
-            this.textBoxPeriodAnal.Size = new System.Drawing.Size(100, 26);
+            this.textBoxPeriodAnal.Size = new System.Drawing.Size(100, 22);
             this.textBoxPeriodAnal.TabIndex = 5;
             this.textBoxPeriodAnal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxCurTemp
             // 
             this.textBoxCurTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxCurTemp.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxCurTemp.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCurTemp.Location = new System.Drawing.Point(1449, 132);
             this.textBoxCurTemp.Name = "textBoxCurTemp";
             this.textBoxCurTemp.ReadOnly = true;
-            this.textBoxCurTemp.Size = new System.Drawing.Size(100, 26);
+            this.textBoxCurTemp.Size = new System.Drawing.Size(100, 22);
             this.textBoxCurTemp.TabIndex = 6;
             this.textBoxCurTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxHO
             // 
             this.textBoxHO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxHO.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxHO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxHO.Location = new System.Drawing.Point(1449, 171);
             this.textBoxHO.Name = "textBoxHO";
             this.textBoxHO.ReadOnly = true;
-            this.textBoxHO.Size = new System.Drawing.Size(100, 26);
+            this.textBoxHO.Size = new System.Drawing.Size(100, 22);
             this.textBoxHO.TabIndex = 7;
             this.textBoxHO.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxSaleDays
             // 
-            this.textBoxSaleDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxSaleDays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxSaleDays.Location = new System.Drawing.Point(1449, 214);
             this.textBoxSaleDays.Name = "textBoxSaleDays";
-            this.textBoxSaleDays.Size = new System.Drawing.Size(100, 26);
+            this.textBoxSaleDays.Size = new System.Drawing.Size(100, 22);
             this.textBoxSaleDays.TabIndex = 8;
             this.textBoxSaleDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxStepSale
             // 
             this.textBoxStepSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxStepSale.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxStepSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxStepSale.Location = new System.Drawing.Point(1449, 255);
             this.textBoxStepSale.Name = "textBoxStepSale";
             this.textBoxStepSale.ReadOnly = true;
-            this.textBoxStepSale.Size = new System.Drawing.Size(100, 26);
+            this.textBoxStepSale.Size = new System.Drawing.Size(100, 22);
             this.textBoxStepSale.TabIndex = 9;
             this.textBoxStepSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxRequireTemp
             // 
             this.textBoxRequireTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxRequireTemp.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxRequireTemp.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxRequireTemp.Location = new System.Drawing.Point(1692, 132);
             this.textBoxRequireTemp.Name = "textBoxRequireTemp";
             this.textBoxRequireTemp.ReadOnly = true;
-            this.textBoxRequireTemp.Size = new System.Drawing.Size(100, 26);
+            this.textBoxRequireTemp.Size = new System.Drawing.Size(100, 22);
             this.textBoxRequireTemp.TabIndex = 10;
             this.textBoxRequireTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxMCSales
             // 
             this.textBoxMCSales.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxMCSales.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxMCSales.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxMCSales.Location = new System.Drawing.Point(1692, 192);
             this.textBoxMCSales.Name = "textBoxMCSales";
-            this.textBoxMCSales.Size = new System.Drawing.Size(100, 26);
+            this.textBoxMCSales.Size = new System.Drawing.Size(100, 22);
             this.textBoxMCSales.TabIndex = 11;
             this.textBoxMCSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxDiscountMC
             // 
-            this.textBoxDiscountMC.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxDiscountMC.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxDiscountMC.Location = new System.Drawing.Point(1692, 257);
             this.textBoxDiscountMC.Name = "textBoxDiscountMC";
-            this.textBoxDiscountMC.Size = new System.Drawing.Size(100, 26);
+            this.textBoxDiscountMC.Size = new System.Drawing.Size(100, 22);
             this.textBoxDiscountMC.TabIndex = 12;
             this.textBoxDiscountMC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxMCMarket
             // 
             this.textBoxMCMarket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxMCMarket.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxMCMarket.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxMCMarket.Location = new System.Drawing.Point(1692, 311);
             this.textBoxMCMarket.Name = "textBoxMCMarket";
             this.textBoxMCMarket.ReadOnly = true;
-            this.textBoxMCMarket.Size = new System.Drawing.Size(100, 26);
+            this.textBoxMCMarket.Size = new System.Drawing.Size(100, 22);
             this.textBoxMCMarket.TabIndex = 13;
             this.textBoxMCMarket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxPeriodAlertRTK
             // 
-            this.textBoxPeriodAlertRTK.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBoxPeriodAlertRTK.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPeriodAlertRTK.Location = new System.Drawing.Point(1692, 375);
             this.textBoxPeriodAlertRTK.Name = "textBoxPeriodAlertRTK";
-            this.textBoxPeriodAlertRTK.Size = new System.Drawing.Size(100, 26);
+            this.textBoxPeriodAlertRTK.Size = new System.Drawing.Size(100, 22);
             this.textBoxPeriodAlertRTK.TabIndex = 14;
             this.textBoxPeriodAlertRTK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
