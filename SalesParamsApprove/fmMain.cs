@@ -73,6 +73,9 @@ namespace SalesParamsApprove
                 {
                     repo.ApproveSale(FocusedSale);
                     fillgcSKU();
+
+                    MessageBox.Show("Параметры успешно утверждены", "Утверждение параметров", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch(Exception ex)
                 {
@@ -180,7 +183,12 @@ namespace SalesParamsApprove
         private void btnSaveData_Click(object sender, EventArgs e)
         {
             if(FocusedSale.idtov > 0)
+            {
                 repo.SaveSale(FocusedSale);
+                MessageBox.Show("Параметры успешно сохранены", "Сохранение параметров",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
         private void BtnRefreshData_Click(object sender, EventArgs e)

@@ -25,9 +25,9 @@ namespace SalesParamsApprove.Repositories
                                 spr_tov.n_tov as Ntov, 
                                 sAdvancement.nAdvancement as SaleStatus,
                                 spr_tov.idAdvancement as idStatus
-                                from spr_tov 
-                                inner join spr_tm on spr_tov.id_tm = spr_tm.tm_id
-                                inner join sAdvancement on spr_tov.idAdvancement = sAdvancement.idAdvancement
+                                from spr_tov (nolock)
+                                inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
+                                inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
                                 where sAdvancement.idAdvancement > 3
                                 order by sAdvancement.idAdvancement";
 
@@ -45,8 +45,8 @@ namespace SalesParamsApprove.Repositories
             string sql = $@"Update rClearanceValue set 
                             restTarget = {sale.TargetRestDaysValue},
                             rateSalesTarget  = {sale.TargetRateSalesValues},
-                            minPriceClearance = {sale.MCSalesValue},
-                            priceMarketDiscount = {sale.MCDiscountValue},
+                            minPriceClearance = {sale.MCSalesValue / 100},
+                            priceMarketDiscount = {sale.MCDiscountValue / 100},
                             periodAnalize = {sale.PeriodAnalizeValue},
                             periodAlertRTK = {sale.PeriodAlertRTKValue},
                             daysClearance = {sale.SaleDaysValue},
@@ -65,7 +65,7 @@ namespace SalesParamsApprove.Repositories
 
             // Установка статуса "В распродаже из АМ"
 
-            sql = $"UPDATE spr_tov SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
+            sql = $"UPDATE spr_tov (nolock) SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
             DBExecute.ExecuteQuery(sql);
 
         }
@@ -76,8 +76,8 @@ namespace SalesParamsApprove.Repositories
             string sql = $@"Update rClearanceValue set 
                             restTarget = {sale.TargetRestDaysValue},
                             rateSalesTarget  = {sale.TargetRateSalesValues},
-                            minPriceClearance = {sale.MCSalesValue},
-                            priceMarketDiscount = {sale.MCDiscountValue},
+                            minPriceClearance = {sale.MCSalesValue / 100},
+                            priceMarketDiscount = {sale.MCDiscountValue / 100},
                             periodAnalize = {sale.PeriodAnalizeValue},
                             periodAlertRTK = {sale.PeriodAlertRTKValue},
                             daysClearance = {sale.SaleDaysValue},
@@ -117,13 +117,13 @@ namespace SalesParamsApprove.Repositories
                         ($@"select restTarget as TargetRestDays,
                                     cast(rateSalesTarget as numeric(18,2)) as TargetRateSales,
                                     daysClearance as SaleDays,
-                                    cast(minPriceClearance as numeric(18,2)) as MCSales,
-                                    cast(priceMarketDiscount as numeric(18,2)) as MCDiscount,
+                                    cast(minPriceClearance as numeric(18,2))*100 as MCSales,
+                                    cast(priceMarketDiscount as numeric(18,2))*100 as MCDiscount,
                                     cast(stepClearance as numeric(18,2)) as StepSale,
                                     periodAnalize as PeriodAnalize,
                                     periodAlertRTK as PeriodAlertRTK,
                                     fAP, fIP, fOpt, fA1, fExist, fKP
-                            from rClearanceValue WHERE idtov = {idtov}")
+                            from rClearanceValue (nolock) WHERE idtov = {idtov}")
                         .FirstOrDefault();
                 return temp;
             }
