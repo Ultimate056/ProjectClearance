@@ -74,6 +74,7 @@
             this.checkBoxA1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSpec = new System.Windows.Forms.CheckBox();
             this.btnApprove = new System.Windows.Forms.Button();
+            this.newslbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -217,17 +218,18 @@
             // 
             // textBoxTargetDays
             // 
-            this.textBoxTargetDays.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxTargetDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBoxTargetDays.Location = new System.Drawing.Point(1177, 176);
             this.textBoxTargetDays.Multiline = true;
             this.textBoxTargetDays.Name = "textBoxTargetDays";
             this.textBoxTargetDays.Size = new System.Drawing.Size(100, 52);
             this.textBoxTargetDays.TabIndex = 4;
             this.textBoxTargetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxTargetDays.TextChanged += new System.EventHandler(this.textBoxTargetDays_TextChanged);
             // 
             // textBoxPeriodA
             // 
-            this.textBoxPeriodA.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxPeriodA.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBoxPeriodA.Location = new System.Drawing.Point(1177, 292);
             this.textBoxPeriodA.Multiline = true;
             this.textBoxPeriodA.Name = "textBoxPeriodA";
@@ -262,7 +264,7 @@
             // 
             // textBoxSaleDays
             // 
-            this.textBoxSaleDays.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxSaleDays.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBoxSaleDays.Location = new System.Drawing.Point(1465, 176);
             this.textBoxSaleDays.Multiline = true;
             this.textBoxSaleDays.Name = "textBoxSaleDays";
@@ -298,7 +300,7 @@
             // textBoxMCSales
             // 
             this.textBoxMCSales.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxMCSales.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxMCSales.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBoxMCSales.Location = new System.Drawing.Point(1723, 118);
             this.textBoxMCSales.Multiline = true;
             this.textBoxMCSales.Name = "textBoxMCSales";
@@ -309,7 +311,7 @@
             // 
             // textBoxDiscountMC
             // 
-            this.textBoxDiscountMC.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxDiscountMC.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBoxDiscountMC.Location = new System.Drawing.Point(1723, 176);
             this.textBoxDiscountMC.Multiline = true;
             this.textBoxDiscountMC.Name = "textBoxDiscountMC";
@@ -332,7 +334,7 @@
             // 
             // textBoxPeriod
             // 
-            this.textBoxPeriod.Font = new System.Drawing.Font("Arial", 10F);
+            this.textBoxPeriod.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBoxPeriod.Location = new System.Drawing.Point(1723, 292);
             this.textBoxPeriod.Multiline = true;
             this.textBoxPeriod.Name = "textBoxPeriod";
@@ -580,11 +582,21 @@
             this.btnApprove.UseVisualStyleBackColor = false;
             this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
+            // newslbl
+            // 
+            this.newslbl.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.newslbl.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.newslbl.Location = new System.Drawing.Point(299, 23);
+            this.newslbl.Name = "newslbl";
+            this.newslbl.Size = new System.Drawing.Size(1334, 23);
+            this.newslbl.TabIndex = 40;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1849, 610);
+            this.Controls.Add(this.newslbl);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.checkBoxSpec);
             this.Controls.Add(this.checkBoxA1);
@@ -685,6 +697,7 @@
         private System.Windows.Forms.CheckBox checkBoxA1;
         private System.Windows.Forms.CheckBox checkBoxSpec;
         private System.Windows.Forms.Button btnApprove;
+        private System.Windows.Forms.Label newslbl;
     }
 }
 
