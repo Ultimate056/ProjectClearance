@@ -100,10 +100,28 @@ namespace SalesParamsApprove.Repositories
                             WHERE idtov = {sale.idtov}";
             DBExecute.ExecuteQuery(sql, p_date);
 
-            // Установка статуса "В распродаже из АМ"
+            if (sale.Status == StatusSale.SuggestToSale)
+            {
+                double StartPriceClearance = sale.MCMarketValue - (sale.MCMarketValue * (sale.MCDiscountValue / 100));
+                sql = $@"Update rClearanceValue set 
+                            PriceClearance = {StartPriceClearance}
+                            WHERE idtov = {sale.idtov}";
+                DBExecute.ExecuteQuery(sql);
 
-            sql = $"UPDATE spr_tov (nolock) SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
-            DBExecute.ExecuteQuery(sql);
+                // Установка статуса "В распродаже из АМ"
+
+                sql = $"UPDATE spr_tov SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
+                DBExecute.ExecuteQuery(sql);
+
+                sql = $"exec up_CalcPriceClearance {sale.idtov}";
+                DBExecute.ExecuteQuery(sql);
+            }
+            if(sale.Status == StatusSale.ParamsChanged)
+            {
+                // TODO: Запускается процедура автоматич.изменения цен
+            }
+
+
 
         }
 
