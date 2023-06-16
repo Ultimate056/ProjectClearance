@@ -221,7 +221,7 @@
             this.textBoxCurRemain.ReadOnly = true;
             this.textBoxCurRemain.Size = new System.Drawing.Size(100, 22);
             this.textBoxCurRemain.TabIndex = 2;
-            this.textBoxCurRemain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxCurRemain.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxCurDays
             // 
@@ -232,7 +232,7 @@
             this.textBoxCurDays.ReadOnly = true;
             this.textBoxCurDays.Size = new System.Drawing.Size(100, 22);
             this.textBoxCurDays.TabIndex = 3;
-            this.textBoxCurDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxCurDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxTargetDays
             // 
@@ -241,7 +241,7 @@
             this.textBoxTargetDays.Name = "textBoxTargetDays";
             this.textBoxTargetDays.Size = new System.Drawing.Size(100, 22);
             this.textBoxTargetDays.TabIndex = 4;
-            this.textBoxTargetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxTargetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxPeriodAnal
             // 
@@ -250,7 +250,7 @@
             this.textBoxPeriodAnal.Name = "textBoxPeriodAnal";
             this.textBoxPeriodAnal.Size = new System.Drawing.Size(100, 22);
             this.textBoxPeriodAnal.TabIndex = 5;
-            this.textBoxPeriodAnal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxPeriodAnal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxCurTemp
             // 
@@ -261,7 +261,7 @@
             this.textBoxCurTemp.ReadOnly = true;
             this.textBoxCurTemp.Size = new System.Drawing.Size(100, 22);
             this.textBoxCurTemp.TabIndex = 6;
-            this.textBoxCurTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxCurTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxHO
             // 
@@ -272,7 +272,7 @@
             this.textBoxHO.ReadOnly = true;
             this.textBoxHO.Size = new System.Drawing.Size(100, 22);
             this.textBoxHO.TabIndex = 7;
-            this.textBoxHO.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxHO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxSaleDays
             // 
@@ -281,7 +281,7 @@
             this.textBoxSaleDays.Name = "textBoxSaleDays";
             this.textBoxSaleDays.Size = new System.Drawing.Size(100, 22);
             this.textBoxSaleDays.TabIndex = 8;
-            this.textBoxSaleDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxSaleDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxStepSale
             // 
@@ -292,7 +292,7 @@
             this.textBoxStepSale.ReadOnly = true;
             this.textBoxStepSale.Size = new System.Drawing.Size(100, 22);
             this.textBoxStepSale.TabIndex = 9;
-            this.textBoxStepSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxStepSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxRequireTemp
             // 
@@ -303,7 +303,7 @@
             this.textBoxRequireTemp.ReadOnly = true;
             this.textBoxRequireTemp.Size = new System.Drawing.Size(100, 22);
             this.textBoxRequireTemp.TabIndex = 10;
-            this.textBoxRequireTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxRequireTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxMCSales
             // 
@@ -313,7 +313,7 @@
             this.textBoxMCSales.Name = "textBoxMCSales";
             this.textBoxMCSales.Size = new System.Drawing.Size(100, 22);
             this.textBoxMCSales.TabIndex = 11;
-            this.textBoxMCSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxMCSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxDiscountMC
             // 
@@ -322,7 +322,7 @@
             this.textBoxDiscountMC.Name = "textBoxDiscountMC";
             this.textBoxDiscountMC.Size = new System.Drawing.Size(100, 22);
             this.textBoxDiscountMC.TabIndex = 12;
-            this.textBoxDiscountMC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxDiscountMC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxMCMarket
             // 
@@ -333,7 +333,7 @@
             this.textBoxMCMarket.ReadOnly = true;
             this.textBoxMCMarket.Size = new System.Drawing.Size(100, 22);
             this.textBoxMCMarket.TabIndex = 13;
-            this.textBoxMCMarket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxMCMarket.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxPeriodAlertRTK
             // 
@@ -342,7 +342,7 @@
             this.textBoxPeriodAlertRTK.Name = "textBoxPeriodAlertRTK";
             this.textBoxPeriodAlertRTK.Size = new System.Drawing.Size(100, 22);
             this.textBoxPeriodAlertRTK.TabIndex = 14;
-            this.textBoxPeriodAlertRTK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxPeriodAlertRTK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
             // 

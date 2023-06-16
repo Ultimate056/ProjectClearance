@@ -78,6 +78,42 @@ namespace SalesParamsApprove.Repositories
 
         public void ApproveSale(DataSale sale)
         {
+            UpdateDataSale(sale);
+
+            if (sale.Status == StatusSale.SuggestToSale)
+            {
+                double StartPriceClearance = sale.MCMarketValue - (sale.MCMarketValue * (sale.MCDiscountValue / 100));
+                string sql = $@"Update rClearanceValue set 
+                            PriceClearance = {StartPriceClearance}
+                            WHERE idtov = {sale.idtov}";
+                DBExecute.ExecuteQuery(sql);
+
+                // Установка статуса "В распродаже из АМ"
+
+                sql = $"UPDATE spr_tov SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
+                DBExecute.ExecuteQuery(sql);
+
+                // Установка цен в spr price
+                sql = $"exec up_CalcPriceClearance {sale.idtov}";
+                DBExecute.ExecuteQuery(sql);
+            }
+            if(sale.Status == StatusSale.ParamsChanged)
+            {
+                // TODO: Запускается процедура автоматич.изменения цен
+            }
+
+
+
+        }
+
+        public void SaveSale(DataSale sale)
+        {
+            UpdateDataSale(sale);
+        }
+
+
+        public void UpdateDataSale(DataSale sale)
+        {
             SqlParameter p_date = new SqlParameter("date", DateTime.Now);
             string sql = $@"Update rClearanceValue set 
                             restTarget = {sale.TargetRestDaysValue},
@@ -100,51 +136,6 @@ namespace SalesParamsApprove.Repositories
                             WHERE idtov = {sale.idtov}";
             DBExecute.ExecuteQuery(sql, p_date);
 
-            if (sale.Status == StatusSale.SuggestToSale)
-            {
-                double StartPriceClearance = sale.MCMarketValue - (sale.MCMarketValue * (sale.MCDiscountValue / 100));
-                sql = $@"Update rClearanceValue set 
-                            PriceClearance = {StartPriceClearance}
-                            WHERE idtov = {sale.idtov}";
-                DBExecute.ExecuteQuery(sql);
-
-                // Установка статуса "В распродаже из АМ"
-
-                sql = $"UPDATE spr_tov SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
-                DBExecute.ExecuteQuery(sql);
-
-                sql = $"exec up_CalcPriceClearance {sale.idtov}";
-                DBExecute.ExecuteQuery(sql);
-            }
-            if(sale.Status == StatusSale.ParamsChanged)
-            {
-                // TODO: Запускается процедура автоматич.изменения цен
-            }
-
-
-
-        }
-
-        public void SaveSale(DataSale sale)
-        {
-            SqlParameter p_date = new SqlParameter("date", DateTime.Now);
-            string sql = $@"Update rClearanceValue set 
-                            restTarget = {sale.TargetRestDaysValue},
-                            rateSalesTarget  = {sale.TargetRateSalesValues},
-                            minPriceClearance = {sale.MCSalesValue / 100},
-                            priceMarketDiscount = {sale.MCDiscountValue / 100},
-                            periodAnalize = {sale.PeriodAnalizeValue},
-                            periodAlertRTK = {sale.PeriodAlertRTKValue},
-                            daysClearance = {sale.SaleDaysValue},
-                            stepClearance = {sale.StepSaleValue},
-                            fKP = {sale.fKP},
-                            fAP = {sale.fAP},
-                            fIP = {sale.fIP},
-                            fOpt = {sale.fOpt},
-                            fA1 = {sale.fA1}, 
-                            fExist = {sale.fExist}
-                            WHERE idtov = {sale.idtov}";
-            DBExecute.ExecuteQuery(sql, p_date);
         }
 
         public DataSale GetConstFields(int idtov)
@@ -152,12 +143,12 @@ namespace SalesParamsApprove.Repositories
             using (IDbConnection db = new SqlConnection(Connection.ConnectionString))
             {
                 var temp = db.Query<DataSale>
-                    ($@"select rest as CurrentRest, 
-                                    restDays as CurrentRestDays,
+                    ($@"select      rest as CurrentRest, 
+                                    cast(round(restDays,2) as numeric(18,2)) as CurrentRestDays,
                                     DaysTurnoverNorm as NO,
-                                    cast(rateSales as numeric(18,2)) as CurrentRateSales,
-                                    cast(priceMarket as numeric(18,2)) as MCMarket,
-                                    cast(sebest as numeric(18,2)) as Sebest
+                                    cast(round(rateSales,2) as numeric(18,2)) as CurrentRateSales,
+                                    cast(round(priceMarket,2) as numeric(18,2)) as MCMarket,
+                                    cast(round(sebest, 2) as numeric(18,2)) as Sebest
                             from [dbo].[uf_getValuesForClearance] ({idtov})")
                     .FirstOrDefault();
                 return temp;
@@ -170,11 +161,11 @@ namespace SalesParamsApprove.Repositories
             {
                 var temp = db.Query<DataSale>
                         ($@"select restTarget as TargetRestDays,
-                                    cast(rateSalesTarget as numeric(18,2)) as TargetRateSales,
+                                    cast(round(rateSalesTarget,2) as numeric(18,2)) as TargetRateSales,
                                     daysClearance as SaleDays,
-                                    cast(minPriceClearance as numeric(18,2))*100 as MCSales,
-                                    cast(priceMarketDiscount as numeric(18,2))*100 as MCDiscount,
-                                    cast(stepClearance as numeric(18,2)) as StepSale,
+                                    cast(round(minPriceClearance,2)*100 as numeric(18,2)) as MCSales,
+                                    cast(round(priceMarketDiscount,2)*100 as numeric(18,2)) as MCDiscount,
+                                    cast(round(stepClearance, 2) as numeric(18,2)) as StepSale,
                                     periodAnalize as PeriodAnalize,
                                     periodAlertRTK as PeriodAlertRTK,
                                     fAP, fIP, fOpt, fA1, fExist, fKP
