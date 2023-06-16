@@ -57,6 +57,20 @@ namespace SalesParamsApprove.Models
             }
         }
 
+        // Текущ цена распродажи, руб
+        private string _PriceSale = "";
+        public double PriceSaleValue { get { return CommonGetDouble(_PriceSale); } }
+        public string PriceSale
+        {
+            get { return _PriceSale; }
+            set
+            {
+                _PriceSale = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         // УЦ 41 , руб
         private string _Sebest = "";
         public double SebestValue { get { return CommonGetDouble(_Sebest); } }

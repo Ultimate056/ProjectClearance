@@ -42,6 +42,7 @@ namespace SalesParamsApprove
             tePeriodAlertRTK.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAlertRTK", true, DataSourceUpdateMode.OnPropertyChanged));
             tePeriodAnal.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAnalize", true, DataSourceUpdateMode.OnPropertyChanged));
             teStepSale.DataBindings.Add(new Binding("Text", FocusedSale, "StepSale", true, DataSourceUpdateMode.OnPropertyChanged));
+            teCurPriceSale.DataBindings.Add(new Binding("Text", FocusedSale, "PriceSale", true, DataSourceUpdateMode.OnPropertyChanged));
             //textBoxSebest.DataBindings.Add(new Binding("Text", FocusedSale, "Sebest", false, DataSourceUpdateMode.OnPropertyChanged));
 
             checkBoxA1.DataBindings.Add(new Binding("Checked", FocusedSale, "fA1", false, DataSourceUpdateMode.OnPropertyChanged));
@@ -58,12 +59,11 @@ namespace SalesParamsApprove
             teMCSales.EditValueChanged += teDoubleField_EditValueChanged;
             teDiscountMC.EditValueChanged += teDoubleField_EditValueChanged;
 
-            teCurRemain.CustomDisplayText += teRubField_CustomDisplayText;
-            teTargetRemain.CustomDisplayText += teRubField_CustomDisplayText;
             teMCSales.CustomDisplayText += teProcentField_CustomDisplayText;
             teMCMarket.CustomDisplayText += teRubField_CustomDisplayText;
             teDiscountMC.CustomDisplayText  += teProcentField_CustomDisplayText;
             teStepSale.CustomDisplayText += teRubField_CustomDisplayText;
+            teCurPriceSale.CustomDisplayText += teRubField_CustomDisplayText;
         }
 
 
@@ -129,25 +129,29 @@ namespace SalesParamsApprove
         // Распределение ролей по статусу товара
         private void DistributeRoles(StatusSale sale)
         {
-            if(User.InRole(User.Current.IdUser, "Developers"))
-                return;
             btnSaveData.Enabled = false;
             btnApprove.Enabled = false;
+            labelCurPriceSale.Visible = false;
+            teCurPriceSale.Visible = false;
             switch (sale)
             {
                 case StatusSale.SuggestToSale:
                     btnSaveData.Enabled = true;
-                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment"))
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment") 
+                        || User.InRole(User.Current.IdUser, "Developers"))
                         btnApprove.Enabled = true;
                     break;
                 case StatusSale.InSales:
+                    labelCurPriceSale.Visible = true;
+                    teCurPriceSale.Visible = true;
                     break;
                 case StatusSale.NeedChangeParams:
                     btnSaveData.Enabled = true;
                     break;
                 case StatusSale.ParamsChanged:
                     btnSaveData.Enabled = true;
-                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment"))
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
+                        || User.InRole(User.Current.IdUser, "Developers"))
                         btnApprove.Enabled = true;
                     break;
             }
@@ -209,7 +213,7 @@ namespace SalesParamsApprove
                     FocusedSale.fKP = temp.fKP;
                     FocusedSale.fExist = temp.fExist;
                     FocusedSale.fA1 = temp.fA1;
-
+                    FocusedSale.PriceSale = temp.PriceSale;
                     teTargetRemain.Enabled = FocusedSale.TargetRestDaysValue > 0;
                     teTargetRemain.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
                 }

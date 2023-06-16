@@ -168,7 +168,8 @@ namespace SalesParamsApprove.Repositories
                                     cast(round(stepClearance, 2) as numeric(18,2)) as StepSale,
                                     periodAnalize as PeriodAnalize,
                                     periodAlertRTK as PeriodAlertRTK,
-                                    fAP, fIP, fOpt, fA1, fExist, fKP
+                                    fAP, fIP, fOpt, fA1, fExist, fKP,
+                                    PriceClearance as PriceSale
                             from rClearanceValue (nolock) WHERE idtov = {idtov}")
                         .FirstOrDefault();
                 return temp;

@@ -80,6 +80,8 @@
             this.teDiscountMC = new DevExpress.XtraEditors.TextEdit();
             this.teMCMarket = new DevExpress.XtraEditors.TextEdit();
             this.tePeriodAlertRTK = new DevExpress.XtraEditors.TextEdit();
+            this.teCurPriceSale = new DevExpress.XtraEditors.TextEdit();
+            this.labelCurPriceSale = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -96,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.teDiscountMC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teMCMarket.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePeriodAlertRTK.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurPriceSale.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gcSKU
@@ -136,8 +139,6 @@
             this.gridColumnIdSKU.Caption = "gridColumn1";
             this.gridColumnIdSKU.FieldName = "idSKU";
             this.gridColumnIdSKU.Name = "gridColumnIdSKU";
-            this.gridColumnIdSKU.Visible = true;
-            this.gridColumnIdSKU.VisibleIndex = 4;
             this.gridColumnIdSKU.Width = 81;
             // 
             // gridColumnArt
@@ -513,6 +514,7 @@
             this.btnApprove.AppearancePressed.Font = new System.Drawing.Font("Arial", 9.75F);
             this.btnApprove.AppearancePressed.Options.UseFont = true;
             this.btnApprove.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnApprove.Enabled = false;
             this.btnApprove.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnApprove.ImageOptions.Image")));
             this.btnApprove.Location = new System.Drawing.Point(1692, 12);
             this.btnApprove.Name = "btnApprove";
@@ -542,6 +544,7 @@
             this.btnSaveData.AppearanceHovered.Options.UseBackColor = true;
             this.btnSaveData.AppearanceHovered.Options.UseFont = true;
             this.btnSaveData.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnSaveData.Enabled = false;
             this.btnSaveData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveData.ImageOptions.Image")));
             this.btnSaveData.Location = new System.Drawing.Point(1692, 54);
             this.btnSaveData.Name = "btnSaveData";
@@ -755,11 +758,42 @@
             this.tePeriodAlertRTK.Size = new System.Drawing.Size(100, 22);
             this.tePeriodAlertRTK.TabIndex = 60;
             // 
+            // teCurPriceSale
+            // 
+            this.teCurPriceSale.Location = new System.Drawing.Point(1175, 85);
+            this.teCurPriceSale.Name = "teCurPriceSale";
+            this.teCurPriceSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teCurPriceSale.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teCurPriceSale.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teCurPriceSale.Properties.Appearance.Options.UseBackColor = true;
+            this.teCurPriceSale.Properties.Appearance.Options.UseBorderColor = true;
+            this.teCurPriceSale.Properties.Appearance.Options.UseFont = true;
+            this.teCurPriceSale.Properties.Appearance.Options.UseTextOptions = true;
+            this.teCurPriceSale.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teCurPriceSale.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teCurPriceSale.Properties.ReadOnly = true;
+            this.teCurPriceSale.Size = new System.Drawing.Size(100, 22);
+            this.teCurPriceSale.TabIndex = 62;
+            this.teCurPriceSale.Visible = false;
+            // 
+            // labelCurPriceSale
+            // 
+            this.labelCurPriceSale.AutoSize = true;
+            this.labelCurPriceSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCurPriceSale.Location = new System.Drawing.Point(971, 88);
+            this.labelCurPriceSale.Name = "labelCurPriceSale";
+            this.labelCurPriceSale.Size = new System.Drawing.Size(198, 16);
+            this.labelCurPriceSale.TabIndex = 61;
+            this.labelCurPriceSale.Text = "Текущая цена распродажи, руб";
+            this.labelCurPriceSale.Visible = false;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1849, 610);
+            this.Controls.Add(this.teCurPriceSale);
+            this.Controls.Add(this.labelCurPriceSale);
             this.Controls.Add(this.tePeriodAlertRTK);
             this.Controls.Add(this.teMCMarket);
             this.Controls.Add(this.teDiscountMC);
@@ -824,6 +858,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.teDiscountMC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teMCMarket.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePeriodAlertRTK.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurPriceSale.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -882,6 +917,8 @@
         private DevExpress.XtraEditors.TextEdit teDiscountMC;
         private DevExpress.XtraEditors.TextEdit teMCMarket;
         private DevExpress.XtraEditors.TextEdit tePeriodAlertRTK;
+        private DevExpress.XtraEditors.TextEdit teCurPriceSale;
+        private System.Windows.Forms.Label labelCurPriceSale;
     }
 }
 
