@@ -57,6 +57,13 @@ namespace SalesParamsApprove
             tePeriodAlertRTK.EditValueChanged += teIntField_EditValueChanged;
             teMCSales.EditValueChanged += teDoubleField_EditValueChanged;
             teDiscountMC.EditValueChanged += teDoubleField_EditValueChanged;
+
+            teCurRemain.CustomDisplayText += teRubField_CustomDisplayText;
+            teTargetRemain.CustomDisplayText += teRubField_CustomDisplayText;
+            teMCSales.CustomDisplayText += teProcentField_CustomDisplayText;
+            teMCMarket.CustomDisplayText += teRubField_CustomDisplayText;
+            teDiscountMC.CustomDisplayText  += teProcentField_CustomDisplayText;
+            teStepSale.CustomDisplayText += teRubField_CustomDisplayText;
         }
 
 
@@ -237,7 +244,7 @@ namespace SalesParamsApprove
         private void teIntField_EditValueChanged(object sender, EventArgs e)
         {
             TextEdit te = sender as TextEdit;
-            string send = te.Text;
+            string send = te.EditValue.ToString();
             if (send.isCelka())
             {
                 int value = FocusedSale.CommonGetInt(send);
@@ -250,7 +257,7 @@ namespace SalesParamsApprove
         private void teDoubleField_EditValueChanged(object sender, EventArgs e)
         {
             TextEdit te = sender as TextEdit;
-            string send = te.Text;
+            string send = te.EditValue.ToString();
             if (send.isDouble())
             {
                 double value = FocusedSale.CommonGetDouble(send);
@@ -261,8 +268,65 @@ namespace SalesParamsApprove
                 te.Properties.Appearance.BorderColor = Color.Red;
         }
 
+        private void teProcentField_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+        {
+            decimal val = 0;
+            try
+            {
+                if (decimal.TryParse(e.Value.ToString(), out val))
+                {
+                    val = val / 100;
+                    e.DisplayText = string.Format("{0:P2}", val);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void teRubField_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+        {
+            decimal val = 0;
+            try
+            {
+                if (decimal.TryParse(e.Value.ToString(), out val))
+                {
+                    string disp = string.Format("{0:C2}", val);
+                    StringBuilder newDisp = new StringBuilder();
+                    for (int i = 0; i < disp.Length; i++)
+                    {
+                        if (disp[i] == 'Ю')
+                            newDisp.Append(".");
+                        else
+                            newDisp.Append(disp[i]);
+                    }
+                    e.DisplayText = newDisp.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
         #endregion
 
+        //private void teDiscountMC_FormatEditValue(object sender, DevExpress.XtraEditors.Controls.ConvertEditValueEventArgs e)
+        //{
+        //    double val = 0;
+        //    try
+        //    {
+        //        if (double.TryParse(e.Value.ToString(), out val))
+        //        {
+        //            e.Value = val.ToString("P2");
+        //            e.
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+
+        //    }
+        //}
     }
 }
