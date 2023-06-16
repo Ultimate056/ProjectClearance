@@ -29,11 +29,11 @@ namespace SalesParamsApprove.Models
 
         public bool isInit = true;
 
-        private double CommonGetDouble(string val)
+        public double CommonGetDouble(string val)
         {
             return val.isDouble() ? double.Parse(val) : 0;
         }
-        private int CommonGetInt(string val)
+        public int CommonGetInt(string val)
         {
             return val.isCelka() ? int.Parse(val) : 0;
         }

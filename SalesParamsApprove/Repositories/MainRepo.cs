@@ -147,8 +147,8 @@ namespace SalesParamsApprove.Repositories
                                     cast(round(restDays,2) as numeric(18,2)) as CurrentRestDays,
                                     DaysTurnoverNorm as NO,
                                     cast(round(rateSales,2) as numeric(18,2)) as CurrentRateSales,
-                                    cast(round(priceMarket,2) as numeric(18,2)) as MCMarket,
-                                    cast(round(sebest, 2) as numeric(18,2)) as Sebest
+                                    cast(priceMarket as numeric(18,2)) as MCMarket,
+                                    cast(sebest as numeric(18,2)) as Sebest
                             from [dbo].[uf_getValuesForClearance] ({idtov})")
                     .FirstOrDefault();
                 return temp;

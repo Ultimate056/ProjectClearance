@@ -38,19 +38,6 @@
             this.gridColumnStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
-            this.textBoxCurRemain = new System.Windows.Forms.TextBox();
-            this.textBoxCurDays = new System.Windows.Forms.TextBox();
-            this.textBoxTargetDays = new System.Windows.Forms.TextBox();
-            this.textBoxPeriodAnal = new System.Windows.Forms.TextBox();
-            this.textBoxCurTemp = new System.Windows.Forms.TextBox();
-            this.textBoxHO = new System.Windows.Forms.TextBox();
-            this.textBoxSaleDays = new System.Windows.Forms.TextBox();
-            this.textBoxStepSale = new System.Windows.Forms.TextBox();
-            this.textBoxRequireTemp = new System.Windows.Forms.TextBox();
-            this.textBoxMCSales = new System.Windows.Forms.TextBox();
-            this.textBoxDiscountMC = new System.Windows.Forms.TextBox();
-            this.textBoxMCMarket = new System.Windows.Forms.TextBox();
-            this.textBoxPeriodAlertRTK = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -80,9 +67,35 @@
             this.BtnRefreshData = new DevExpress.XtraEditors.SimpleButton();
             this.btnApprove = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveData = new DevExpress.XtraEditors.SimpleButton();
+            this.teCurRemain = new DevExpress.XtraEditors.TextEdit();
+            this.teTargetRemain = new DevExpress.XtraEditors.TextEdit();
+            this.teCurDays = new DevExpress.XtraEditors.TextEdit();
+            this.tePeriodAnal = new DevExpress.XtraEditors.TextEdit();
+            this.teCurTemp = new DevExpress.XtraEditors.TextEdit();
+            this.teHO = new DevExpress.XtraEditors.TextEdit();
+            this.teSaleDays = new DevExpress.XtraEditors.TextEdit();
+            this.teStepSale = new DevExpress.XtraEditors.TextEdit();
+            this.teRequireTemp = new DevExpress.XtraEditors.TextEdit();
+            this.teMCSales = new DevExpress.XtraEditors.TextEdit();
+            this.teDiscountMC = new DevExpress.XtraEditors.TextEdit();
+            this.teMCMarket = new DevExpress.XtraEditors.TextEdit();
+            this.tePeriodAlertRTK = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurRemain.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teTargetRemain.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tePeriodAnal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurTemp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teHO.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSaleDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teStepSale.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teRequireTemp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teMCSales.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDiscountMC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teMCMarket.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tePeriodAlertRTK.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gcSKU
@@ -211,138 +224,6 @@
             this.searchControl1.Properties.Client = this.gcSKU;
             this.searchControl1.Size = new System.Drawing.Size(268, 26);
             this.searchControl1.TabIndex = 1;
-            // 
-            // textBoxCurRemain
-            // 
-            this.textBoxCurRemain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxCurRemain.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCurRemain.Location = new System.Drawing.Point(1114, 132);
-            this.textBoxCurRemain.Name = "textBoxCurRemain";
-            this.textBoxCurRemain.ReadOnly = true;
-            this.textBoxCurRemain.Size = new System.Drawing.Size(100, 22);
-            this.textBoxCurRemain.TabIndex = 2;
-            this.textBoxCurRemain.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxCurDays
-            // 
-            this.textBoxCurDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxCurDays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCurDays.Location = new System.Drawing.Point(1114, 171);
-            this.textBoxCurDays.Name = "textBoxCurDays";
-            this.textBoxCurDays.ReadOnly = true;
-            this.textBoxCurDays.Size = new System.Drawing.Size(100, 22);
-            this.textBoxCurDays.TabIndex = 3;
-            this.textBoxCurDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxTargetDays
-            // 
-            this.textBoxTargetDays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxTargetDays.Location = new System.Drawing.Point(1114, 214);
-            this.textBoxTargetDays.Name = "textBoxTargetDays";
-            this.textBoxTargetDays.Size = new System.Drawing.Size(100, 22);
-            this.textBoxTargetDays.TabIndex = 4;
-            this.textBoxTargetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxPeriodAnal
-            // 
-            this.textBoxPeriodAnal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPeriodAnal.Location = new System.Drawing.Point(1114, 255);
-            this.textBoxPeriodAnal.Name = "textBoxPeriodAnal";
-            this.textBoxPeriodAnal.Size = new System.Drawing.Size(100, 22);
-            this.textBoxPeriodAnal.TabIndex = 5;
-            this.textBoxPeriodAnal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxCurTemp
-            // 
-            this.textBoxCurTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxCurTemp.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCurTemp.Location = new System.Drawing.Point(1449, 132);
-            this.textBoxCurTemp.Name = "textBoxCurTemp";
-            this.textBoxCurTemp.ReadOnly = true;
-            this.textBoxCurTemp.Size = new System.Drawing.Size(100, 22);
-            this.textBoxCurTemp.TabIndex = 6;
-            this.textBoxCurTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxHO
-            // 
-            this.textBoxHO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxHO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxHO.Location = new System.Drawing.Point(1449, 171);
-            this.textBoxHO.Name = "textBoxHO";
-            this.textBoxHO.ReadOnly = true;
-            this.textBoxHO.Size = new System.Drawing.Size(100, 22);
-            this.textBoxHO.TabIndex = 7;
-            this.textBoxHO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxSaleDays
-            // 
-            this.textBoxSaleDays.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSaleDays.Location = new System.Drawing.Point(1449, 214);
-            this.textBoxSaleDays.Name = "textBoxSaleDays";
-            this.textBoxSaleDays.Size = new System.Drawing.Size(100, 22);
-            this.textBoxSaleDays.TabIndex = 8;
-            this.textBoxSaleDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxStepSale
-            // 
-            this.textBoxStepSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxStepSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStepSale.Location = new System.Drawing.Point(1449, 255);
-            this.textBoxStepSale.Name = "textBoxStepSale";
-            this.textBoxStepSale.ReadOnly = true;
-            this.textBoxStepSale.Size = new System.Drawing.Size(100, 22);
-            this.textBoxStepSale.TabIndex = 9;
-            this.textBoxStepSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxRequireTemp
-            // 
-            this.textBoxRequireTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxRequireTemp.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxRequireTemp.Location = new System.Drawing.Point(1692, 132);
-            this.textBoxRequireTemp.Name = "textBoxRequireTemp";
-            this.textBoxRequireTemp.ReadOnly = true;
-            this.textBoxRequireTemp.Size = new System.Drawing.Size(100, 22);
-            this.textBoxRequireTemp.TabIndex = 10;
-            this.textBoxRequireTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxMCSales
-            // 
-            this.textBoxMCSales.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxMCSales.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxMCSales.Location = new System.Drawing.Point(1692, 192);
-            this.textBoxMCSales.Name = "textBoxMCSales";
-            this.textBoxMCSales.Size = new System.Drawing.Size(100, 22);
-            this.textBoxMCSales.TabIndex = 11;
-            this.textBoxMCSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxDiscountMC
-            // 
-            this.textBoxDiscountMC.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxDiscountMC.Location = new System.Drawing.Point(1692, 257);
-            this.textBoxDiscountMC.Name = "textBoxDiscountMC";
-            this.textBoxDiscountMC.Size = new System.Drawing.Size(100, 22);
-            this.textBoxDiscountMC.TabIndex = 12;
-            this.textBoxDiscountMC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxMCMarket
-            // 
-            this.textBoxMCMarket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.textBoxMCMarket.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxMCMarket.Location = new System.Drawing.Point(1692, 311);
-            this.textBoxMCMarket.Name = "textBoxMCMarket";
-            this.textBoxMCMarket.ReadOnly = true;
-            this.textBoxMCMarket.Size = new System.Drawing.Size(100, 22);
-            this.textBoxMCMarket.TabIndex = 13;
-            this.textBoxMCMarket.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxPeriodAlertRTK
-            // 
-            this.textBoxPeriodAlertRTK.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPeriodAlertRTK.Location = new System.Drawing.Point(1692, 375);
-            this.textBoxPeriodAlertRTK.Name = "textBoxPeriodAlertRTK";
-            this.textBoxPeriodAlertRTK.Size = new System.Drawing.Size(100, 22);
-            this.textBoxPeriodAlertRTK.TabIndex = 14;
-            this.textBoxPeriodAlertRTK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -671,11 +552,227 @@
             this.btnSaveData.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             this.btnSaveData.Click += new System.EventHandler(this.btnSaveData_Click);
             // 
+            // teCurRemain
+            // 
+            this.teCurRemain.Location = new System.Drawing.Point(1114, 133);
+            this.teCurRemain.Name = "teCurRemain";
+            this.teCurRemain.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teCurRemain.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teCurRemain.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teCurRemain.Properties.Appearance.Options.UseBackColor = true;
+            this.teCurRemain.Properties.Appearance.Options.UseBorderColor = true;
+            this.teCurRemain.Properties.Appearance.Options.UseFont = true;
+            this.teCurRemain.Properties.Appearance.Options.UseTextOptions = true;
+            this.teCurRemain.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teCurRemain.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teCurRemain.Properties.ReadOnly = true;
+            this.teCurRemain.Size = new System.Drawing.Size(100, 22);
+            this.teCurRemain.TabIndex = 48;
+            // 
+            // teTargetRemain
+            // 
+            this.teTargetRemain.Location = new System.Drawing.Point(1114, 215);
+            this.teTargetRemain.Name = "teTargetRemain";
+            this.teTargetRemain.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teTargetRemain.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teTargetRemain.Properties.Appearance.Options.UseBorderColor = true;
+            this.teTargetRemain.Properties.Appearance.Options.UseFont = true;
+            this.teTargetRemain.Properties.Appearance.Options.UseTextOptions = true;
+            this.teTargetRemain.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teTargetRemain.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teTargetRemain.Size = new System.Drawing.Size(100, 22);
+            this.teTargetRemain.TabIndex = 49;
+            // 
+            // teCurDays
+            // 
+            this.teCurDays.Location = new System.Drawing.Point(1114, 173);
+            this.teCurDays.Name = "teCurDays";
+            this.teCurDays.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teCurDays.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teCurDays.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teCurDays.Properties.Appearance.Options.UseBackColor = true;
+            this.teCurDays.Properties.Appearance.Options.UseBorderColor = true;
+            this.teCurDays.Properties.Appearance.Options.UseFont = true;
+            this.teCurDays.Properties.Appearance.Options.UseTextOptions = true;
+            this.teCurDays.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teCurDays.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teCurDays.Properties.ReadOnly = true;
+            this.teCurDays.Size = new System.Drawing.Size(100, 22);
+            this.teCurDays.TabIndex = 50;
+            // 
+            // tePeriodAnal
+            // 
+            this.tePeriodAnal.Location = new System.Drawing.Point(1114, 258);
+            this.tePeriodAnal.Name = "tePeriodAnal";
+            this.tePeriodAnal.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tePeriodAnal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tePeriodAnal.Properties.Appearance.Options.UseBorderColor = true;
+            this.tePeriodAnal.Properties.Appearance.Options.UseFont = true;
+            this.tePeriodAnal.Properties.Appearance.Options.UseTextOptions = true;
+            this.tePeriodAnal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.tePeriodAnal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.tePeriodAnal.Size = new System.Drawing.Size(100, 22);
+            this.tePeriodAnal.TabIndex = 51;
+            // 
+            // teCurTemp
+            // 
+            this.teCurTemp.Location = new System.Drawing.Point(1449, 132);
+            this.teCurTemp.Name = "teCurTemp";
+            this.teCurTemp.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teCurTemp.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teCurTemp.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teCurTemp.Properties.Appearance.Options.UseBackColor = true;
+            this.teCurTemp.Properties.Appearance.Options.UseBorderColor = true;
+            this.teCurTemp.Properties.Appearance.Options.UseFont = true;
+            this.teCurTemp.Properties.Appearance.Options.UseTextOptions = true;
+            this.teCurTemp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teCurTemp.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teCurTemp.Properties.ReadOnly = true;
+            this.teCurTemp.Size = new System.Drawing.Size(100, 22);
+            this.teCurTemp.TabIndex = 52;
+            // 
+            // teHO
+            // 
+            this.teHO.Location = new System.Drawing.Point(1449, 173);
+            this.teHO.Name = "teHO";
+            this.teHO.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teHO.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teHO.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teHO.Properties.Appearance.Options.UseBackColor = true;
+            this.teHO.Properties.Appearance.Options.UseBorderColor = true;
+            this.teHO.Properties.Appearance.Options.UseFont = true;
+            this.teHO.Properties.Appearance.Options.UseTextOptions = true;
+            this.teHO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teHO.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teHO.Properties.ReadOnly = true;
+            this.teHO.Size = new System.Drawing.Size(100, 22);
+            this.teHO.TabIndex = 53;
+            // 
+            // teSaleDays
+            // 
+            this.teSaleDays.Location = new System.Drawing.Point(1449, 215);
+            this.teSaleDays.Name = "teSaleDays";
+            this.teSaleDays.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teSaleDays.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teSaleDays.Properties.Appearance.Options.UseBorderColor = true;
+            this.teSaleDays.Properties.Appearance.Options.UseFont = true;
+            this.teSaleDays.Properties.Appearance.Options.UseTextOptions = true;
+            this.teSaleDays.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teSaleDays.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teSaleDays.Size = new System.Drawing.Size(100, 22);
+            this.teSaleDays.TabIndex = 54;
+            // 
+            // teStepSale
+            // 
+            this.teStepSale.Location = new System.Drawing.Point(1449, 258);
+            this.teStepSale.Name = "teStepSale";
+            this.teStepSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teStepSale.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teStepSale.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teStepSale.Properties.Appearance.Options.UseBackColor = true;
+            this.teStepSale.Properties.Appearance.Options.UseBorderColor = true;
+            this.teStepSale.Properties.Appearance.Options.UseFont = true;
+            this.teStepSale.Properties.Appearance.Options.UseTextOptions = true;
+            this.teStepSale.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teStepSale.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teStepSale.Properties.ReadOnly = true;
+            this.teStepSale.Size = new System.Drawing.Size(100, 22);
+            this.teStepSale.TabIndex = 55;
+            // 
+            // teRequireTemp
+            // 
+            this.teRequireTemp.Location = new System.Drawing.Point(1692, 133);
+            this.teRequireTemp.Name = "teRequireTemp";
+            this.teRequireTemp.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teRequireTemp.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teRequireTemp.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teRequireTemp.Properties.Appearance.Options.UseBackColor = true;
+            this.teRequireTemp.Properties.Appearance.Options.UseBorderColor = true;
+            this.teRequireTemp.Properties.Appearance.Options.UseFont = true;
+            this.teRequireTemp.Properties.Appearance.Options.UseTextOptions = true;
+            this.teRequireTemp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teRequireTemp.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teRequireTemp.Properties.ReadOnly = true;
+            this.teRequireTemp.Size = new System.Drawing.Size(100, 22);
+            this.teRequireTemp.TabIndex = 56;
+            // 
+            // teMCSales
+            // 
+            this.teMCSales.Location = new System.Drawing.Point(1692, 199);
+            this.teMCSales.Name = "teMCSales";
+            this.teMCSales.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teMCSales.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teMCSales.Properties.Appearance.Options.UseBorderColor = true;
+            this.teMCSales.Properties.Appearance.Options.UseFont = true;
+            this.teMCSales.Properties.Appearance.Options.UseTextOptions = true;
+            this.teMCSales.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teMCSales.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teMCSales.Size = new System.Drawing.Size(100, 22);
+            this.teMCSales.TabIndex = 57;
+            // 
+            // teDiscountMC
+            // 
+            this.teDiscountMC.Location = new System.Drawing.Point(1692, 258);
+            this.teDiscountMC.Name = "teDiscountMC";
+            this.teDiscountMC.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teDiscountMC.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teDiscountMC.Properties.Appearance.Options.UseBorderColor = true;
+            this.teDiscountMC.Properties.Appearance.Options.UseFont = true;
+            this.teDiscountMC.Properties.Appearance.Options.UseTextOptions = true;
+            this.teDiscountMC.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teDiscountMC.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teDiscountMC.Size = new System.Drawing.Size(100, 22);
+            this.teDiscountMC.TabIndex = 58;
+            // 
+            // teMCMarket
+            // 
+            this.teMCMarket.Location = new System.Drawing.Point(1692, 312);
+            this.teMCMarket.Name = "teMCMarket";
+            this.teMCMarket.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.teMCMarket.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.teMCMarket.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teMCMarket.Properties.Appearance.Options.UseBackColor = true;
+            this.teMCMarket.Properties.Appearance.Options.UseBorderColor = true;
+            this.teMCMarket.Properties.Appearance.Options.UseFont = true;
+            this.teMCMarket.Properties.Appearance.Options.UseTextOptions = true;
+            this.teMCMarket.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.teMCMarket.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.teMCMarket.Properties.ReadOnly = true;
+            this.teMCMarket.Size = new System.Drawing.Size(100, 22);
+            this.teMCMarket.TabIndex = 59;
+            // 
+            // tePeriodAlertRTK
+            // 
+            this.tePeriodAlertRTK.Location = new System.Drawing.Point(1692, 379);
+            this.tePeriodAlertRTK.Name = "tePeriodAlertRTK";
+            this.tePeriodAlertRTK.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tePeriodAlertRTK.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tePeriodAlertRTK.Properties.Appearance.Options.UseBorderColor = true;
+            this.tePeriodAlertRTK.Properties.Appearance.Options.UseFont = true;
+            this.tePeriodAlertRTK.Properties.Appearance.Options.UseTextOptions = true;
+            this.tePeriodAlertRTK.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.tePeriodAlertRTK.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.tePeriodAlertRTK.Size = new System.Drawing.Size(100, 22);
+            this.tePeriodAlertRTK.TabIndex = 60;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1849, 610);
+            this.Controls.Add(this.tePeriodAlertRTK);
+            this.Controls.Add(this.teMCMarket);
+            this.Controls.Add(this.teDiscountMC);
+            this.Controls.Add(this.teMCSales);
+            this.Controls.Add(this.teRequireTemp);
+            this.Controls.Add(this.teStepSale);
+            this.Controls.Add(this.teSaleDays);
+            this.Controls.Add(this.teHO);
+            this.Controls.Add(this.teCurTemp);
+            this.Controls.Add(this.tePeriodAnal);
+            this.Controls.Add(this.teCurDays);
+            this.Controls.Add(this.teTargetRemain);
+            this.Controls.Add(this.teCurRemain);
             this.Controls.Add(this.btnSaveData);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.BtnRefreshData);
@@ -705,19 +802,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxPeriodAlertRTK);
-            this.Controls.Add(this.textBoxMCMarket);
-            this.Controls.Add(this.textBoxDiscountMC);
-            this.Controls.Add(this.textBoxMCSales);
-            this.Controls.Add(this.textBoxRequireTemp);
-            this.Controls.Add(this.textBoxStepSale);
-            this.Controls.Add(this.textBoxSaleDays);
-            this.Controls.Add(this.textBoxHO);
-            this.Controls.Add(this.textBoxCurTemp);
-            this.Controls.Add(this.textBoxPeriodAnal);
-            this.Controls.Add(this.textBoxTargetDays);
-            this.Controls.Add(this.textBoxCurDays);
-            this.Controls.Add(this.textBoxCurRemain);
             this.Controls.Add(this.searchControl1);
             this.Controls.Add(this.gcSKU);
             this.Name = "fmMain";
@@ -727,6 +811,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurRemain.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teTargetRemain.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tePeriodAnal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teCurTemp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teHO.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSaleDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teStepSale.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teRequireTemp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teMCSales.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDiscountMC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teMCMarket.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tePeriodAlertRTK.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,19 +839,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnNTov;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnStatus;
         private DevExpress.XtraEditors.SearchControl searchControl1;
-        private System.Windows.Forms.TextBox textBoxCurRemain;
-        private System.Windows.Forms.TextBox textBoxCurDays;
-        private System.Windows.Forms.TextBox textBoxTargetDays;
-        private System.Windows.Forms.TextBox textBoxPeriodAnal;
-        private System.Windows.Forms.TextBox textBoxCurTemp;
-        private System.Windows.Forms.TextBox textBoxHO;
-        private System.Windows.Forms.TextBox textBoxSaleDays;
-        private System.Windows.Forms.TextBox textBoxStepSale;
-        private System.Windows.Forms.TextBox textBoxRequireTemp;
-        private System.Windows.Forms.TextBox textBoxMCSales;
-        private System.Windows.Forms.TextBox textBoxDiscountMC;
-        private System.Windows.Forms.TextBox textBoxMCMarket;
-        private System.Windows.Forms.TextBox textBoxPeriodAlertRTK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -785,6 +869,19 @@
         private DevExpress.XtraEditors.SimpleButton btnApprove;
         private DevExpress.XtraEditors.SimpleButton btnSaveData;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraEditors.TextEdit teCurRemain;
+        private DevExpress.XtraEditors.TextEdit teTargetRemain;
+        private DevExpress.XtraEditors.TextEdit teCurDays;
+        private DevExpress.XtraEditors.TextEdit tePeriodAnal;
+        private DevExpress.XtraEditors.TextEdit teCurTemp;
+        private DevExpress.XtraEditors.TextEdit teHO;
+        private DevExpress.XtraEditors.TextEdit teSaleDays;
+        private DevExpress.XtraEditors.TextEdit teStepSale;
+        private DevExpress.XtraEditors.TextEdit teRequireTemp;
+        private DevExpress.XtraEditors.TextEdit teMCSales;
+        private DevExpress.XtraEditors.TextEdit teDiscountMC;
+        private DevExpress.XtraEditors.TextEdit teMCMarket;
+        private DevExpress.XtraEditors.TextEdit tePeriodAlertRTK;
     }
 }
 

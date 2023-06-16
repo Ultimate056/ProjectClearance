@@ -13,6 +13,8 @@ using System.Data.SqlClient;
 using SalesParamsApprove.Models;
 using Dapper;
 using SalesParamsApprove.Repositories;
+using DevExpress.XtraEditors;
+using DevExpress.Utils;
 
 namespace SalesParamsApprove
 {
@@ -27,19 +29,19 @@ namespace SalesParamsApprove
         {
             InitializeComponent();
 
-            textBoxCurRemain.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRest", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxCurDays.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRestDays", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxTargetDays.DataBindings.Add(new Binding("Text", FocusedSale, "TargetRestDays", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxCurTemp.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRateSales", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxHO.DataBindings.Add(new Binding("Text", FocusedSale, "NO", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxSaleDays.DataBindings.Add(new Binding("Text", FocusedSale, "SaleDays", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxRequireTemp.DataBindings.Add(new Binding("Text", FocusedSale, "TargetRateSales", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxMCSales.DataBindings.Add(new Binding("Text", FocusedSale, "MCSales", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxMCMarket.DataBindings.Add(new Binding("Text", FocusedSale, "MCMarket", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxDiscountMC.DataBindings.Add(new Binding("Text", FocusedSale, "MCDiscount", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxPeriodAlertRTK.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAlertRTK", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxPeriodAnal.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAnalize", false, DataSourceUpdateMode.OnPropertyChanged));
-            textBoxStepSale.DataBindings.Add(new Binding("Text", FocusedSale, "StepSale", false, DataSourceUpdateMode.OnPropertyChanged));
+            teCurRemain.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRest", true, DataSourceUpdateMode.OnPropertyChanged));
+            teCurDays.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRestDays", true, DataSourceUpdateMode.OnPropertyChanged));
+            teTargetRemain.DataBindings.Add(new Binding("Text", FocusedSale, "TargetRestDays", true, DataSourceUpdateMode.OnPropertyChanged));
+            teCurTemp.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRateSales", true, DataSourceUpdateMode.OnPropertyChanged));
+            teHO.DataBindings.Add(new Binding("Text", FocusedSale, "NO", true, DataSourceUpdateMode.OnPropertyChanged));
+            teSaleDays.DataBindings.Add(new Binding("Text", FocusedSale, "SaleDays", true, DataSourceUpdateMode.OnPropertyChanged));
+            teRequireTemp.DataBindings.Add(new Binding("Text", FocusedSale, "TargetRateSales", true, DataSourceUpdateMode.OnPropertyChanged));
+            teMCSales.DataBindings.Add(new Binding("Text", FocusedSale, "MCSales", true, DataSourceUpdateMode.OnPropertyChanged));
+            teMCMarket.DataBindings.Add(new Binding("Text", FocusedSale, "MCMarket", true, DataSourceUpdateMode.OnPropertyChanged));
+            teDiscountMC.DataBindings.Add(new Binding("Text", FocusedSale, "MCDiscount", true, DataSourceUpdateMode.OnPropertyChanged));
+            tePeriodAlertRTK.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAlertRTK", true, DataSourceUpdateMode.OnPropertyChanged));
+            tePeriodAnal.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAnalize", true, DataSourceUpdateMode.OnPropertyChanged));
+            teStepSale.DataBindings.Add(new Binding("Text", FocusedSale, "StepSale", true, DataSourceUpdateMode.OnPropertyChanged));
             //textBoxSebest.DataBindings.Add(new Binding("Text", FocusedSale, "Sebest", false, DataSourceUpdateMode.OnPropertyChanged));
 
             checkBoxA1.DataBindings.Add(new Binding("Checked", FocusedSale, "fA1", false, DataSourceUpdateMode.OnPropertyChanged));
@@ -48,6 +50,13 @@ namespace SalesParamsApprove
             checkBoxKP.DataBindings.Add(new Binding("Checked", FocusedSale, "fKP", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxOPT.DataBindings.Add(new Binding("Checked", FocusedSale, "fOpt", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxSpec.DataBindings.Add(new Binding("Checked", FocusedSale, "fExist", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            teTargetRemain.EditValueChanged += teIntField_EditValueChanged;
+            tePeriodAnal.EditValueChanged += teIntField_EditValueChanged;
+            teSaleDays.EditValueChanged += teIntField_EditValueChanged;
+            tePeriodAlertRTK.EditValueChanged += teIntField_EditValueChanged;
+            teMCSales.EditValueChanged += teDoubleField_EditValueChanged;
+            teDiscountMC.EditValueChanged += teDoubleField_EditValueChanged;
         }
 
 
@@ -194,8 +203,8 @@ namespace SalesParamsApprove
                     FocusedSale.fExist = temp.fExist;
                     FocusedSale.fA1 = temp.fA1;
 
-                    textBoxTargetDays.Enabled = FocusedSale.TargetRestDaysValue > 0;
-                    textBoxTargetDays.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
+                    teTargetRemain.Enabled = FocusedSale.TargetRestDaysValue > 0;
+                    teTargetRemain.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
                 }
                 else
                     FocusedSale.Clear();
@@ -223,6 +232,37 @@ namespace SalesParamsApprove
         {
             fillgcSKU();
         }
+
+        #region Styles
+        private void teIntField_EditValueChanged(object sender, EventArgs e)
+        {
+            TextEdit te = sender as TextEdit;
+            string send = te.Text;
+            if (send.isCelka())
+            {
+                int value = FocusedSale.CommonGetInt(send);
+                te.Properties.Appearance.BorderColor = value < 0 ? Color.Red 
+                    : FocusedSale.isInit ? DXColor.FromArgb(64, 64, 64) : Color.Blue;
+            }
+            else
+                te.Properties.Appearance.BorderColor = Color.Red;
+        }
+        private void teDoubleField_EditValueChanged(object sender, EventArgs e)
+        {
+            TextEdit te = sender as TextEdit;
+            string send = te.Text;
+            if (send.isDouble())
+            {
+                double value = FocusedSale.CommonGetDouble(send);
+                te.Properties.Appearance.BorderColor = value < 0 ? Color.Red
+                    : FocusedSale.isInit ? DXColor.FromArgb(64, 64, 64) : Color.Blue;
+            }
+            else
+                te.Properties.Appearance.BorderColor = Color.Red;
+        }
+
+
+        #endregion
 
     }
 }
