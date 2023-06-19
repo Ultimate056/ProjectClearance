@@ -80,7 +80,8 @@ namespace SalesParamsApprove.Repositories
         {
             UpdateDataSale(sale);
 
-            if (sale.Status == StatusSale.SuggestToSale)
+            if (sale.Status == StatusSale.SuggestToSale 
+                || sale.Status == StatusSale.ParamsChanged)
             {
                 double StartPriceClearance = sale.MCMarketValue - (sale.MCMarketValue * (sale.MCDiscountValue / 100));
                 string sql = $@"Update rClearanceValue set 
@@ -90,29 +91,21 @@ namespace SalesParamsApprove.Repositories
 
                 // Установка статуса "В распродаже из АМ"
 
-                sql = $"UPDATE spr_tov SET idAdvancement = 20 WHERE id_tov = {sale.idtov}";
-                DBExecute.ExecuteQuery(sql);
+                UpdateStatus(sale.idtov, 20);
 
                 // Установка цен в spr price
                 sql = $"exec up_CalcPriceClearance {sale.idtov}";
                 DBExecute.ExecuteQuery(sql);
             }
-            if(sale.Status == StatusSale.ParamsChanged)
-            {
-                // TODO: Запускается процедура автоматич.изменения цен
-            }
-
-
-
         }
 
-        public void SaveSale(DataSale sale)
+        public void SaveSale(DataSale sale, int idNewStatus = -1)
         {
-            UpdateDataSale(sale);
+            UpdateDataSale(sale, idNewStatus);
         }
 
 
-        public void UpdateDataSale(DataSale sale)
+        public void UpdateDataSale(DataSale sale, int idNewStatus = -1)
         {
             SqlParameter p_date = new SqlParameter("date", DateTime.Now);
             string sql = $@"Update rClearanceValue set 
@@ -136,6 +129,17 @@ namespace SalesParamsApprove.Repositories
                             WHERE idtov = {sale.idtov}";
             DBExecute.ExecuteQuery(sql, p_date);
 
+            if(idNewStatus != -1)
+            {
+                UpdateStatus(sale.idtov, idNewStatus);
+            }
+
+        }
+
+        public void UpdateStatus(int idtov, int idNewStatus)
+        {
+            string sql = $"UPDATE spr_tov SET idAdvancement = {idNewStatus} WHERE id_tov = {idtov}";
+            DBExecute.ExecuteQuery(sql);
         }
 
         public DataSale GetConstFields(int idtov)

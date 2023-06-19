@@ -139,6 +139,8 @@
             this.gridColumnIdSKU.Caption = "gridColumn1";
             this.gridColumnIdSKU.FieldName = "idSKU";
             this.gridColumnIdSKU.Name = "gridColumnIdSKU";
+            this.gridColumnIdSKU.Visible = true;
+            this.gridColumnIdSKU.VisibleIndex = 4;
             this.gridColumnIdSKU.Width = 81;
             // 
             // gridColumnArt
@@ -471,6 +473,7 @@
             this.checkBoxKP.Size = new System.Drawing.Size(15, 14);
             this.checkBoxKP.TabIndex = 41;
             this.checkBoxKP.UseVisualStyleBackColor = true;
+            this.checkBoxKP.Visible = false;
             // 
             // label20
             // 
@@ -481,6 +484,7 @@
             this.label20.Size = new System.Drawing.Size(25, 16);
             this.label20.TabIndex = 40;
             this.label20.Text = "КП";
+            this.label20.Visible = false;
             // 
             // BtnRefreshData
             // 

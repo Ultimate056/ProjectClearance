@@ -147,6 +147,8 @@ namespace SalesParamsApprove
                     break;
                 case StatusSale.NeedChangeParams:
                     btnSaveData.Enabled = true;
+                    labelCurPriceSale.Visible = true;
+                    teCurPriceSale.Visible = true;
                     break;
                 case StatusSale.ParamsChanged:
                     btnSaveData.Enabled = true;
@@ -232,7 +234,12 @@ namespace SalesParamsApprove
         {
             if(FocusedSale.idtov > 0)
             {
-                repo.SaveSale(FocusedSale);
+                if (FocusedSale.Status == StatusSale.NeedChangeParams)
+                    repo.SaveSale(FocusedSale, 17);
+                else
+                    repo.SaveSale(FocusedSale);
+
+                fillgcSKU();
                 MessageBox.Show("Параметры успешно сохранены", "Сохранение параметров",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
