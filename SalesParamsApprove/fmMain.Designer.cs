@@ -82,6 +82,8 @@
             this.tePeriodAlertRTK = new DevExpress.XtraEditors.TextEdit();
             this.teCurPriceSale = new DevExpress.XtraEditors.TextEdit();
             this.labelCurPriceSale = new System.Windows.Forms.Label();
+            this.dateStartSale = new DevExpress.XtraEditors.DateEdit();
+            this.labelDateSale = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -99,6 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.teMCMarket.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePeriodAlertRTK.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teCurPriceSale.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartSale.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartSale.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gcSKU
@@ -134,13 +138,18 @@
             // 
             this.gridColumnIdSKU.AppearanceCell.Font = new System.Drawing.Font("Arial", 10F);
             this.gridColumnIdSKU.AppearanceCell.Options.UseFont = true;
-            this.gridColumnIdSKU.AppearanceHeader.Font = new System.Drawing.Font("Arial", 10F);
+            this.gridColumnIdSKU.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumnIdSKU.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumnIdSKU.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gridColumnIdSKU.AppearanceHeader.Options.UseFont = true;
-            this.gridColumnIdSKU.Caption = "gridColumn1";
+            this.gridColumnIdSKU.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumnIdSKU.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumnIdSKU.Caption = "Код товара";
             this.gridColumnIdSKU.FieldName = "idSKU";
             this.gridColumnIdSKU.Name = "gridColumnIdSKU";
+            this.gridColumnIdSKU.OptionsColumn.ReadOnly = true;
             this.gridColumnIdSKU.Visible = true;
-            this.gridColumnIdSKU.VisibleIndex = 4;
+            this.gridColumnIdSKU.VisibleIndex = 0;
             this.gridColumnIdSKU.Width = 81;
             // 
             // gridColumnArt
@@ -156,7 +165,7 @@
             this.gridColumnArt.Name = "gridColumnArt";
             this.gridColumnArt.OptionsColumn.AllowEdit = false;
             this.gridColumnArt.Visible = true;
-            this.gridColumnArt.VisibleIndex = 0;
+            this.gridColumnArt.VisibleIndex = 1;
             this.gridColumnArt.Width = 151;
             // 
             // gridColumnBrand
@@ -172,7 +181,7 @@
             this.gridColumnBrand.Name = "gridColumnBrand";
             this.gridColumnBrand.OptionsColumn.AllowEdit = false;
             this.gridColumnBrand.Visible = true;
-            this.gridColumnBrand.VisibleIndex = 1;
+            this.gridColumnBrand.VisibleIndex = 2;
             this.gridColumnBrand.Width = 157;
             // 
             // gridColumnNTov
@@ -188,7 +197,7 @@
             this.gridColumnNTov.Name = "gridColumnNTov";
             this.gridColumnNTov.OptionsColumn.AllowEdit = false;
             this.gridColumnNTov.Visible = true;
-            this.gridColumnNTov.VisibleIndex = 2;
+            this.gridColumnNTov.VisibleIndex = 3;
             this.gridColumnNTov.Width = 380;
             // 
             // gridColumnStatus
@@ -204,7 +213,7 @@
             this.gridColumnStatus.Name = "gridColumnStatus";
             this.gridColumnStatus.OptionsColumn.AllowEdit = false;
             this.gridColumnStatus.Visible = true;
-            this.gridColumnStatus.VisibleIndex = 3;
+            this.gridColumnStatus.VisibleIndex = 4;
             this.gridColumnStatus.Width = 179;
             // 
             // gridColumn1
@@ -589,7 +598,6 @@
             this.teTargetRemain.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teTargetRemain.Size = new System.Drawing.Size(100, 22);
             this.teTargetRemain.TabIndex = 49;
-
             // 
             // teCurDays
             // 
@@ -621,7 +629,6 @@
             this.tePeriodAnal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.tePeriodAnal.Size = new System.Drawing.Size(100, 22);
             this.tePeriodAnal.TabIndex = 51;
-
             // 
             // teCurTemp
             // 
@@ -766,7 +773,7 @@
             // 
             // teCurPriceSale
             // 
-            this.teCurPriceSale.Location = new System.Drawing.Point(1175, 85);
+            this.teCurPriceSale.Location = new System.Drawing.Point(1165, 85);
             this.teCurPriceSale.Name = "teCurPriceSale";
             this.teCurPriceSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teCurPriceSale.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -786,18 +793,52 @@
             // 
             this.labelCurPriceSale.AutoSize = true;
             this.labelCurPriceSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCurPriceSale.Location = new System.Drawing.Point(971, 88);
+            this.labelCurPriceSale.Location = new System.Drawing.Point(959, 88);
             this.labelCurPriceSale.Name = "labelCurPriceSale";
             this.labelCurPriceSale.Size = new System.Drawing.Size(198, 16);
             this.labelCurPriceSale.TabIndex = 61;
             this.labelCurPriceSale.Text = "Текущая цена распродажи, руб";
             this.labelCurPriceSale.Visible = false;
             // 
+            // dateStartSale
+            // 
+            this.dateStartSale.EditValue = null;
+            this.dateStartSale.Location = new System.Drawing.Point(1165, 53);
+            this.dateStartSale.Name = "dateStartSale";
+            this.dateStartSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.dateStartSale.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dateStartSale.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateStartSale.Properties.Appearance.Options.UseBackColor = true;
+            this.dateStartSale.Properties.Appearance.Options.UseBorderColor = true;
+            this.dateStartSale.Properties.Appearance.Options.UseFont = true;
+            this.dateStartSale.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.dateStartSale.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStartSale.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.True;
+            this.dateStartSale.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStartSale.Properties.ReadOnly = true;
+            this.dateStartSale.Size = new System.Drawing.Size(100, 22);
+            this.dateStartSale.TabIndex = 63;
+            // 
+            // labelDateSale
+            // 
+            this.labelDateSale.AutoSize = true;
+            this.labelDateSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelDateSale.Location = new System.Drawing.Point(947, 54);
+            this.labelDateSale.Name = "labelDateSale";
+            this.labelDateSale.Size = new System.Drawing.Size(210, 16);
+            this.labelDateSale.TabIndex = 64;
+            this.labelDateSale.Text = "Текущая дата старта распродажи";
+            this.labelDateSale.Visible = false;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1849, 610);
+            this.Controls.Add(this.labelDateSale);
+            this.Controls.Add(this.dateStartSale);
             this.Controls.Add(this.teCurPriceSale);
             this.Controls.Add(this.labelCurPriceSale);
             this.Controls.Add(this.tePeriodAlertRTK);
@@ -865,6 +906,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.teMCMarket.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePeriodAlertRTK.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teCurPriceSale.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartSale.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartSale.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -925,6 +968,8 @@
         private DevExpress.XtraEditors.TextEdit tePeriodAlertRTK;
         private DevExpress.XtraEditors.TextEdit teCurPriceSale;
         private System.Windows.Forms.Label labelCurPriceSale;
+        private DevExpress.XtraEditors.DateEdit dateStartSale;
+        private System.Windows.Forms.Label labelDateSale;
     }
 }
 

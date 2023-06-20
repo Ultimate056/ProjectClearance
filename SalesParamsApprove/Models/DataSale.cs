@@ -45,6 +45,8 @@ namespace SalesParamsApprove.Models
 
         public StatusSale Status { get; set; }
 
+        public DateTime DateStartSale { get; set; }
+
         // МЦ рынка, руб
         private string _MCMarket = "";
 

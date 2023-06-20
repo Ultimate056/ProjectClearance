@@ -173,7 +173,8 @@ namespace SalesParamsApprove.Repositories
                                     periodAnalize as PeriodAnalize,
                                     periodAlertRTK as PeriodAlertRTK,
                                     fAP, fIP, fOpt, fA1, fExist, fKP,
-                                    PriceClearance as PriceSale
+                                    PriceClearance as PriceSale,
+                                    dateClearance as DateStartSale
                             from rClearanceValue (nolock) WHERE idtov = {idtov}")
                         .FirstOrDefault();
                 return temp;

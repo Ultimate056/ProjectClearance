@@ -52,6 +52,8 @@ namespace SalesParamsApprove
             checkBoxOPT.DataBindings.Add(new Binding("Checked", FocusedSale, "fOpt", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxSpec.DataBindings.Add(new Binding("Checked", FocusedSale, "fExist", false, DataSourceUpdateMode.OnPropertyChanged));
 
+            dateStartSale.DataBindings.Add(new Binding("EditValue", FocusedSale, "DateStartSale", false, DataSourceUpdateMode.OnPropertyChanged));
+
             teTargetRemain.EditValueChanged += teIntField_EditValueChanged;
             tePeriodAnal.EditValueChanged += teIntField_EditValueChanged;
             teSaleDays.EditValueChanged += teIntField_EditValueChanged;
@@ -81,7 +83,7 @@ namespace SalesParamsApprove
         // Обновление полей
         private void RefreshData()
         {
-            // isInit нужен, чтобы данные зависимых полей не обновлялись на 1 раз
+            // isInit нужен, чтобы данные зависимых полей не обновлялись на первый раз
             FocusedSale.isInit = true;
             fillRightData();
             FocusedSale.isInit = false;
@@ -144,6 +146,7 @@ namespace SalesParamsApprove
                     FocusedSale.fExist = temp.fExist;
                     FocusedSale.fA1 = temp.fA1;
                     FocusedSale.PriceSale = temp.PriceSale;
+                    FocusedSale.DateStartSale = temp.DateStartSale;
                     teTargetRemain.Enabled = FocusedSale.TargetRestDaysValue > 0;
                     teTargetRemain.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
                 }
@@ -229,6 +232,8 @@ namespace SalesParamsApprove
             RefreshData();
         }
 
+
+        // Валидационные методы
         private void teIntField_EditValueChanged(object sender, EventArgs e)
         {
             TextEdit te = sender as TextEdit;
@@ -295,6 +300,8 @@ namespace SalesParamsApprove
             btnApprove.Enabled = false;
             labelCurPriceSale.Visible = false;
             teCurPriceSale.Visible = false;
+            labelDateSale.Visible = false;
+            dateStartSale.Visible = false;
             switch (sale)
             {
                 case StatusSale.SuggestToSale:
@@ -306,14 +313,22 @@ namespace SalesParamsApprove
                 case StatusSale.InSales:
                     labelCurPriceSale.Visible = true;
                     teCurPriceSale.Visible = true;
+                    labelDateSale.Visible = true;
+                    dateStartSale.Visible = true;
                     break;
                 case StatusSale.NeedChangeParams:
                     btnSaveData.Enabled = true;
                     labelCurPriceSale.Visible = true;
                     teCurPriceSale.Visible = true;
+                    labelDateSale.Visible = true;
+                    dateStartSale.Visible = true;
                     break;
                 case StatusSale.ParamsChanged:
                     btnSaveData.Enabled = true;
+                    labelCurPriceSale.Visible = true;
+                    teCurPriceSale.Visible = true;
+                    labelDateSale.Visible = true;
+                    dateStartSale.Visible = true;
                     if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
                         || User.InRole(User.Current.IdUser, "Developers"))
                         btnApprove.Enabled = true;
