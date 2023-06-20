@@ -27,6 +27,7 @@ namespace SalesParamsApprove.Models
             this.isInit = _isInit;
         }
 
+        // Флаг true , если в интерфейсе он проинициализирован
         public bool isInit = true;
 
         public double CommonGetDouble(string val)

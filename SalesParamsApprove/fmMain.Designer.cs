@@ -589,6 +589,7 @@
             this.teTargetRemain.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teTargetRemain.Size = new System.Drawing.Size(100, 22);
             this.teTargetRemain.TabIndex = 49;
+
             // 
             // teCurDays
             // 
@@ -620,6 +621,7 @@
             this.tePeriodAnal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.tePeriodAnal.Size = new System.Drawing.Size(100, 22);
             this.tePeriodAnal.TabIndex = 51;
+
             // 
             // teCurTemp
             // 

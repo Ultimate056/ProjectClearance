@@ -66,7 +66,7 @@ namespace SalesParamsApprove
             teCurPriceSale.CustomDisplayText += teRubField_CustomDisplayText;
         }
 
-
+        #region fills
         private void fmMain_Load(object sender, EventArgs e)
         {
             ListAccessTovGroup = repo.GetListAccessTovGroup(User.CurrentUserId).ToString();
@@ -75,36 +75,7 @@ namespace SalesParamsApprove
 
         private void fillgcSKU()
         {
-           gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
-        }
-
-        private void btnApprove_Click(object sender, EventArgs e)
-        {
-            if (FocusedSale.idtov < 1)
-                return;
-            DialogResult result = MessageBox.Show($"Утвердить параметры распродажи товара {GetFocusedTovName()}?",
-                "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    repo.ApproveSale(FocusedSale);
-                    fillgcSKU();
-
-                    MessageBox.Show("Параметры успешно утверждены", "Утверждение параметров", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Ошибка утверждения. " + ex.Message);
-                }
-            }
-
-        }
-
-        private void gvSKU_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            RefreshData();
+            gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
         }
 
         // Обновление полей
@@ -114,49 +85,6 @@ namespace SalesParamsApprove
             FocusedSale.isInit = true;
             fillRightData();
             FocusedSale.isInit = false;
-        }
-
-        private string GetFocusedTovName()
-        {
-            DataRow focusrow = gvSKU.GetFocusedDataRow();
-            if (focusrow == null)
-                return "";
-            string tovname = focusrow["Brand"].ToString() + " " + focusrow["Art"].ToString();
-            return tovname;
-        }
-
-
-        // Распределение ролей по статусу товара
-        private void DistributeRoles(StatusSale sale)
-        {
-            btnSaveData.Enabled = false;
-            btnApprove.Enabled = false;
-            labelCurPriceSale.Visible = false;
-            teCurPriceSale.Visible = false;
-            switch (sale)
-            {
-                case StatusSale.SuggestToSale:
-                    btnSaveData.Enabled = true;
-                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment") 
-                        || User.InRole(User.Current.IdUser, "Developers"))
-                        btnApprove.Enabled = true;
-                    break;
-                case StatusSale.InSales:
-                    labelCurPriceSale.Visible = true;
-                    teCurPriceSale.Visible = true;
-                    break;
-                case StatusSale.NeedChangeParams:
-                    btnSaveData.Enabled = true;
-                    labelCurPriceSale.Visible = true;
-                    teCurPriceSale.Visible = true;
-                    break;
-                case StatusSale.ParamsChanged:
-                    btnSaveData.Enabled = true;
-                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
-                        || User.InRole(User.Current.IdUser, "Developers"))
-                        btnApprove.Enabled = true;
-                    break;
-            }
         }
 
         // Заполнение константных полей (readonly)
@@ -189,7 +117,7 @@ namespace SalesParamsApprove
             catch (Exception ex)
             {
 
-                MessageBox.Show("Ошибка при заполнении полей: " +  ex.Message);
+                MessageBox.Show("Ошибка при заполнении полей: " + ex.Message);
             }
         }
 
@@ -229,17 +157,59 @@ namespace SalesParamsApprove
                 MessageBox.Show("Ошибка при заполнении полей: " + ex.Message);
             }
         }
+        #endregion
+
+        #region Buttons
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+            if (FocusedSale.idtov < 1)
+                return;
+            string resVal = isFinalValidate(FocusedSale);
+            if (resVal != "ok")
+            {
+                MessageBox.Show(resVal, "Есть невалидные поля", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show($"Утвердить параметры распродажи товара {GetFocusedTovName()}?",
+                "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    repo.ApproveSale(FocusedSale);
+                    fillgcSKU();
+
+                    MessageBox.Show("Параметры успешно утверждены", "Утверждение параметров",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка утверждения. " + ex.Message);
+                }
+            }
+
+        }
 
         private void btnSaveData_Click(object sender, EventArgs e)
         {
-            if(FocusedSale.idtov > 0)
+            if (FocusedSale.idtov > 0)
             {
+                string resVal = isFinalValidate(FocusedSale);
+                if (resVal != "ok")
+                {
+                    MessageBox.Show(resVal, "Есть невалидные поля", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
                 if (FocusedSale.Status == StatusSale.NeedChangeParams)
+                {
                     repo.SaveSale(FocusedSale, 17);
+                    fillgcSKU();
+                }
                 else
                     repo.SaveSale(FocusedSale);
-
-                fillgcSKU();
                 MessageBox.Show("Параметры успешно сохранены", "Сохранение параметров",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -251,7 +221,14 @@ namespace SalesParamsApprove
             fillgcSKU();
         }
 
-        #region Styles
+        #endregion
+
+        #region Events
+        private void gvSKU_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            RefreshData();
+        }
+
         private void teIntField_EditValueChanged(object sender, EventArgs e)
         {
             TextEdit te = sender as TextEdit;
@@ -259,11 +236,27 @@ namespace SalesParamsApprove
             if (send.isCelka())
             {
                 int value = FocusedSale.CommonGetInt(send);
-                te.Properties.Appearance.BorderColor = value < 0 ? Color.Red 
+
+                bool check1 = false;
+                switch(te.Name) {
+                    case "tePeriodAnal":
+                        check1 = value > FocusedSale.SaleDaysValue || value == 0;
+                        break;
+                    case "tePeriodAlertRTK":
+                        check1 = value > FocusedSale.SaleDaysValue || value == 0;
+                        break;
+                    case "teTargetRemain":
+                        check1 = value > FocusedSale.CurrentRestValue;
+                        break;
+                }
+                bool check2 = value < 0;
+
+                te.Properties.Appearance.BorderColor = check1 || check2 ? Color.Red
                     : FocusedSale.isInit ? DXColor.FromArgb(64, 64, 64) : Color.Blue;
             }
             else
                 te.Properties.Appearance.BorderColor = Color.Red;
+
         }
         private void teDoubleField_EditValueChanged(object sender, EventArgs e)
         {
@@ -277,7 +270,119 @@ namespace SalesParamsApprove
             }
             else
                 te.Properties.Appearance.BorderColor = Color.Red;
+
         }
+
+        #endregion
+
+
+
+        #region Logic Methods
+        private string GetFocusedTovName()
+        {
+            DataRow focusrow = gvSKU.GetFocusedDataRow();
+            if (focusrow == null)
+                return "";
+            string tovname = focusrow["Brand"].ToString() + " " + focusrow["Art"].ToString();
+            return tovname;
+        }
+
+
+        // Распределение ролей по статусу товара
+        private void DistributeRoles(StatusSale sale)
+        {
+            btnSaveData.Enabled = false;
+            btnApprove.Enabled = false;
+            labelCurPriceSale.Visible = false;
+            teCurPriceSale.Visible = false;
+            switch (sale)
+            {
+                case StatusSale.SuggestToSale:
+                    btnSaveData.Enabled = true;
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
+                        || User.InRole(User.Current.IdUser, "Developers"))
+                        btnApprove.Enabled = true;
+                    break;
+                case StatusSale.InSales:
+                    labelCurPriceSale.Visible = true;
+                    teCurPriceSale.Visible = true;
+                    break;
+                case StatusSale.NeedChangeParams:
+                    btnSaveData.Enabled = true;
+                    labelCurPriceSale.Visible = true;
+                    teCurPriceSale.Visible = true;
+                    break;
+                case StatusSale.ParamsChanged:
+                    btnSaveData.Enabled = true;
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
+                        || User.InRole(User.Current.IdUser, "Developers"))
+                        btnApprove.Enabled = true;
+                    break;
+            }
+        }
+
+        public string isFinalValidate(DataSale sale)
+        {
+            string resValidate = "ok";
+            if(!(sale.MCDiscount.isDouble() &&
+                    sale.MCSales.isDouble() &&
+                    sale.PeriodAlertRTK.isCelka() &&
+                    sale.PeriodAnalize.isCelka() &&
+                    sale.SaleDays.isCelka() && 
+                    sale.TargetRestDays.isCelka()))
+            {
+                resValidate = "Поля заданы в неверном формате";
+                return resValidate;
+            }
+
+
+            if (sale.PeriodAlertRTKValue == 0 ||
+                sale.PeriodAlertRTKValue > sale.SaleDaysValue)
+            {
+                resValidate = "Неправильно задан период оповещения РТК";
+                return resValidate;
+            }
+
+
+            if (sale.PeriodAnalizeValue == 0 ||
+               sale.PeriodAnalizeValue > sale.SaleDaysValue)
+            {
+                resValidate = "Неправильно задан период анализа распродажи";
+                return resValidate;
+            }
+   
+
+            if (sale.TargetRestDaysValue > sale.CurrentRestValue)
+            {
+                resValidate = "Целевой остаток не может быть больше текущего";
+                return resValidate;
+            }
+
+
+            if (sale.StepSaleValue < 0)
+            {
+                resValidate = "Отрицательный шаг распродажи! Измените параметры";
+                return resValidate;
+            }
+
+
+            if (sale.fA1 == 0 && sale.fAP == 0 && sale.fExist == 0 && sale.fIP == 0
+                && sale.fOpt == 0)
+                resValidate = "Не задан ни один канал сбыта!";
+
+            return resValidate;
+        }
+
+
+        #endregion
+
+
+
+
+
+
+        #region Styles
+
 
         private void teProcentField_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
         {
@@ -321,23 +426,8 @@ namespace SalesParamsApprove
         }
 
 
+
         #endregion
 
-        //private void teDiscountMC_FormatEditValue(object sender, DevExpress.XtraEditors.Controls.ConvertEditValueEventArgs e)
-        //{
-        //    double val = 0;
-        //    try
-        //    {
-        //        if (double.TryParse(e.Value.ToString(), out val))
-        //        {
-        //            e.Value = val.ToString("P2");
-        //            e.
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-
-        //    }
-        //}
     }
 }
