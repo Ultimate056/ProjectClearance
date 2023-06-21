@@ -346,44 +346,52 @@ namespace SalesParamsApprove
                     sale.SaleDays.isCelka() && 
                     sale.TargetRestDays.isCelka()))
             {
-                resValidate = "Поля заданы в неверном формате";
+                resValidate = "Поля заданы в неверном формате или пустые. Скорректируйте значение параметров";
+                return resValidate;
+            }
+            if (sale.PeriodAlertRTKValue == 0)
+            {
+                resValidate = "Должен быть задан период оповещения РТК! Скорректируйте значение параметра";
+                return resValidate;
+            }
+
+            if (sale.PeriodAlertRTKValue > sale.SaleDaysValue)
+            {
+                resValidate = "Период оповещения РТК должен быть меньше срока распродажи! Скорректируйте значение параметра";
                 return resValidate;
             }
 
 
-            if (sale.PeriodAlertRTKValue == 0 ||
-                sale.PeriodAlertRTKValue > sale.SaleDaysValue)
+            if(sale.PeriodAnalizeValue == 0)
             {
-                resValidate = "Неправильно задан период оповещения РТК";
+                resValidate = "Должен быть задан период анализа! Скорректируйте значение параметра";
                 return resValidate;
             }
 
-
-            if (sale.PeriodAnalizeValue == 0 ||
-               sale.PeriodAnalizeValue > sale.SaleDaysValue)
+            if (sale.PeriodAnalizeValue > sale.SaleDaysValue)
             {
-                resValidate = "Неправильно задан период анализа распродажи";
+                resValidate = "Период анализа должен быть меньше срока распродажи! Скорректируйте значение параметра";
                 return resValidate;
             }
    
 
             if (sale.TargetRestDaysValue > sale.CurrentRestValue)
             {
-                resValidate = "Целевой остаток не может быть больше текущего";
+                resValidate = "Целевой остаток должен быть меньше текущего остатка! Скорректируйте значение параметра";
                 return resValidate;
             }
 
 
             if (sale.StepSaleValue < 0)
             {
-                resValidate = "Отрицательный шаг распродажи! Измените параметры";
+                resValidate = "Шаг распродажи должен быть больше 0! Скорректируйте значение параметров";
                 return resValidate;
             }
 
 
             if (sale.fA1 == 0 && sale.fAP == 0 && sale.fExist == 0 && sale.fIP == 0
                 && sale.fOpt == 0)
-                resValidate = "Не задан ни один канал сбыта!";
+                resValidate = "Необходимо указать каналы сбыта для распродажи";
 
             return resValidate;
         }

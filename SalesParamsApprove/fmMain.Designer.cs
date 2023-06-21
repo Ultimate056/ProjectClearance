@@ -271,7 +271,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label4.Location = new System.Drawing.Point(961, 259);
+            this.label4.Location = new System.Drawing.Point(1528, 400);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(142, 16);
             this.label4.TabIndex = 18;
@@ -301,7 +301,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label7.Location = new System.Drawing.Point(1276, 218);
+            this.label7.Location = new System.Drawing.Point(1519, 358);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(151, 16);
             this.label7.TabIndex = 21;
@@ -311,7 +311,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label8.Location = new System.Drawing.Point(1290, 261);
+            this.label8.Location = new System.Drawing.Point(1290, 218);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(137, 16);
             this.label8.TabIndex = 22;
@@ -348,7 +348,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label12.Location = new System.Drawing.Point(1577, 315);
+            this.label12.Location = new System.Drawing.Point(1572, 315);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(98, 16);
             this.label12.TabIndex = 26;
@@ -357,7 +357,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label13.Location = new System.Drawing.Point(1577, 362);
+            this.label13.Location = new System.Drawing.Point(1561, 440);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(109, 58);
             this.label13.TabIndex = 27;
@@ -618,7 +618,7 @@
             // 
             // tePeriodAnal
             // 
-            this.tePeriodAnal.Location = new System.Drawing.Point(1114, 258);
+            this.tePeriodAnal.Location = new System.Drawing.Point(1692, 397);
             this.tePeriodAnal.Name = "tePeriodAnal";
             this.tePeriodAnal.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tePeriodAnal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -666,7 +666,7 @@
             // 
             // teSaleDays
             // 
-            this.teSaleDays.Location = new System.Drawing.Point(1449, 215);
+            this.teSaleDays.Location = new System.Drawing.Point(1692, 355);
             this.teSaleDays.Name = "teSaleDays";
             this.teSaleDays.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.teSaleDays.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -680,7 +680,7 @@
             // 
             // teStepSale
             // 
-            this.teStepSale.Location = new System.Drawing.Point(1449, 258);
+            this.teStepSale.Location = new System.Drawing.Point(1449, 215);
             this.teStepSale.Name = "teStepSale";
             this.teStepSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teStepSale.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -759,7 +759,7 @@
             // 
             // tePeriodAlertRTK
             // 
-            this.tePeriodAlertRTK.Location = new System.Drawing.Point(1692, 379);
+            this.tePeriodAlertRTK.Location = new System.Drawing.Point(1692, 447);
             this.tePeriodAlertRTK.Name = "tePeriodAlertRTK";
             this.tePeriodAlertRTK.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tePeriodAlertRTK.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -773,7 +773,7 @@
             // 
             // teCurPriceSale
             // 
-            this.teCurPriceSale.Location = new System.Drawing.Point(1165, 85);
+            this.teCurPriceSale.Location = new System.Drawing.Point(1165, 89);
             this.teCurPriceSale.Name = "teCurPriceSale";
             this.teCurPriceSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teCurPriceSale.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -793,7 +793,7 @@
             // 
             this.labelCurPriceSale.AutoSize = true;
             this.labelCurPriceSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCurPriceSale.Location = new System.Drawing.Point(959, 88);
+            this.labelCurPriceSale.Location = new System.Drawing.Point(959, 92);
             this.labelCurPriceSale.Name = "labelCurPriceSale";
             this.labelCurPriceSale.Size = new System.Drawing.Size(198, 16);
             this.labelCurPriceSale.TabIndex = 61;
