@@ -45,7 +45,16 @@ namespace SalesParamsApprove.Models
 
         public StatusSale Status { get; set; }
 
-        public DateTime DateStartSale { get; set; }
+
+        public DateTime DateSale { get; set; }
+
+
+        private string _DateSaleString = "";
+        public string DateSaleString
+        {
+            get { return _DateSaleString; }
+            set { _DateSaleString = value; OnPropertyChanged(); }
+        } 
 
         // МЦ рынка, руб
         private string _MCMarket = "";

@@ -43,6 +43,7 @@ namespace SalesParamsApprove
             tePeriodAnal.DataBindings.Add(new Binding("Text", FocusedSale, "PeriodAnalize", true, DataSourceUpdateMode.OnPropertyChanged));
             teStepSale.DataBindings.Add(new Binding("Text", FocusedSale, "StepSale", true, DataSourceUpdateMode.OnPropertyChanged));
             teCurPriceSale.DataBindings.Add(new Binding("Text", FocusedSale, "PriceSale", true, DataSourceUpdateMode.OnPropertyChanged));
+            teDate.DataBindings.Add(new Binding("Text", FocusedSale, "DateSaleString", true, DataSourceUpdateMode.OnPropertyChanged));
             //textBoxSebest.DataBindings.Add(new Binding("Text", FocusedSale, "Sebest", false, DataSourceUpdateMode.OnPropertyChanged));
 
             checkBoxA1.DataBindings.Add(new Binding("Checked", FocusedSale, "fA1", false, DataSourceUpdateMode.OnPropertyChanged));
@@ -51,8 +52,6 @@ namespace SalesParamsApprove
             checkBoxKP.DataBindings.Add(new Binding("Checked", FocusedSale, "fKP", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxOPT.DataBindings.Add(new Binding("Checked", FocusedSale, "fOpt", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxSpec.DataBindings.Add(new Binding("Checked", FocusedSale, "fExist", false, DataSourceUpdateMode.OnPropertyChanged));
-
-            dateStartSale.DataBindings.Add(new Binding("EditValue", FocusedSale, "DateStartSale", false, DataSourceUpdateMode.OnPropertyChanged));
 
             teTargetRemain.EditValueChanged += teIntField_EditValueChanged;
             tePeriodAnal.EditValueChanged += teIntField_EditValueChanged;
@@ -145,8 +144,19 @@ namespace SalesParamsApprove
                     FocusedSale.fKP = temp.fKP;
                     FocusedSale.fExist = temp.fExist;
                     FocusedSale.fA1 = temp.fA1;
-                    FocusedSale.PriceSale = temp.PriceSale;
-                    FocusedSale.DateStartSale = temp.DateStartSale;
+
+                    if(FocusedSale.Status != StatusSale.NeedChangeParams)
+                    {
+                        FocusedSale.PriceSale = temp.PriceSale;
+                        FocusedSale.DateSale = temp.DateSale;
+                        FocusedSale.DateSaleString = FocusedSale.DateSale.ToString("F");
+                    }
+                    else
+                    {
+                        FocusedSale.PriceSale = "";
+                        FocusedSale.DateSale = DateTime.Now;
+                        FocusedSale.DateSaleString = "";
+                    }
                     teTargetRemain.Enabled = FocusedSale.TargetRestDaysValue > 0;
                     teTargetRemain.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
                 }
@@ -301,7 +311,7 @@ namespace SalesParamsApprove
             labelCurPriceSale.Visible = false;
             teCurPriceSale.Visible = false;
             labelDateSale.Visible = false;
-            dateStartSale.Visible = false;
+            teDate.Visible = false;
             switch (sale)
             {
                 case StatusSale.SuggestToSale:
@@ -314,21 +324,21 @@ namespace SalesParamsApprove
                     labelCurPriceSale.Visible = true;
                     teCurPriceSale.Visible = true;
                     labelDateSale.Visible = true;
-                    dateStartSale.Visible = true;
+                    teDate.Visible = true;
                     break;
                 case StatusSale.NeedChangeParams:
                     btnSaveData.Enabled = true;
                     labelCurPriceSale.Visible = true;
                     teCurPriceSale.Visible = true;
                     labelDateSale.Visible = true;
-                    dateStartSale.Visible = true;
+                    teDate.Visible = true;
                     break;
                 case StatusSale.ParamsChanged:
                     btnSaveData.Enabled = true;
                     labelCurPriceSale.Visible = true;
                     teCurPriceSale.Visible = true;
                     labelDateSale.Visible = true;
-                    dateStartSale.Visible = true;
+                    teDate.Visible = true;
                     if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
                         || User.InRole(User.Current.IdUser, "Developers"))
                         btnApprove.Enabled = true;
@@ -387,7 +397,11 @@ namespace SalesParamsApprove
                 resValidate = "Шаг распродажи должен быть больше 0! Скорректируйте значение параметров";
                 return resValidate;
             }
-
+            if (sale.TargetRateSalesValues <= 0)
+            {
+                resValidate = "Требуемый темп распродажи должен быть больше 0! Скорректируйте значение параметров";
+                return resValidate;
+            }
 
             if (sale.fA1 == 0 && sale.fAP == 0 && sale.fExist == 0 && sale.fIP == 0
                 && sale.fOpt == 0)

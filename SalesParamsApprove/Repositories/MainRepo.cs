@@ -46,6 +46,7 @@ namespace SalesParamsApprove.Repositories
                                     sAdvancement.nAdvancement as SaleStatus,
                                     spr_tov.idAdvancement as idStatus
                                     from spr_tov (nolock)
+                                    inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                                     inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                                     inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
                                     where sAdvancement.idAdvancement > 3
@@ -60,6 +61,7 @@ namespace SalesParamsApprove.Repositories
                                 sAdvancement.nAdvancement as SaleStatus,
                                 spr_tov.idAdvancement as idStatus
                                 from spr_tov (nolock)
+                                inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                                 inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                                 inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
 								inner join spr_tov_level4 stl4 (nolock) on stl4.tov_id = spr_tov.id_tov4
@@ -174,7 +176,7 @@ namespace SalesParamsApprove.Repositories
                                     periodAlertRTK as PeriodAlertRTK,
                                     fAP, fIP, fOpt, fA1, fExist, fKP,
                                     PriceClearance as PriceSale,
-                                    dateClearance as DateStartSale
+                                    dateClearance as DateSale
                             from rClearanceValue (nolock) WHERE idtov = {idtov}")
                         .FirstOrDefault();
                 return temp;
