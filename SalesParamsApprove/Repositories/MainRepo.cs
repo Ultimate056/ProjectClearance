@@ -183,5 +183,17 @@ namespace SalesParamsApprove.Repositories
             }
         }
 
+        public decimal GetCurrentRateSales(int idtov)
+        {
+            string sql = $@"select cast(round(isnull(sum(v_sales.kol_tov) / datediff(day, cley.dateClearance, getdate()),0),2) as numeric(18,2)) as curTempoSales 
+							from rClearanceValue cley (nolock)
+							LEFT JOIN v_sales (nolock) ON v_sales.id_tov = cley.idtov and v_sales.date_doc >= cley.dateClearance and v_sales.kol_tov > 0
+							WHERE cley.idtov = {idtov} and datediff(day,cley.dateClearance, getdate()) >= 1
+							GROUP BY cley.dateClearance";
+            object obj = DBExecute.SelectScalar(sql);
+
+            return obj == null ? 0 : Convert.ToDecimal(obj);
+        }
+
     }
 }

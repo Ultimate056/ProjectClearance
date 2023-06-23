@@ -49,7 +49,6 @@ namespace SalesParamsApprove
             checkBoxA1.DataBindings.Add(new Binding("Checked", FocusedSale, "fA1", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxAR.DataBindings.Add(new Binding("Checked", FocusedSale, "fAP", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxIP.DataBindings.Add(new Binding("Checked", FocusedSale, "fIP", false, DataSourceUpdateMode.OnPropertyChanged));
-            checkBoxKP.DataBindings.Add(new Binding("Checked", FocusedSale, "fKP", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxOPT.DataBindings.Add(new Binding("Checked", FocusedSale, "fOpt", false, DataSourceUpdateMode.OnPropertyChanged));
             checkBoxSpec.DataBindings.Add(new Binding("Checked", FocusedSale, "fExist", false, DataSourceUpdateMode.OnPropertyChanged));
 
@@ -82,10 +81,12 @@ namespace SalesParamsApprove
         // Обновление полей
         private void RefreshData()
         {
+            Cursor.Current = Cursors.WaitCursor;
             // isInit нужен, чтобы данные зависимых полей не обновлялись на первый раз
             FocusedSale.isInit = true;
             fillRightData();
             FocusedSale.isInit = false;
+            Cursor.Current = Cursors.Default;
         }
 
         // Заполнение константных полей (readonly)
@@ -145,11 +146,16 @@ namespace SalesParamsApprove
                     FocusedSale.fExist = temp.fExist;
                     FocusedSale.fA1 = temp.fA1;
 
-                    if(FocusedSale.Status != StatusSale.NeedChangeParams)
+                    if(FocusedSale.Status != StatusSale.SuggestToSale)
                     {
+                        // Рассчитываем новые данные: цену распродажи и стартовую дату распродажи
                         FocusedSale.PriceSale = temp.PriceSale;
                         FocusedSale.DateSale = temp.DateSale;
                         FocusedSale.DateSaleString = FocusedSale.DateSale.ToString("F");
+
+                        // Рассчитываем новые данные: текущий объём продаж в течение срока распродажи
+                        decimal newRateSales = repo.GetCurrentRateSales(FocusedSale.idtov);
+                        FocusedSale.CurrentRateSales = newRateSales.ToString();
                     }
                     else
                     {
@@ -397,11 +403,11 @@ namespace SalesParamsApprove
                 resValidate = "Шаг распродажи должен быть больше 0! Скорректируйте значение параметров";
                 return resValidate;
             }
-            if (sale.TargetRateSalesValues <= 0)
-            {
-                resValidate = "Требуемый темп распродажи должен быть больше 0! Скорректируйте значение параметров";
-                return resValidate;
-            }
+            //if (sale.TargetRateSalesValues <= 0)
+            //{
+            //    resValidate = "Требуемый темп распродажи должен быть больше 0! Скорректируйте значение параметров";
+            //    return resValidate;
+            //}
 
             if (sale.fA1 == 0 && sale.fAP == 0 && sale.fExist == 0 && sale.fIP == 0
                 && sale.fOpt == 0)
