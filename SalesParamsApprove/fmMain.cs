@@ -142,7 +142,6 @@ namespace SalesParamsApprove
                     FocusedSale.fAP = temp.fAP;
                     FocusedSale.fIP = temp.fIP;
                     FocusedSale.fOpt = temp.fOpt;
-                    FocusedSale.fKP = temp.fKP;
                     FocusedSale.fExist = temp.fExist;
                     FocusedSale.fA1 = temp.fA1;
 
@@ -151,7 +150,7 @@ namespace SalesParamsApprove
                         // Рассчитываем новые данные: цену распродажи и стартовую дату распродажи
                         FocusedSale.PriceSale = temp.PriceSale;
                         FocusedSale.DateSale = temp.DateSale;
-                        FocusedSale.DateSaleString = FocusedSale.DateSale.ToString("F");
+                        FocusedSale.DateSaleString = FocusedSale.DateSale.ToString("HH:mm dd.MM.yy");
 
                         // Рассчитываем новые данные: текущий объём продаж в течение срока распродажи
                         decimal newRateSales = repo.GetCurrentRateSales(FocusedSale.idtov);
@@ -199,7 +198,7 @@ namespace SalesParamsApprove
                 {
                     repo.ApproveSale(FocusedSale);
                     fillgcSKU();
-
+                    RefreshData();
                     MessageBox.Show("Параметры успешно утверждены", "Утверждение параметров",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -224,6 +223,7 @@ namespace SalesParamsApprove
                 }
                 if (FocusedSale.Status == StatusSale.NeedChangeParams)
                 {
+                    // Сохраняем и меняем статус на "Параметры изменены"
                     repo.SaveSale(FocusedSale, 17);
                     fillgcSKU();
                 }
@@ -299,6 +299,8 @@ namespace SalesParamsApprove
 
 
         #region Logic Methods
+
+        // Получает имя выбранного товара: Бренд + Артикул
         private string GetFocusedTovName()
         {
             DataRow focusrow = gvSKU.GetFocusedDataRow();
@@ -310,16 +312,26 @@ namespace SalesParamsApprove
 
 
         // Распределение ролей по статусу товара
-        private void DistributeRoles(StatusSale sale)
+        //(отображение, включение компонентов в зависимости от статуса распродажи и роли пользователя)
+        private void DistributeRoles(StatusSale status)
         {
+            // Главное не запуптатся
+            // На старт
+            btnSaveData.Visible = true;
+            btnApprove.Visible = true;
             btnSaveData.Enabled = false;
             btnApprove.Enabled = false;
+            btnWithdraw.Enabled = false;
+            btnWithdraw.Visible = false;
             labelCurPriceSale.Visible = false;
             teCurPriceSale.Visible = false;
             labelDateSale.Visible = false;
             teDate.Visible = false;
-            switch (sale)
+            
+            // Внимание
+            switch (status)
             {
+                // Марш
                 case StatusSale.SuggestToSale:
                     btnSaveData.Enabled = true;
                     if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
@@ -327,10 +339,18 @@ namespace SalesParamsApprove
                         btnApprove.Enabled = true;
                     break;
                 case StatusSale.InSales:
+                    btnSaveData.Visible = false;
+                    btnApprove.Visible = false;
                     labelCurPriceSale.Visible = true;
                     teCurPriceSale.Visible = true;
                     labelDateSale.Visible = true;
                     teDate.Visible = true;
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
+                        || User.InRole(User.Current.IdUser, "Developers"))
+                    {
+                        btnWithdraw.Enabled = true;
+                        btnWithdraw.Visible = true;
+                    }
                     break;
                 case StatusSale.NeedChangeParams:
                     btnSaveData.Enabled = true;
@@ -352,8 +372,11 @@ namespace SalesParamsApprove
             }
         }
 
+
+        // Финальная валидация полей перед тем, как утвердить или сохранить
         public string isFinalValidate(DataSale sale)
         {
+            // Топорный метод
             string resValidate = "ok";
             if(!(sale.MCDiscount.isDouble() &&
                     sale.MCSales.isDouble() &&
@@ -403,6 +426,8 @@ namespace SalesParamsApprove
                 resValidate = "Шаг распродажи должен быть больше 0! Скорректируйте значение параметров";
                 return resValidate;
             }
+
+            // Откомментировать в Production
             //if (sale.TargetRateSalesValues <= 0)
             //{
             //    resValidate = "Требуемый темп распродажи должен быть больше 0! Скорректируйте значение параметров";
@@ -432,6 +457,10 @@ namespace SalesParamsApprove
             decimal val = 0;
             try
             {
+                if (e.Value == null)
+                    return;
+                if (e.Value.ToString().Trim() == "")
+                    return;
                 if (decimal.TryParse(e.Value.ToString(), out val))
                 {
                     val = val / 100;
@@ -448,6 +477,10 @@ namespace SalesParamsApprove
             decimal val = 0;
             try
             {
+                if (e.Value == null)
+                    return;
+                if (e.Value.ToString().Trim() == "")
+                    return;
                 if (decimal.TryParse(e.Value.ToString(), out val))
                 {
                     string disp = string.Format("{0:C2}", val);
@@ -472,5 +505,16 @@ namespace SalesParamsApprove
 
         #endregion
 
+        private void checkHistorySales_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkHistorySales.Checked)
+            {
+                MessageBox.Show("В разработке ара", "ЭЭЭЭ", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Сказал же в разработке ара", "ЭЭЭЭ", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

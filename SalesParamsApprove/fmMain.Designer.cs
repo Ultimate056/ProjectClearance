@@ -37,6 +37,8 @@
             this.gridColumnNTov = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,7 +53,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -83,11 +84,12 @@
             this.labelDateSale = new System.Windows.Forms.Label();
             this.teDate = new DevExpress.XtraEditors.TextEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
+            this.btnWithdraw = new DevExpress.XtraEditors.SimpleButton();
+            this.checkHistorySales = new DevExpress.XtraEditors.CheckEdit();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
@@ -107,11 +109,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.teCurPriceSale.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teDate.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkHistorySales.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gcSKU
@@ -138,7 +139,10 @@
             this.gridColumnBrand,
             this.gridColumnNTov,
             this.gridColumnStatus,
-            this.gridColumn1});
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4});
             this.gvSKU.GridControl = this.gcSKU;
             this.gvSKU.Name = "gvSKU";
             this.gvSKU.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvSKU_FocusedRowChanged);
@@ -159,7 +163,7 @@
             this.gridColumnIdSKU.OptionsColumn.ReadOnly = true;
             this.gridColumnIdSKU.Visible = true;
             this.gridColumnIdSKU.VisibleIndex = 0;
-            this.gridColumnIdSKU.Width = 81;
+            this.gridColumnIdSKU.Width = 58;
             // 
             // gridColumnArt
             // 
@@ -175,7 +179,7 @@
             this.gridColumnArt.OptionsColumn.AllowEdit = false;
             this.gridColumnArt.Visible = true;
             this.gridColumnArt.VisibleIndex = 1;
-            this.gridColumnArt.Width = 151;
+            this.gridColumnArt.Width = 125;
             // 
             // gridColumnBrand
             // 
@@ -191,7 +195,7 @@
             this.gridColumnBrand.OptionsColumn.AllowEdit = false;
             this.gridColumnBrand.Visible = true;
             this.gridColumnBrand.VisibleIndex = 2;
-            this.gridColumnBrand.Width = 157;
+            this.gridColumnBrand.Width = 130;
             // 
             // gridColumnNTov
             // 
@@ -207,7 +211,7 @@
             this.gridColumnNTov.OptionsColumn.AllowEdit = false;
             this.gridColumnNTov.Visible = true;
             this.gridColumnNTov.VisibleIndex = 3;
-            this.gridColumnNTov.Width = 380;
+            this.gridColumnNTov.Width = 269;
             // 
             // gridColumnStatus
             // 
@@ -217,19 +221,51 @@
             this.gridColumnStatus.AppearanceHeader.Options.UseFont = true;
             this.gridColumnStatus.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumnStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumnStatus.Caption = "Статус распродажи";
+            this.gridColumnStatus.Caption = "Статус";
             this.gridColumnStatus.FieldName = "SaleStatus";
             this.gridColumnStatus.Name = "gridColumnStatus";
             this.gridColumnStatus.OptionsColumn.AllowEdit = false;
             this.gridColumnStatus.Visible = true;
             this.gridColumnStatus.VisibleIndex = 4;
-            this.gridColumnStatus.Width = 179;
+            this.gridColumnStatus.Width = 143;
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "idStatus";
             this.gridColumn1.FieldName = "idStatus";
             this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.Caption = "Дата нач.";
+            this.gridColumn2.FieldName = "dateStart";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 5;
+            this.gridColumn2.Width = 84;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gridColumn3.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.Caption = "Дата оконч.";
+            this.gridColumn3.FieldName = "dateEnd";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 6;
+            this.gridColumn3.Width = 94;
             // 
             // searchControl1
             // 
@@ -250,7 +286,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(81, 50);
+            this.label1.Location = new System.Drawing.Point(104, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 16);
             this.label1.TabIndex = 15;
@@ -260,7 +296,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label2.Location = new System.Drawing.Point(68, 90);
+            this.label2.Location = new System.Drawing.Point(91, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 16);
             this.label2.TabIndex = 16;
@@ -270,7 +306,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label3.Location = new System.Drawing.Point(98, 21);
+            this.label3.Location = new System.Drawing.Point(104, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 16);
             this.label3.TabIndex = 17;
@@ -280,7 +316,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label4.Location = new System.Drawing.Point(88, 99);
+            this.label4.Location = new System.Drawing.Point(94, 119);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(142, 16);
             this.label4.TabIndex = 18;
@@ -290,7 +326,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label5.Location = new System.Drawing.Point(36, 131);
+            this.label5.Location = new System.Drawing.Point(59, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(177, 16);
             this.label5.TabIndex = 19;
@@ -300,7 +336,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label6.Location = new System.Drawing.Point(505, 21);
+            this.label6.Location = new System.Drawing.Point(419, 50);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 16);
             this.label6.TabIndex = 20;
@@ -310,7 +346,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label7.Location = new System.Drawing.Point(79, 59);
+            this.label7.Location = new System.Drawing.Point(85, 79);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(151, 16);
             this.label7.TabIndex = 21;
@@ -320,7 +356,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label8.Location = new System.Drawing.Point(9, 94);
+            this.label8.Location = new System.Drawing.Point(8, 92);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(137, 16);
             this.label8.TabIndex = 22;
@@ -329,7 +365,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label9.Location = new System.Drawing.Point(37, 37);
+            this.label9.Location = new System.Drawing.Point(36, 35);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(109, 34);
             this.label9.TabIndex = 23;
@@ -339,7 +375,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label10.Location = new System.Drawing.Point(387, 59);
+            this.label10.Location = new System.Drawing.Point(385, 41);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(184, 16);
             this.label10.TabIndex = 24;
@@ -349,7 +385,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label11.Location = new System.Drawing.Point(419, 102);
+            this.label11.Location = new System.Drawing.Point(417, 79);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(152, 16);
             this.label11.TabIndex = 25;
@@ -359,7 +395,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label12.Location = new System.Drawing.Point(473, 21);
+            this.label12.Location = new System.Drawing.Point(385, 90);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(98, 16);
             this.label12.TabIndex = 26;
@@ -369,27 +405,17 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label13.Location = new System.Drawing.Point(34, 143);
+            this.label13.Location = new System.Drawing.Point(40, 163);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(196, 16);
             this.label13.TabIndex = 27;
             this.label13.Text = "Период оповещения РТК, дней";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label14.Location = new System.Drawing.Point(138, 227);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 16);
-            this.label14.TabIndex = 28;
-            this.label14.Text = "Каналы сбыта";
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label15.Location = new System.Drawing.Point(262, 216);
+            this.label15.Location = new System.Drawing.Point(39, 22);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(26, 16);
             this.label15.TabIndex = 29;
@@ -399,7 +425,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label16.Location = new System.Drawing.Point(315, 216);
+            this.label16.Location = new System.Drawing.Point(92, 22);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(26, 16);
             this.label16.TabIndex = 30;
@@ -409,7 +435,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label17.Location = new System.Drawing.Point(369, 216);
+            this.label17.Location = new System.Drawing.Point(146, 22);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(34, 16);
             this.label17.TabIndex = 31;
@@ -419,7 +445,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label18.Location = new System.Drawing.Point(429, 216);
+            this.label18.Location = new System.Drawing.Point(206, 22);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(24, 16);
             this.label18.TabIndex = 32;
@@ -429,7 +455,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label19.Location = new System.Drawing.Point(473, 216);
+            this.label19.Location = new System.Drawing.Point(250, 22);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(82, 16);
             this.label19.TabIndex = 33;
@@ -439,7 +465,7 @@
             // 
             this.checkBoxAR.AutoSize = true;
             this.checkBoxAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxAR.Location = new System.Drawing.Point(267, 239);
+            this.checkBoxAR.Location = new System.Drawing.Point(44, 45);
             this.checkBoxAR.Name = "checkBoxAR";
             this.checkBoxAR.Size = new System.Drawing.Size(15, 14);
             this.checkBoxAR.TabIndex = 34;
@@ -449,7 +475,7 @@
             // 
             this.checkBoxIP.AutoSize = true;
             this.checkBoxIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxIP.Location = new System.Drawing.Point(322, 239);
+            this.checkBoxIP.Location = new System.Drawing.Point(99, 45);
             this.checkBoxIP.Name = "checkBoxIP";
             this.checkBoxIP.Size = new System.Drawing.Size(15, 14);
             this.checkBoxIP.TabIndex = 35;
@@ -459,7 +485,7 @@
             // 
             this.checkBoxOPT.AutoSize = true;
             this.checkBoxOPT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxOPT.Location = new System.Drawing.Point(378, 239);
+            this.checkBoxOPT.Location = new System.Drawing.Point(155, 45);
             this.checkBoxOPT.Name = "checkBoxOPT";
             this.checkBoxOPT.Size = new System.Drawing.Size(15, 14);
             this.checkBoxOPT.TabIndex = 36;
@@ -469,7 +495,7 @@
             // 
             this.checkBoxA1.AutoSize = true;
             this.checkBoxA1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxA1.Location = new System.Drawing.Point(432, 239);
+            this.checkBoxA1.Location = new System.Drawing.Point(209, 45);
             this.checkBoxA1.Name = "checkBoxA1";
             this.checkBoxA1.Size = new System.Drawing.Size(15, 14);
             this.checkBoxA1.TabIndex = 37;
@@ -479,7 +505,7 @@
             // 
             this.checkBoxSpec.AutoSize = true;
             this.checkBoxSpec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxSpec.Location = new System.Drawing.Point(499, 239);
+            this.checkBoxSpec.Location = new System.Drawing.Point(276, 45);
             this.checkBoxSpec.Name = "checkBoxSpec";
             this.checkBoxSpec.Size = new System.Drawing.Size(15, 14);
             this.checkBoxSpec.TabIndex = 38;
@@ -509,7 +535,7 @@
             this.btnApprove.AppearanceDisabled.Options.UseBackColor = true;
             this.btnApprove.AppearanceDisabled.Options.UseFont = true;
             this.btnApprove.AppearanceHovered.BackColor = System.Drawing.Color.Transparent;
-            this.btnApprove.AppearanceHovered.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.btnApprove.AppearanceHovered.BackColor2 = System.Drawing.Color.LawnGreen;
             this.btnApprove.AppearanceHovered.Font = new System.Drawing.Font("Arial", 10.75F, System.Drawing.FontStyle.Bold);
             this.btnApprove.AppearanceHovered.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.btnApprove.AppearanceHovered.Options.UseBackColor = true;
@@ -560,7 +586,7 @@
             // 
             // teCurRemain
             // 
-            this.teCurRemain.Location = new System.Drawing.Point(235, 47);
+            this.teCurRemain.Location = new System.Drawing.Point(245, 47);
             this.teCurRemain.Name = "teCurRemain";
             this.teCurRemain.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teCurRemain.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -572,12 +598,12 @@
             this.teCurRemain.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.teCurRemain.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teCurRemain.Properties.ReadOnly = true;
-            this.teCurRemain.Size = new System.Drawing.Size(100, 22);
+            this.teCurRemain.Size = new System.Drawing.Size(96, 22);
             this.teCurRemain.TabIndex = 48;
             // 
             // teTargetRemain
             // 
-            this.teTargetRemain.Location = new System.Drawing.Point(245, 18);
+            this.teTargetRemain.Location = new System.Drawing.Point(245, 38);
             this.teTargetRemain.Name = "teTargetRemain";
             this.teTargetRemain.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.teTargetRemain.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -591,7 +617,7 @@
             // 
             // teCurDays
             // 
-            this.teCurDays.Location = new System.Drawing.Point(235, 87);
+            this.teCurDays.Location = new System.Drawing.Point(245, 87);
             this.teCurDays.Name = "teCurDays";
             this.teCurDays.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teCurDays.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -603,12 +629,12 @@
             this.teCurDays.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.teCurDays.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teCurDays.Properties.ReadOnly = true;
-            this.teCurDays.Size = new System.Drawing.Size(100, 22);
+            this.teCurDays.Size = new System.Drawing.Size(96, 22);
             this.teCurDays.TabIndex = 50;
             // 
             // tePeriodAnal
             // 
-            this.tePeriodAnal.Location = new System.Drawing.Point(245, 96);
+            this.tePeriodAnal.Location = new System.Drawing.Point(245, 116);
             this.tePeriodAnal.Name = "tePeriodAnal";
             this.tePeriodAnal.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tePeriodAnal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -622,7 +648,7 @@
             // 
             // teCurTemp
             // 
-            this.teCurTemp.Location = new System.Drawing.Point(235, 128);
+            this.teCurTemp.Location = new System.Drawing.Point(245, 128);
             this.teCurTemp.Name = "teCurTemp";
             this.teCurTemp.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teCurTemp.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -634,13 +660,13 @@
             this.teCurTemp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.teCurTemp.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teCurTemp.Properties.ReadOnly = true;
-            this.teCurTemp.Size = new System.Drawing.Size(100, 22);
+            this.teCurTemp.Size = new System.Drawing.Size(96, 22);
             this.teCurTemp.TabIndex = 52;
             // 
             // teHO
             // 
             this.teHO.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.teHO.Location = new System.Drawing.Point(501, 47);
+            this.teHO.Location = new System.Drawing.Point(490, 47);
             this.teHO.Name = "teHO";
             this.teHO.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teHO.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -652,12 +678,12 @@
             this.teHO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.teHO.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teHO.Properties.ReadOnly = true;
-            this.teHO.Size = new System.Drawing.Size(70, 22);
+            this.teHO.Size = new System.Drawing.Size(101, 22);
             this.teHO.TabIndex = 53;
             // 
             // teSaleDays
             // 
-            this.teSaleDays.Location = new System.Drawing.Point(245, 56);
+            this.teSaleDays.Location = new System.Drawing.Point(245, 76);
             this.teSaleDays.Name = "teSaleDays";
             this.teSaleDays.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.teSaleDays.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -671,7 +697,7 @@
             // 
             // teStepSale
             // 
-            this.teStepSale.Location = new System.Drawing.Point(158, 91);
+            this.teStepSale.Location = new System.Drawing.Point(157, 89);
             this.teStepSale.Name = "teStepSale";
             this.teStepSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teStepSale.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -688,7 +714,7 @@
             // 
             // teRequireTemp
             // 
-            this.teRequireTemp.Location = new System.Drawing.Point(157, 43);
+            this.teRequireTemp.Location = new System.Drawing.Point(156, 41);
             this.teRequireTemp.Name = "teRequireTemp";
             this.teRequireTemp.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teRequireTemp.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -705,7 +731,7 @@
             // 
             // teMCSales
             // 
-            this.teMCSales.Location = new System.Drawing.Point(580, 56);
+            this.teMCSales.Location = new System.Drawing.Point(578, 38);
             this.teMCSales.Name = "teMCSales";
             this.teMCSales.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.teMCSales.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -719,7 +745,7 @@
             // 
             // teDiscountMC
             // 
-            this.teDiscountMC.Location = new System.Drawing.Point(580, 96);
+            this.teDiscountMC.Location = new System.Drawing.Point(578, 76);
             this.teDiscountMC.Name = "teDiscountMC";
             this.teDiscountMC.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.teDiscountMC.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -733,7 +759,7 @@
             // 
             // teMCMarket
             // 
-            this.teMCMarket.Location = new System.Drawing.Point(580, 18);
+            this.teMCMarket.Location = new System.Drawing.Point(490, 87);
             this.teMCMarket.Name = "teMCMarket";
             this.teMCMarket.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teMCMarket.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -750,7 +776,7 @@
             // 
             // tePeriodAlertRTK
             // 
-            this.tePeriodAlertRTK.Location = new System.Drawing.Point(245, 140);
+            this.tePeriodAlertRTK.Location = new System.Drawing.Point(245, 160);
             this.tePeriodAlertRTK.Name = "tePeriodAlertRTK";
             this.tePeriodAlertRTK.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tePeriodAlertRTK.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -764,7 +790,7 @@
             // 
             // teCurPriceSale
             // 
-            this.teCurPriceSale.Location = new System.Drawing.Point(235, 204);
+            this.teCurPriceSale.Location = new System.Drawing.Point(245, 204);
             this.teCurPriceSale.Name = "teCurPriceSale";
             this.teCurPriceSale.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teCurPriceSale.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -776,7 +802,7 @@
             this.teCurPriceSale.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.teCurPriceSale.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teCurPriceSale.Properties.ReadOnly = true;
-            this.teCurPriceSale.Size = new System.Drawing.Size(122, 22);
+            this.teCurPriceSale.Size = new System.Drawing.Size(96, 22);
             this.teCurPriceSale.TabIndex = 62;
             this.teCurPriceSale.Visible = false;
             // 
@@ -784,7 +810,7 @@
             // 
             this.labelCurPriceSale.AutoSize = true;
             this.labelCurPriceSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCurPriceSale.Location = new System.Drawing.Point(15, 207);
+            this.labelCurPriceSale.Location = new System.Drawing.Point(38, 207);
             this.labelCurPriceSale.Name = "labelCurPriceSale";
             this.labelCurPriceSale.Size = new System.Drawing.Size(198, 16);
             this.labelCurPriceSale.TabIndex = 61;
@@ -795,7 +821,7 @@
             // 
             this.labelDateSale.AutoSize = true;
             this.labelDateSale.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelDateSale.Location = new System.Drawing.Point(3, 170);
+            this.labelDateSale.Location = new System.Drawing.Point(26, 170);
             this.labelDateSale.Name = "labelDateSale";
             this.labelDateSale.Size = new System.Drawing.Size(210, 16);
             this.labelDateSale.TabIndex = 64;
@@ -804,7 +830,7 @@
             // 
             // teDate
             // 
-            this.teDate.Location = new System.Drawing.Point(235, 167);
+            this.teDate.Location = new System.Drawing.Point(245, 167);
             this.teDate.Name = "teDate";
             this.teDate.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.teDate.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -816,15 +842,15 @@
             this.teDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.teDate.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.teDate.Properties.ReadOnly = true;
-            this.teDate.Size = new System.Drawing.Size(182, 22);
+            this.teDate.Size = new System.Drawing.Size(96, 22);
             this.teDate.TabIndex = 65;
             this.teDate.Visible = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureEdit1);
             this.groupBox1.Controls.Add(this.teCurPriceSale);
             this.groupBox1.Controls.Add(this.teDate);
+            this.groupBox1.Controls.Add(this.teMCMarket);
             this.groupBox1.Controls.Add(this.labelCurPriceSale);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.labelDateSale);
@@ -835,29 +861,20 @@
             this.groupBox1.Controls.Add(this.teCurTemp);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.teHO);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(939, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(597, 245);
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
-            // 
-            // pictureEdit1
-            // 
-            this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
-            this.pictureEdit1.Location = new System.Drawing.Point(11, -8);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Size = new System.Drawing.Size(42, 45);
-            this.pictureEdit1.TabIndex = 67;
-            this.pictureEdit1.ToolTip = "Информационные параметры";
+            this.groupBox1.Text = "Информационные параметры";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pictureEdit2);
+            this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.teDiscountMC);
-            this.groupBox2.Controls.Add(this.teMCMarket);
             this.groupBox2.Controls.Add(this.teMCSales);
             this.groupBox2.Controls.Add(this.tePeriodAlertRTK);
             this.groupBox2.Controls.Add(this.teSaleDays);
@@ -867,65 +884,102 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.teTargetRemain);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.checkBoxAR);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.checkBoxSpec);
-            this.groupBox2.Controls.Add(this.checkBoxIP);
-            this.groupBox2.Controls.Add(this.checkBoxA1);
-            this.groupBox2.Controls.Add(this.checkBoxOPT);
+            this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(939, 327);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(765, 276);
             this.groupBox2.TabIndex = 67;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Настройка распродажи";
             // 
-            // pictureEdit2
+            // groupBox4
             // 
-            this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
-            this.pictureEdit2.Location = new System.Drawing.Point(11, -8);
-            this.pictureEdit2.Name = "pictureEdit2";
-            this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit2.Size = new System.Drawing.Size(42, 45);
-            this.pictureEdit2.TabIndex = 68;
-            this.pictureEdit2.ToolTip = "Параметры распродажи";
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.checkBoxOPT);
+            this.groupBox4.Controls.Add(this.checkBoxA1);
+            this.groupBox4.Controls.Add(this.checkBoxIP);
+            this.groupBox4.Controls.Add(this.checkBoxSpec);
+            this.groupBox4.Controls.Add(this.checkBoxAR);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Location = new System.Drawing.Point(388, 197);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(363, 73);
+            this.groupBox4.TabIndex = 61;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Каналы сбыта";
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.pictureEdit3);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.teRequireTemp);
             this.groupBox3.Controls.Add(this.teStepSale);
             this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.Location = new System.Drawing.Point(1558, 121);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(263, 184);
             this.groupBox3.TabIndex = 68;
             this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Целевые параметры";
             // 
-            // pictureEdit3
+            // btnWithdraw
             // 
-            this.pictureEdit3.EditValue = ((object)(resources.GetObject("pictureEdit3.EditValue")));
-            this.pictureEdit3.Location = new System.Drawing.Point(6, -11);
-            this.pictureEdit3.Name = "pictureEdit3";
-            this.pictureEdit3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit3.Size = new System.Drawing.Size(42, 45);
-            this.pictureEdit3.TabIndex = 69;
-            this.pictureEdit3.ToolTip = "Рассчитываемые параметры распродажи";
+            this.btnWithdraw.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.btnWithdraw.Appearance.BackColor2 = System.Drawing.Color.LightGray;
+            this.btnWithdraw.Appearance.BorderColor = System.Drawing.Color.Black;
+            this.btnWithdraw.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnWithdraw.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
+            this.btnWithdraw.Appearance.Options.UseBackColor = true;
+            this.btnWithdraw.Appearance.Options.UseBorderColor = true;
+            this.btnWithdraw.Appearance.Options.UseFont = true;
+            this.btnWithdraw.AppearanceDisabled.BackColor = System.Drawing.Color.LightGray;
+            this.btnWithdraw.AppearanceDisabled.Options.UseBackColor = true;
+            this.btnWithdraw.AppearanceHovered.BackColor = System.Drawing.Color.Transparent;
+            this.btnWithdraw.AppearanceHovered.BackColor2 = System.Drawing.Color.IndianRed;
+            this.btnWithdraw.AppearanceHovered.Font = new System.Drawing.Font("Arial", 10.75F, System.Drawing.FontStyle.Bold);
+            this.btnWithdraw.AppearanceHovered.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.btnWithdraw.AppearanceHovered.Options.UseBackColor = true;
+            this.btnWithdraw.AppearanceHovered.Options.UseFont = true;
+            this.btnWithdraw.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnWithdraw.Enabled = false;
+            this.btnWithdraw.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnWithdraw.ImageOptions.Image")));
+            this.btnWithdraw.Location = new System.Drawing.Point(1692, 12);
+            this.btnWithdraw.Name = "btnWithdraw";
+            this.btnWithdraw.Size = new System.Drawing.Size(145, 35);
+            this.btnWithdraw.TabIndex = 69;
+            this.btnWithdraw.Text = "Вывести";
+            this.btnWithdraw.ToolTip = "Вывести товар из распродажи";
+            this.btnWithdraw.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
+            this.btnWithdraw.Visible = false;
+            // 
+            // checkHistorySales
+            // 
+            this.checkHistorySales.Location = new System.Drawing.Point(729, 31);
+            this.checkHistorySales.Name = "checkHistorySales";
+            this.checkHistorySales.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkHistorySales.Properties.Appearance.Options.UseFont = true;
+            this.checkHistorySales.Properties.Caption = "История распродаж";
+            this.checkHistorySales.Size = new System.Drawing.Size(141, 20);
+            this.checkHistorySales.TabIndex = 70;
+            this.checkHistorySales.CheckedChanged += new System.EventHandler(this.checkHistorySales_CheckedChanged);
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "idLink";
+            this.gridColumn4.FieldName = "idLink";
+            this.gridColumn4.Name = "gridColumn4";
             // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1849, 618);
+            this.Controls.Add(this.checkHistorySales);
+            this.Controls.Add(this.btnWithdraw);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -958,13 +1012,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.teDate.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkHistorySales.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -992,7 +1046,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
@@ -1025,11 +1078,14 @@
         private System.Windows.Forms.Label labelDateSale;
         private DevExpress.XtraEditors.TextEdit teDate;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private DevExpress.XtraEditors.SimpleButton btnWithdraw;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.CheckEdit checkHistorySales;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
     }
 }
 

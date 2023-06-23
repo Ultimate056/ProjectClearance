@@ -30,6 +30,11 @@ namespace SalesParamsApprove.Repositories
             return sbTgList;
         }
        
+        /// <summary>
+        /// Получение списка SKU со статусами по роли пользователя
+        /// </summary>
+        /// <param name="ListAccessTovGroup"></param>
+        /// <returns></returns>
         public DataTable GetTableTovs(string ListAccessTovGroup = "")
         {
             try
@@ -40,26 +45,32 @@ namespace SalesParamsApprove.Repositories
                 {
                     // Запрос не учитывает РТК , показывает все SKU по всем ТГ
                     sql = @"select  spr_tm.tm_name as Brand, 
-                                    spr_tov.id_tov as idSKU, 
-                                    spr_tov.id_tov_oem as Art, 
-                                    spr_tov.n_tov as Ntov, 
-                                    sAdvancement.nAdvancement as SaleStatus,
-                                    spr_tov.idAdvancement as idStatus
-                                    from spr_tov (nolock)
-                                    inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
-                                    inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
-                                    inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
-                                    where sAdvancement.idAdvancement > 3
-                                    order by sAdvancement.idAdvancement";
+                            spr_tov.id_tov as idSKU, 
+                            spr_tov.id_tov_oem as Art, 
+                            spr_tov.n_tov as Ntov, 
+                            sAdvancement.nAdvancement as SaleStatus,
+                            spr_tov.idAdvancement as idStatus,
+                            rClearanceValue.dateClearance as dateStart,
+                            dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
+                            from spr_tov (nolock)
+                            inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
+                            inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
+                            inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
+                            where sAdvancement.idAdvancement > 3
+                            order by sAdvancement.idAdvancement
+                            ";
                 }
                 else
                 {
+                    // Запрос учитывает разрешенные ТГ для РТК
                     sql = $@"select  spr_tm.tm_name as Brand, 
                                 spr_tov.id_tov as idSKU, 
                                 spr_tov.id_tov_oem as Art, 
                                 spr_tov.n_tov as Ntov, 
                                 sAdvancement.nAdvancement as SaleStatus,
-                                spr_tov.idAdvancement as idStatus
+                                spr_tov.idAdvancement as idStatus,
+                                rClearanceValue.dateClearance as dateStart,
+                                dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
                                 from spr_tov (nolock)
                                 inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                                 inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
@@ -76,12 +87,77 @@ namespace SalesParamsApprove.Repositories
             {
                 return null;
             }
-        } 
+        }
 
+        /// <summary>
+        /// Получение списка SKU со статусами по роли пользователя
+        /// </summary>
+        /// <param name="ListAccessTovGroup"></param>
+        /// <returns></returns>
+        public DataTable GetTableTovsWithHistory(string ListAccessTovGroup = "")
+        {
+            try
+            {
+                string sql = null;
+                if (User.InRole(User.Current.IdUser, "Developers") ||
+                    User.InRole(User.Current.IdUser, "OptChiefBuyDepartment"))
+                {
+                    // Запрос не учитывает РТК , показывает все SKU по всем ТГ
+                    sql = @"select  spr_tm.tm_name as Brand, 
+                            spr_tov.id_tov as idSKU, 
+                            spr_tov.id_tov_oem as Art, 
+                            spr_tov.n_tov as Ntov, 
+                            sAdvancement.nAdvancement as SaleStatus,
+                            spr_tov.idAdvancement as idStatus,
+                            rClearanceValue.dateClearance as dateStart,
+                            dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
+                            from spr_tov (nolock)
+                            inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
+                            inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
+                            inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
+                            where sAdvancement.idAdvancement > 3 and rClearanceValue.isFinal = 0
+                            order by sAdvancement.idAdvancement
+                            ";
+                }
+                else
+                {
+                    // Запрос учитывает разрешенные ТГ для РТК
+                    sql = $@"select  spr_tm.tm_name as Brand, 
+                                spr_tov.id_tov as idSKU, 
+                                spr_tov.id_tov_oem as Art, 
+                                spr_tov.n_tov as Ntov, 
+                                sAdvancement.nAdvancement as SaleStatus,
+                                spr_tov.idAdvancement as idStatus,
+                                rClearanceValue.dateClearance as dateStart,
+                                dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
+                                from spr_tov (nolock)
+                                inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
+                                inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
+                                inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
+								inner join spr_tov_level4 stl4 (nolock) on stl4.tov_id = spr_tov.id_tov4
+                                where sAdvancement.idAdvancement > 3 and rClearanceValue.isFinal = 0
+                                and stl4.tov_id_top_level IN ({ListAccessTovGroup})
+                                order by sAdvancement.idAdvancement";
+                }
+
+                return sql == null ? null : DBExecute.SelectTable(sql);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Утверждение распродажи
+        /// </summary>
+        /// <param name="sale"></param>
         public void ApproveSale(DataSale sale)
         {
-            UpdateDataSale(sale);
+            UpdateDataSale(sale, true);
 
+            // В случае статусов "Предложено к распродаже" и "Параметры изменены" считаем стартовую цену распродажи
+            // Обновляем ее , ставим новый статус и устанавливаем новые цены в указанных каналах сбыта
             if (sale.Status == StatusSale.SuggestToSale 
                 || sale.Status == StatusSale.ParamsChanged)
             {
@@ -103,11 +179,16 @@ namespace SalesParamsApprove.Repositories
 
         public void SaveSale(DataSale sale, int idNewStatus = -1)
         {
-            UpdateDataSale(sale, idNewStatus);
+            UpdateDataSale(sale, false, idNewStatus);
         }
 
 
-        public void UpdateDataSale(DataSale sale, int idNewStatus = -1)
+        /// <summary>
+        /// Обновление данных в таблице связей распродажи с товаром
+        /// </summary>
+        /// <param name="sale"></param>
+        /// <param name="idNewStatus"></param>
+        public void UpdateDataSale(DataSale sale, bool isApprove, int idNewStatus = -1)
         {
             SqlParameter p_date = new SqlParameter("date", DateTime.Now);
             string sql = $@"Update rClearanceValue set 
@@ -119,18 +200,25 @@ namespace SalesParamsApprove.Repositories
                             periodAlertRTK = {sale.PeriodAlertRTKValue},
                             daysClearance = {sale.SaleDaysValue},
                             stepClearance = {sale.StepSaleValue},
-                            fKP = {sale.fKP},
                             fAP = {sale.fAP},
                             fIP = {sale.fIP},
                             fOpt = {sale.fOpt},
                             fA1 = {sale.fA1}, 
-                            fExist = {sale.fExist},
-                            dateClearance = @date,
-                            idUser = {User.CurrentUserId},
-                            nUser = '{User.GetUserDomainName()}'
+                            fExist = {sale.fExist}
                             WHERE idtov = {sale.idtov}";
-            DBExecute.ExecuteQuery(sql, p_date);
+            DBExecute.ExecuteQuery(sql);
 
+            if (isApprove)
+            {
+                sql = $@"Update rClearanceValue set 
+                         dateClearance = @date,
+                         idUser = {User.CurrentUserId},
+                         nUser = '{User.GetUserDomainName()}'
+                         WHERE idtov = {sale.idtov}";
+                DBExecute.ExecuteQuery(sql, p_date);
+            }
+
+            // Если нужно кроме обновления параметров еще присвоить новый статус
             if(idNewStatus != -1)
             {
                 UpdateStatus(sale.idtov, idNewStatus);
@@ -138,12 +226,22 @@ namespace SalesParamsApprove.Repositories
 
         }
 
+        /// <summary>
+        /// Обновление статуса распродажи у товара
+        /// </summary>
+        /// <param name="idtov"></param>
+        /// <param name="idNewStatus"></param>
         public void UpdateStatus(int idtov, int idNewStatus)
         {
             string sql = $"UPDATE spr_tov SET idAdvancement = {idNewStatus} WHERE id_tov = {idtov}";
             DBExecute.ExecuteQuery(sql);
         }
 
+        /// <summary>
+        /// Получение нередактируемых параметров распродажи
+        /// </summary>
+        /// <param name="idtov"></param>
+        /// <returns></returns>
         public DataSale GetConstFields(int idtov)
         {
             using (IDbConnection db = new SqlConnection(Connection.ConnectionString))
@@ -161,6 +259,11 @@ namespace SalesParamsApprove.Repositories
             }
         }
 
+        /// <summary>
+        /// Получение редактируемых настроек распродажи
+        /// </summary>
+        /// <param name="idtov"></param>
+        /// <returns></returns>
         public DataSale GetEditableFields(int idtov)
         {
             using (IDbConnection db = new SqlConnection(Connection.ConnectionString))
@@ -174,7 +277,7 @@ namespace SalesParamsApprove.Repositories
                                     cast(round(stepClearance, 2) as numeric(18,2)) as StepSale,
                                     periodAnalize as PeriodAnalize,
                                     periodAlertRTK as PeriodAlertRTK,
-                                    fAP, fIP, fOpt, fA1, fExist, fKP,
+                                    fAP, fIP, fOpt, fA1, fExist,
                                     PriceClearance as PriceSale,
                                     dateClearance as DateSale
                             from rClearanceValue (nolock) WHERE idtov = {idtov}")
@@ -183,6 +286,11 @@ namespace SalesParamsApprove.Repositories
             }
         }
 
+        /// <summary>
+        /// Получает текущий объём продаж отсчитываемого от начала срока распродажи
+        /// </summary>
+        /// <param name="idtov"></param>
+        /// <returns></returns>
         public decimal GetCurrentRateSales(int idtov)
         {
             string sql = $@"select cast(round(isnull(sum(v_sales.kol_tov) / datediff(day, cley.dateClearance, getdate()),0),2) as numeric(18,2)) as curTempoSales 

@@ -314,15 +314,6 @@ namespace SalesParamsApprove.Models
             get { return _fA1; }
             set { _fA1 = value; OnPropertyChanged(); }
         }
-
-        private byte _fKP = 0;
-        public byte fKP
-        {
-            get { return _fKP; }
-            set { _fKP = value; OnPropertyChanged(); }
-        }
-
-
         #endregion
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -337,7 +328,6 @@ namespace SalesParamsApprove.Models
             fOpt = 0;
             fExist = 0;
             fA1 = 0;
-            fKP = 0;
             TargetRateSales = "";
             StepSale = "";
             PeriodAnalize = "";
