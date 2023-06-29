@@ -43,6 +43,8 @@ namespace SalesParamsApprove.Models
         #region ФИКС поля
         public int idtov { get; set; } = 0;
 
+        public int idSale { get; set; } = 0;
+
         public StatusSale Status { get; set; }
 
 

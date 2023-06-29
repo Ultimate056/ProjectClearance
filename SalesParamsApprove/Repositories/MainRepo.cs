@@ -51,14 +51,15 @@ namespace SalesParamsApprove.Repositories
                             sAdvancement.nAdvancement as SaleStatus,
                             spr_tov.idAdvancement as idStatus,
                             rClearanceValue.dateClearance as dateStart,
-                            dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
+                            dateadd(day, rClearanceValue.daysClearance, rClearanceValue.dateClearance) as dateEnd,
+                            0 as isFinal,
+                            rClearanceValue.idClearanceValue as idSale
                             from spr_tov (nolock)
                             inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                             inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                             inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
-                            where sAdvancement.idAdvancement > 3
-                            order by sAdvancement.idAdvancement
-                            ";
+                            where sAdvancement.idAdvancement > 3 and isFinal = 0
+                            order by sAdvancement.idAdvancement";
                 }
                 else
                 {
@@ -70,13 +71,15 @@ namespace SalesParamsApprove.Repositories
                                 sAdvancement.nAdvancement as SaleStatus,
                                 spr_tov.idAdvancement as idStatus,
                                 rClearanceValue.dateClearance as dateStart,
-                                dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
+                                dateadd(day, rClearanceValue.daysClearance, rClearanceValue.dateClearance) as dateEnd,
+                                0 as isFinal,
+                                rClearanceValue.idClearanceValue as idSale
                                 from spr_tov (nolock)
                                 inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                                 inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                                 inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
 								inner join spr_tov_level4 stl4 (nolock) on stl4.tov_id = spr_tov.id_tov4
-                                where sAdvancement.idAdvancement > 3 
+                                where sAdvancement.idAdvancement > 3 and isFinal = 0
                                 and stl4.tov_id_top_level IN ({ListAccessTovGroup})
                                 order by sAdvancement.idAdvancement";
                 }
@@ -110,14 +113,15 @@ namespace SalesParamsApprove.Repositories
                             sAdvancement.nAdvancement as SaleStatus,
                             spr_tov.idAdvancement as idStatus,
                             rClearanceValue.dateClearance as dateStart,
-                            dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
+                            dateadd(day, rClearanceValue.daysClearance, rClearanceValue.dateClearance) as dateEnd,
+                            rClearanceValue.isFinal,
+                            rClearanceValue.idClearanceValue as idSale
                             from spr_tov (nolock)
                             inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                             inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                             inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
-                            where sAdvancement.idAdvancement > 3 and rClearanceValue.isFinal = 0
-                            order by sAdvancement.idAdvancement
-                            ";
+                            --where sAdvancement.idAdvancement > 3
+                            order by isFinal, 6";
                 }
                 else
                 {
@@ -129,15 +133,16 @@ namespace SalesParamsApprove.Repositories
                                 sAdvancement.nAdvancement as SaleStatus,
                                 spr_tov.idAdvancement as idStatus,
                                 rClearanceValue.dateClearance as dateStart,
-                                dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd
+                                dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd,
+                                rClearanceValue.isFinal,
+                                rClearanceValue.idClearanceValue as idSale
                                 from spr_tov (nolock)
                                 inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                                 inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                                 inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
 								inner join spr_tov_level4 stl4 (nolock) on stl4.tov_id = spr_tov.id_tov4
-                                where sAdvancement.idAdvancement > 3 and rClearanceValue.isFinal = 0
-                                and stl4.tov_id_top_level IN ({ListAccessTovGroup})
-                                order by sAdvancement.idAdvancement";
+                                where stl4.tov_id_top_level IN ({ListAccessTovGroup})
+                                order by isFinal, 6";
                 }
 
                 return sql == null ? null : DBExecute.SelectTable(sql);
@@ -246,6 +251,7 @@ namespace SalesParamsApprove.Repositories
         {
             using (IDbConnection db = new SqlConnection(Connection.ConnectionString))
             {
+                // ЗДЕСЬ может использоваться СКЛАД
                 var temp = db.Query<DataSale>
                     ($@"select      rest as CurrentRest, 
                                     cast(round(restDays,2) as numeric(18,2)) as CurrentRestDays,
@@ -253,7 +259,7 @@ namespace SalesParamsApprove.Repositories
                                     cast(round(rateSales,2) as numeric(18,2)) as CurrentRateSales,
                                     cast(priceMarket as numeric(18,2)) as MCMarket,
                                     cast(sebest as numeric(18,2)) as Sebest
-                            from [dbo].[uf_getValuesForClearance] ({idtov})")
+                            from [dbo].[uf_getValuesForClearance] ({idtov}, 19)")
                     .FirstOrDefault();
                 return temp;
             }

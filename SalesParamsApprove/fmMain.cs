@@ -70,14 +70,8 @@ namespace SalesParamsApprove
         private void fmMain_Load(object sender, EventArgs e)
         {
             ListAccessTovGroup = repo.GetListAccessTovGroup(User.CurrentUserId).ToString();
-            fillgcSKU();
-        }
-
-        private void fillgcSKU()
-        {
             gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
         }
-
         // Обновление полей
         private void RefreshData()
         {
@@ -99,14 +93,16 @@ namespace SalesParamsApprove
                 if (focusrow == null)
                     return;
 
+
                 int idtov = Convert.ToInt32(focusrow["idSKU"]);
                 StatusSale sale = (StatusSale)Convert.ToInt32(focusrow["idStatus"]);
-
+                int idsale = Convert.ToInt32(focusrow["idSale"]);
                 DistributeRoles(sale);
 
                 var temp = repo.GetConstFields(idtov);
                 FocusedSale.Status = sale;
                 FocusedSale.idtov = idtov;
+                FocusedSale.idSale = idsale;
                 FocusedSale.CurrentRest = temp.CurrentRest;
                 FocusedSale.CurrentRestDays = temp.CurrentRestDays;
                 FocusedSale.NO = temp.NO;
@@ -152,16 +148,26 @@ namespace SalesParamsApprove
                         FocusedSale.DateSale = temp.DateSale;
                         FocusedSale.DateSaleString = FocusedSale.DateSale.ToString("HH:mm dd.MM.yy");
 
-                        // Рассчитываем новые данные: текущий объём продаж в течение срока распродажи
-                        decimal newRateSales = repo.GetCurrentRateSales(FocusedSale.idtov);
-                        FocusedSale.CurrentRateSales = newRateSales.ToString();
+
+                        if(FocusedSale.Status == StatusSale.NeddChangeParamsOff ||
+                            FocusedSale.Status == StatusSale.EndSale)
+                        {
+                            LabelOptOne.Visible = true;
+                            string sql = $"SELECT restEnd, restDaysEnd, rateSalesEnd, minPriceEnd FROM rClearanceValue WHERE idClearanceValue = {FocusedSale.idSale}";
+                            DataRow row = DBExecute.SelectRow(sql);
+
+
+                        }
+                        else
+                        {
+                            // Рассчитываем новые данные: текущий объём продаж в течение срока распродажи
+                            decimal newRateSales = repo.GetCurrentRateSales(FocusedSale.idtov);
+                            FocusedSale.CurrentRateSales = newRateSales.ToString();
+                        }
                     }
-                    else
-                    {
-                        FocusedSale.PriceSale = "";
-                        FocusedSale.DateSale = DateTime.Now;
-                        FocusedSale.DateSaleString = "";
-                    }
+
+
+
                     teTargetRemain.Enabled = FocusedSale.TargetRestDaysValue > 0;
                     teTargetRemain.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
                 }
@@ -197,7 +203,7 @@ namespace SalesParamsApprove
                 try
                 {
                     repo.ApproveSale(FocusedSale);
-                    fillgcSKU();
+                    checkHistorySales_CheckedChanged(null, null);
                     RefreshData();
                     MessageBox.Show("Параметры успешно утверждены", "Утверждение параметров",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -225,7 +231,7 @@ namespace SalesParamsApprove
                 {
                     // Сохраняем и меняем статус на "Параметры изменены"
                     repo.SaveSale(FocusedSale, 17);
-                    fillgcSKU();
+                    checkHistorySales_CheckedChanged(null, null);
                 }
                 else
                     repo.SaveSale(FocusedSale);
@@ -237,7 +243,7 @@ namespace SalesParamsApprove
 
         private void BtnRefreshData_Click(object sender, EventArgs e)
         {
-            fillgcSKU();
+            checkHistorySales_CheckedChanged(null, null);
         }
 
         #endregion
@@ -252,45 +258,62 @@ namespace SalesParamsApprove
         // Валидационные методы
         private void teIntField_EditValueChanged(object sender, EventArgs e)
         {
-            TextEdit te = sender as TextEdit;
-            string send = te.EditValue.ToString();
-            if (send.isCelka())
+            try
             {
-                int value = FocusedSale.CommonGetInt(send);
+                TextEdit te = sender as TextEdit;
+                string send = te.EditValue.ToString();
+                if (send.isCelka())
+                {
+                    int value = FocusedSale.CommonGetInt(send);
 
-                bool check1 = false;
-                switch(te.Name) {
-                    case "tePeriodAnal":
-                        check1 = value > FocusedSale.SaleDaysValue || value == 0;
-                        break;
-                    case "tePeriodAlertRTK":
-                        check1 = value > FocusedSale.SaleDaysValue || value == 0;
-                        break;
-                    case "teTargetRemain":
-                        check1 = value > FocusedSale.CurrentRestValue;
-                        break;
+                    bool check1 = false;
+                    switch (te.Name)
+                    {
+                        case "tePeriodAnal":
+                            check1 = value > FocusedSale.SaleDaysValue || value == 0;
+                            break;
+                        case "tePeriodAlertRTK":
+                            check1 = value > FocusedSale.SaleDaysValue || value == 0;
+                            break;
+                        case "teTargetRemain":
+                            check1 = value > FocusedSale.CurrentRestValue;
+                            break;
+                    }
+                    bool check2 = value < 0;
+
+                    te.Properties.Appearance.BorderColor = check1 || check2 ? Color.Red
+                        : FocusedSale.isInit ? DXColor.FromArgb(64, 64, 64) : Color.Blue;
                 }
-                bool check2 = value < 0;
-
-                te.Properties.Appearance.BorderColor = check1 || check2 ? Color.Red
-                    : FocusedSale.isInit ? DXColor.FromArgb(64, 64, 64) : Color.Blue;
+                else
+                    te.Properties.Appearance.BorderColor = Color.Red;
             }
-            else
-                te.Properties.Appearance.BorderColor = Color.Red;
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка при валидации. " + ex.Message);
+            }
 
         }
         private void teDoubleField_EditValueChanged(object sender, EventArgs e)
         {
-            TextEdit te = sender as TextEdit;
-            string send = te.EditValue.ToString();
-            if (send.isDouble())
+            try
             {
-                double value = FocusedSale.CommonGetDouble(send);
-                te.Properties.Appearance.BorderColor = value < 0 ? Color.Red
-                    : FocusedSale.isInit ? DXColor.FromArgb(64, 64, 64) : Color.Blue;
+                TextEdit te = sender as TextEdit;
+                string send = te.EditValue.ToString();
+                if (send.isDouble())
+                {
+                    double value = FocusedSale.CommonGetDouble(send);
+                    te.Properties.Appearance.BorderColor = value < 0 ? Color.Red
+                        : FocusedSale.isInit ? DXColor.FromArgb(64, 64, 64) : Color.Blue;
+                }
+                else
+                    te.Properties.Appearance.BorderColor = Color.Red;
             }
-            else
-                te.Properties.Appearance.BorderColor = Color.Red;
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ошибка при валидации. " + ex.Message);
+            }
+           
 
         }
 
@@ -318,16 +341,20 @@ namespace SalesParamsApprove
             // Главное не запуптатся
             // На старт
             btnSaveData.Visible = true;
-            btnApprove.Visible = true;
             btnSaveData.Enabled = false;
+
+            btnApprove.Visible = true;
             btnApprove.Enabled = false;
+
             btnWithdraw.Enabled = false;
             btnWithdraw.Visible = false;
+
             labelCurPriceSale.Visible = false;
             teCurPriceSale.Visible = false;
             labelDateSale.Visible = false;
             teDate.Visible = false;
-            
+
+            LabelOptOne.Visible = false;
             // Внимание
             switch (status)
             {
@@ -368,6 +395,24 @@ namespace SalesParamsApprove
                     if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
                         || User.InRole(User.Current.IdUser, "Developers"))
                         btnApprove.Enabled = true;
+                    break;
+                case StatusSale.NeddChangeParamsOff:
+                    btnSaveData.Enabled = true;
+                    labelCurPriceSale.Visible = true;
+                    teCurPriceSale.Visible = true;
+                    labelDateSale.Visible = true;
+                    teDate.Visible = true;
+                    if (User.InRole(User.Current.IdUser, "OptChiefBuyDepartment")
+                        || User.InRole(User.Current.IdUser, "Developers"))
+                        btnApprove.Enabled = true;
+                    break;
+                case StatusSale.EndSale:
+                    btnSaveData.Visible = false;
+                    btnApprove.Visible = false;
+                    labelCurPriceSale.Visible = true;
+                    teCurPriceSale.Visible = true;
+                    labelDateSale.Visible = true;
+                    teDate.Visible = true;
                     break;
             }
         }
@@ -507,13 +552,45 @@ namespace SalesParamsApprove
 
         private void checkHistorySales_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkHistorySales.Checked)
-            {
-                MessageBox.Show("В разработке ара", "ЭЭЭЭ", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning);
-            }
+            if (checkHistorySales.Checked)
+                gcSKU.DataSource = repo.GetTableTovsWithHistory(ListAccessTovGroup);
             else
+                gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
+        }
+
+        private void btnWithdraw_Click(object sender, EventArgs e)
+        {
+            try
             {
-                MessageBox.Show("Сказал же в разработке ара", "ЭЭЭЭ", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning);
+                int id_tov = FocusedSale.idtov;
+                int curOst = FocusedSale.CurrentRestValue;
+                int tarOst = FocusedSale.TargetRestDaysValue;
+                string sql = $"exec up_ClearanceFullExit {id_tov}, {curOst}, {tarOst}, 1";
+                DBExecute.ExecuteQuery(sql);
+
+                checkHistorySales_CheckedChanged(null, null);
+            }
+            catch(Exception ex) {
+                MessageBox.Show("Ошибка при выводе. " + ex.Message);
+            }
+        }
+
+        private void gvSKU_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            try
+            {
+                DataRow row = gvSKU.GetDataRow(e.RowHandle);
+                if (row == null)
+                    return;
+                int flagIsFinal = Convert.ToInt32(row["isFinal"]);
+                if (flagIsFinal == 1)
+                    e.Appearance.BackColor = DXColor.FromArgb(207, 174, 178);
+                else
+                    e.Appearance.BackColor = Color.Transparent;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("error. " + ex.Message);
             }
         }
     }

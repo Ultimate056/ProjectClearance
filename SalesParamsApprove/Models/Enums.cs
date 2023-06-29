@@ -11,7 +11,8 @@ namespace SalesParamsApprove.Models
         SuggestToSale = 10,
         NeedChangeParams = 15,
         ParamsChanged = 17,
+        NeddChangeParamsOff = 19,
         InSales = 20,
-        EndSale = 21,
+        EndSale = 2,
     }
 }

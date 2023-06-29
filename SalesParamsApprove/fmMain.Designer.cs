@@ -39,6 +39,9 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -84,14 +87,16 @@
             this.labelDateSale = new System.Windows.Forms.Label();
             this.teDate = new DevExpress.XtraEditors.TextEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LabelOptOne = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnWithdraw = new DevExpress.XtraEditors.SimpleButton();
             this.checkHistorySales = new DevExpress.XtraEditors.CheckEdit();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teCurRemain.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTargetRemain.Properties)).BeginInit();
@@ -120,6 +125,8 @@
             this.gcSKU.Location = new System.Drawing.Point(12, 60);
             this.gcSKU.MainView = this.gvSKU;
             this.gcSKU.Name = "gcSKU";
+            this.gcSKU.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
             this.gcSKU.Size = new System.Drawing.Size(921, 543);
             this.gcSKU.TabIndex = 0;
             this.gcSKU.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -142,9 +149,12 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
-            this.gridColumn4});
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6});
             this.gvSKU.GridControl = this.gcSKU;
             this.gvSKU.Name = "gvSKU";
+            this.gvSKU.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvSKU_RowStyle);
             this.gvSKU.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvSKU_FocusedRowChanged);
             // 
             // gridColumnIdSKU
@@ -266,6 +276,26 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 6;
             this.gridColumn3.Width = 94;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "idLink";
+            this.gridColumn4.FieldName = "idLink";
+            this.gridColumn4.Name = "gridColumn4";
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "isFinal";
+            this.gridColumn5.FieldName = "isFinal";
+            this.gridColumn5.Name = "gridColumn5";
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.repositoryItemCheckEdit1.ReadOnly = true;
+            this.repositoryItemCheckEdit1.ValueChecked = ((byte)(1));
+            this.repositoryItemCheckEdit1.ValueUnchecked = ((byte)(0));
             // 
             // searchControl1
             // 
@@ -848,6 +878,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.LabelOptOne);
             this.groupBox1.Controls.Add(this.teCurPriceSale);
             this.groupBox1.Controls.Add(this.teDate);
             this.groupBox1.Controls.Add(this.teMCMarket);
@@ -869,6 +900,17 @@
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Информационные параметры";
+            // 
+            // LabelOptOne
+            // 
+            this.LabelOptOne.AutoSize = true;
+            this.LabelOptOne.Font = new System.Drawing.Font("Arial Narrow", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelOptOne.Location = new System.Drawing.Point(223, 0);
+            this.LabelOptOne.Name = "LabelOptOne";
+            this.LabelOptOne.Size = new System.Drawing.Size(118, 16);
+            this.LabelOptOne.TabIndex = 66;
+            this.LabelOptOne.Text = "* на момент вывода";
+            this.LabelOptOne.Visible = false;
             // 
             // groupBox2
             // 
@@ -955,6 +997,7 @@
             this.btnWithdraw.ToolTip = "Вывести товар из распродажи";
             this.btnWithdraw.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             this.btnWithdraw.Visible = false;
+            this.btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
             // 
             // checkHistorySales
             // 
@@ -967,11 +1010,11 @@
             this.checkHistorySales.TabIndex = 70;
             this.checkHistorySales.CheckedChanged += new System.EventHandler(this.checkHistorySales_CheckedChanged);
             // 
-            // gridColumn4
+            // gridColumn6
             // 
-            this.gridColumn4.Caption = "idLink";
-            this.gridColumn4.FieldName = "idLink";
-            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn6.Caption = "id";
+            this.gridColumn6.FieldName = "idSale";
+            this.gridColumn6.Name = "gridColumn6";
             // 
             // fmMain
             // 
@@ -994,6 +1037,7 @@
             this.Load += new System.EventHandler(this.fmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teCurRemain.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teTargetRemain.Properties)).EndInit();
@@ -1086,6 +1130,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.CheckEdit checkHistorySales;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private System.Windows.Forms.Label LabelOptOne;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }
 
