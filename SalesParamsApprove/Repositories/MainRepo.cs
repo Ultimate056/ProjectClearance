@@ -164,7 +164,7 @@ namespace SalesParamsApprove.Repositories
             // В случае статусов "Предложено к распродаже" и "Параметры изменены" считаем стартовую цену распродажи
             // Обновляем ее , ставим новый статус и устанавливаем новые цены в указанных каналах сбыта
             if (sale.Status == StatusSale.SuggestToSale 
-                || sale.Status == StatusSale.ParamsChanged)
+                || sale.Status == StatusSale.ParamsChanged || sale.Status == StatusSale.NeddChangeParamsOff)
             {
                 double StartPriceClearance = sale.MCMarketValue - (sale.MCMarketValue * (sale.MCDiscountValue / 100));
                 string sql = $@"Update rClearanceValue set 
