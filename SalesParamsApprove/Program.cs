@@ -35,9 +35,9 @@ namespace SalesParamsApprove
             //args[1] = "boykovdv53";
             //args[2] = "test";
 
-            args[0] = "muhinan";
-            args[1] = "muhinan1017";
-            args[2] = "test";
+            //args[0] = "muhinan";
+            //args[1] = "muhinan1017";
+            //args[2] = "test";
 
             //args[0] = "ermilovaiv";
             //args[1] = "ermilova120";
@@ -55,9 +55,9 @@ namespace SalesParamsApprove
             //args[1] = "natali123";
             //args[2] = "test";
 
-            //args[0] = "selyutinvd";
-            //args[1] = "vd325";
-            //args[2] = "test";
+            args[0] = "selyutinvd";
+            args[1] = "vd325";
+            args[2] = "test";
             #endregion
 
             //CommonProperty.LoadDataAppConfig();

@@ -52,13 +52,13 @@ namespace SalesParamsApprove.Repositories
                             spr_tov.idAdvancement as idStatus,
                             rClearanceValue.dateClearance as dateStart,
                             dateadd(day, rClearanceValue.daysClearance, rClearanceValue.dateClearance) as dateEnd,
-                            0 as isFinal,
+                            rClearanceValue.isFinal,
                             rClearanceValue.idClearanceValue as idSale
                             from spr_tov (nolock)
                             inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                             inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                             inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
-                            where sAdvancement.idAdvancement > 3 and isFinal = 0
+                            where sAdvancement.idAdvancement > 3 and (isFinal = 0 or sAdvancement.idAdvancement = 19)
                             order by sAdvancement.idAdvancement";
                 }
                 else
@@ -72,14 +72,14 @@ namespace SalesParamsApprove.Repositories
                                 spr_tov.idAdvancement as idStatus,
                                 rClearanceValue.dateClearance as dateStart,
                                 dateadd(day, rClearanceValue.daysClearance, rClearanceValue.dateClearance) as dateEnd,
-                                0 as isFinal,
+                                rClearanceValue.isFinal,
                                 rClearanceValue.idClearanceValue as idSale
                                 from spr_tov (nolock)
                                 inner join rClearanceValue (nolock) on rClearanceValue.idtov = spr_tov.id_tov
                                 inner join spr_tm (nolock) on spr_tov.id_tm = spr_tm.tm_id
                                 inner join sAdvancement (nolock) on spr_tov.idAdvancement = sAdvancement.idAdvancement
 								inner join spr_tov_level4 stl4 (nolock) on stl4.tov_id = spr_tov.id_tov4
-                                where sAdvancement.idAdvancement > 3 and isFinal = 0
+                                where sAdvancement.idAdvancement > 3 and (isFinal = 0 or sAdvancement.idAdvancement = 19)
                                 and stl4.tov_id_top_level IN ({ListAccessTovGroup})
                                 order by sAdvancement.idAdvancement";
                 }
@@ -209,7 +209,8 @@ namespace SalesParamsApprove.Repositories
                             fIP = {sale.fIP},
                             fOpt = {sale.fOpt},
                             fA1 = {sale.fA1}, 
-                            fExist = {sale.fExist}
+                            fExist = {sale.fExist},
+                            isFinal = 0
                             WHERE idtov = {sale.idtov}";
             DBExecute.ExecuteQuery(sql);
 

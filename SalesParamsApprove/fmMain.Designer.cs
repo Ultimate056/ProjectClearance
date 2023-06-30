@@ -41,6 +41,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
             this.label1 = new System.Windows.Forms.Label();
@@ -93,7 +94,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnWithdraw = new DevExpress.XtraEditors.SimpleButton();
             this.checkHistorySales = new DevExpress.XtraEditors.CheckEdit();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSKU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -156,6 +156,7 @@
             this.gvSKU.Name = "gvSKU";
             this.gvSKU.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gvSKU_RowStyle);
             this.gvSKU.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvSKU_FocusedRowChanged);
+            this.gvSKU.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gvSKU_CustomColumnDisplayText);
             // 
             // gridColumnIdSKU
             // 
@@ -288,6 +289,12 @@
             this.gridColumn5.Caption = "isFinal";
             this.gridColumn5.FieldName = "isFinal";
             this.gridColumn5.Name = "gridColumn5";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "id";
+            this.gridColumn6.FieldName = "idSale";
+            this.gridColumn6.Name = "gridColumn6";
             // 
             // repositoryItemCheckEdit1
             // 
@@ -1009,12 +1016,6 @@
             this.checkHistorySales.Size = new System.Drawing.Size(141, 20);
             this.checkHistorySales.TabIndex = 70;
             this.checkHistorySales.CheckedChanged += new System.EventHandler(this.checkHistorySales_CheckedChanged);
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "id";
-            this.gridColumn6.FieldName = "idSale";
-            this.gridColumn6.Name = "gridColumn6";
             // 
             // fmMain
             // 

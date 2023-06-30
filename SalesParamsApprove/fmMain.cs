@@ -28,7 +28,7 @@ namespace SalesParamsApprove
         public fmMain()
         {
             InitializeComponent();
-
+            this.Text = Text + $@", Сервер - {Program.srvname}, База - {Program.mainDBName}, Пользователь - {User.Current.NKontrFull}";
             teCurRemain.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRest", true, DataSourceUpdateMode.OnPropertyChanged));
             teCurDays.DataBindings.Add(new Binding("Text", FocusedSale, "CurrentRestDays", true, DataSourceUpdateMode.OnPropertyChanged));
             teTargetRemain.DataBindings.Add(new Binding("Text", FocusedSale, "TargetRestDays", true, DataSourceUpdateMode.OnPropertyChanged));
@@ -153,10 +153,14 @@ namespace SalesParamsApprove
                             FocusedSale.Status == StatusSale.EndSale)
                         {
                             LabelOptOne.Visible = true;
-                            string sql = $"SELECT restEnd, restDaysEnd, rateSalesEnd, minPriceEnd FROM rClearanceValue WHERE idClearanceValue = {FocusedSale.idSale}";
+                            string sql = $@"SELECT restEnd, cast(round(restDaysEnd,2) as numeric(18,2)) restDaysEnd,  
+                                            cast(round(rateSalesEnd,2) as numeric(18,2)) rateSalesEnd, 
+                                            cast(round(minPriceEnd,2) as numeric(18,2)) minPriceEnd FROM rClearanceValue WHERE idClearanceValue = {FocusedSale.idSale}";
                             DataRow row = DBExecute.SelectRow(sql);
-
-
+                            FocusedSale.CurrentRest = row["restEnd"].ToString();
+                            FocusedSale.CurrentRateSales = row["rateSalesEnd"].ToString();
+                            FocusedSale.CurrentRestDays = row["restDaysEnd"].ToString();
+                            FocusedSale.MCMarket = row["minPriceEnd"].ToString();
                         }
                         else
                         {
@@ -584,13 +588,41 @@ namespace SalesParamsApprove
                     return;
                 int flagIsFinal = Convert.ToInt32(row["isFinal"]);
                 if (flagIsFinal == 1)
+                {
                     e.Appearance.BackColor = DXColor.FromArgb(207, 174, 178);
+                }
                 else
                     e.Appearance.BackColor = Color.Transparent;
             }
             catch(Exception ex)
             {
                 MessageBox.Show("error. " + ex.Message);
+            }
+        }
+
+        private void gvSKU_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if(e.Column.FieldName == "SaleStatus")
+            {
+                try
+                {
+                    DataRow row = gvSKU.GetDataRow(e.ListSourceRowIndex);
+                    if (row == null)
+                        return;
+
+                    int flagIsFinal = Convert.ToInt32(row["isFinal"]);
+                    int idStatus = Convert.ToInt32(row["idStatus"]);
+
+                    if (flagIsFinal == 1 && (StatusSale)idStatus == StatusSale.EndSale)
+                    {
+                        e.DisplayText = "Распродажа завершена";
+                    }
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("error. " + ex.Message);
+                }
             }
         }
     }
