@@ -69,10 +69,11 @@ namespace SalesParamsApprove
         #region fills
         private void fmMain_Load(object sender, EventArgs e)
         {
+            // Определяется список разрешенных ТГ для пользователя
             ListAccessTovGroup = repo.GetListAccessTovGroup(User.CurrentUserId).ToString();
             gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
         }
-        // Обновление полей
+        // Обновление полей (правой части)
         private void RefreshData()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -97,6 +98,8 @@ namespace SalesParamsApprove
                 int idtov = Convert.ToInt32(focusrow["idSKU"]);
                 StatusSale sale = (StatusSale)Convert.ToInt32(focusrow["idStatus"]);
                 int idsale = Convert.ToInt32(focusrow["idSale"]);
+
+
                 DistributeRoles(sale);
 
                 var temp = repo.GetConstFields(idtov);
@@ -148,7 +151,7 @@ namespace SalesParamsApprove
                         FocusedSale.DateSale = temp.DateSale;
                         FocusedSale.DateSaleString = FocusedSale.DateSale.ToString("HH:mm dd.MM.yy");
 
-
+                        // Если распродажа завершена
                         if(FocusedSale.Status == StatusSale.NeddChangeParamsOff ||
                             FocusedSale.Status == StatusSale.EndSale)
                         {
@@ -171,7 +174,7 @@ namespace SalesParamsApprove
                     }
 
 
-
+                    // Выключаю для редактирование поле целевой остаток, если полная распродажа
                     teTargetRemain.Enabled = FocusedSale.TargetRestDaysValue > 0;
                     teTargetRemain.ReadOnly = FocusedSale.TargetRestDaysValue == 0;
                 }
@@ -273,6 +276,9 @@ namespace SalesParamsApprove
 
         #endregion
 
+
+
+
         #region Events
         private void gvSKU_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
@@ -350,7 +356,6 @@ namespace SalesParamsApprove
                 gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
         }
         #endregion
-
 
 
         #region Logic Methods
@@ -520,9 +525,6 @@ namespace SalesParamsApprove
 
 
         #endregion
-
-
-
 
 
 

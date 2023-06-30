@@ -8,6 +8,7 @@ namespace SalesParamsApprove.Models
 {
     public enum StatusSale
     {
+        // статусы хранятся в spr_tov , поле idAdvancement
         SuggestToSale = 10,
         NeedChangeParams = 15,
         ParamsChanged = 17,
