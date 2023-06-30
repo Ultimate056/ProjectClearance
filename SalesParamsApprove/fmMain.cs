@@ -250,6 +250,27 @@ namespace SalesParamsApprove
             checkHistorySales_CheckedChanged(null, null);
         }
 
+        private void btnWithdraw_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id_tov = FocusedSale.idtov;
+                int curOst = FocusedSale.CurrentRestValue;
+                int tarOst = FocusedSale.TargetRestDaysValue;
+                string sql = $"exec up_ClearanceFullExit {id_tov}, {curOst}, {tarOst}, 1";
+                DBExecute.ExecuteQuery(sql);
+
+                checkHistorySales_CheckedChanged(null, null);
+                MessageBox.Show("Товар успешно выведен из распродажи", "Вывод из распродажи",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при выводе. " + ex.Message);
+            }
+        }
+
+
         #endregion
 
         #region Events
@@ -321,6 +342,13 @@ namespace SalesParamsApprove
 
         }
 
+        private void checkHistorySales_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkHistorySales.Checked)
+                gcSKU.DataSource = repo.GetTableTovsWithHistory(ListAccessTovGroup);
+            else
+                gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
+        }
         #endregion
 
 
@@ -550,35 +578,6 @@ namespace SalesParamsApprove
             }
         }
 
-
-
-        #endregion
-
-        private void checkHistorySales_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkHistorySales.Checked)
-                gcSKU.DataSource = repo.GetTableTovsWithHistory(ListAccessTovGroup);
-            else
-                gcSKU.DataSource = repo.GetTableTovs(ListAccessTovGroup);
-        }
-
-        private void btnWithdraw_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int id_tov = FocusedSale.idtov;
-                int curOst = FocusedSale.CurrentRestValue;
-                int tarOst = FocusedSale.TargetRestDaysValue;
-                string sql = $"exec up_ClearanceFullExit {id_tov}, {curOst}, {tarOst}, 1";
-                DBExecute.ExecuteQuery(sql);
-
-                checkHistorySales_CheckedChanged(null, null);
-            }
-            catch(Exception ex) {
-                MessageBox.Show("Ошибка при выводе. " + ex.Message);
-            }
-        }
-
         private void gvSKU_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
             try
@@ -594,7 +593,7 @@ namespace SalesParamsApprove
                 else
                     e.Appearance.BackColor = Color.Transparent;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("error. " + ex.Message);
             }
@@ -602,7 +601,7 @@ namespace SalesParamsApprove
 
         private void gvSKU_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
-            if(e.Column.FieldName == "SaleStatus")
+            if (e.Column.FieldName == "SaleStatus")
             {
                 try
                 {
@@ -619,11 +618,18 @@ namespace SalesParamsApprove
                     }
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("error. " + ex.Message);
                 }
             }
         }
+
+        #endregion
+
+
+
+
+      
     }
 }

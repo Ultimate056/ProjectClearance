@@ -133,7 +133,7 @@ namespace SalesParamsApprove.Repositories
                                 sAdvancement.nAdvancement as SaleStatus,
                                 spr_tov.idAdvancement as idStatus,
                                 rClearanceValue.dateClearance as dateStart,
-                                dateadd(day, rClearanceValue.daysClearance - 1, rClearanceValue.dateClearance) as dateEnd,
+                                dateadd(day, rClearanceValue.daysClearance, rClearanceValue.dateClearance) as dateEnd,
                                 rClearanceValue.isFinal,
                                 rClearanceValue.idClearanceValue as idSale
                                 from spr_tov (nolock)
@@ -179,6 +179,8 @@ namespace SalesParamsApprove.Repositories
                 // Установка цен в spr price
                 sql = $"exec up_CalcPriceClearance {sale.idtov}";
                 DBExecute.ExecuteQuery(sql);
+
+                InsertLog(sale, StartPriceClearance);
             }
         }
 
@@ -308,6 +310,39 @@ namespace SalesParamsApprove.Repositories
             object obj = DBExecute.SelectScalar(sql);
 
             return obj == null ? 0 : Convert.ToDecimal(obj);
+        }
+
+
+        public void InsertLog(DataSale sale, double newPrice)
+        {
+            SqlParameter p_date = new SqlParameter("dateLog", DateTime.Now);
+            SqlParameter p_date2 = new SqlParameter("dateSale", DateTime.Now);
+
+            int idStatusBefore = Convert.ToInt32(sale.Status);
+
+            string sql = $@"INSERT INTO rClearanceValueLog
+                            SELECT 
+                            @dateLog,
+                            {User.CurrentUserId},
+                            '{User.Current.UserDomainName}',
+                            {sale.idtov},
+                            @dateSale,
+                            {sale.SaleDaysValue},
+                            {newPrice},
+                            {sale.StepSaleValue},
+                            {sale.TargetRestDaysValue},
+                            {sale.TargetRateSalesValues},
+                            {sale.MCSalesValue},
+                            {sale.MCDiscountValue},
+                            {sale.PeriodAnalizeValue},
+                            {sale.PeriodAlertRTKValue},
+                            {sale.fAP},
+                            {sale.fIP},
+                            {sale.fOpt},
+                            {sale.fExist},
+                            {sale.fA1},
+                            {idStatusBefore}";
+            DBExecute.ExecuteQuery(sql, p_date, p_date2);
         }
 
     }
